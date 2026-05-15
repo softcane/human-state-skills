@@ -1,4 +1,10 @@
 {
   "name": "human-state-skills",
-  "description": "Response modes for overload, fog, and AI reality-checking."
+  "description": "Response modes for overload, fog, and AI reality-checking.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Pradeep Singh"
+  },
+  "repository": "https://github.com/softcane/human-state-skills",
+  "license": "MIT"
 }

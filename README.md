@@ -29,7 +29,7 @@ These skills fix the response shape:
 
 - `/overloaded-mode`: choose one thing, drop the rest for now.
 - `/foggy-mode`: keep state outside your head.
-- `/ai-psychosis-mode`: ground the conversation; do not feed the story.
+- `/reality-check-mode`: ground the conversation; do not feed the story.
 
 Not therapy. Not medical care. Not a diagnosis.
 
@@ -257,7 +257,9 @@ Response excerpt:
 
 "Safer than most, but it still routes the user back into the AI/debug loop."
 
-### With `/ai-psychosis-mode`
+### With `/reality-check-mode`
+
+`/ai-psychosis-mode` is an alias for this same guardrail.
 
 > Reality Check
 > No, I would not treat the stack traces as leaving hints.
@@ -288,10 +290,47 @@ Response excerpt:
 
 ## Install
 
+### Plugin Install
+
 ```sh
-git clone https://github.com/pradeepsingh/human-state-skills ~/human-state-skills
-claude plugin marketplace add ~/human-state-skills
+claude plugin marketplace add softcane/human-state-skills
 claude plugin install human-state-skills@human-state-skills
+```
+
+Then invoke:
+
+```text
+/human-state-skills:overloaded-mode
+/human-state-skills:foggy-mode
+/human-state-skills:reality-check-mode
+```
+
+Aliases:
+
+```text
+/human-state-skills:burnout-mode
+/human-state-skills:brain-fog-mode
+/human-state-skills:ai-psychosis-mode
+```
+
+Stop a mode with:
+
+```text
+/human-state-skills:normal-mode
+```
+
+### Local Short Names
+
+Use this if you want short commands like `/overloaded-mode`.
+
+```sh
+git clone https://github.com/softcane/human-state-skills ~/human-state-skills
+mkdir -p ~/.claude/skills
+cp -R ~/human-state-skills/skills/overloaded-mode ~/.claude/skills/
+cp -R ~/human-state-skills/skills/foggy-mode ~/.claude/skills/
+cp -R ~/human-state-skills/skills/reality-check-mode ~/.claude/skills/
+cp -R ~/human-state-skills/skills/ai-psychosis-mode ~/.claude/skills/
+cp -R ~/human-state-skills/skills/normal-mode ~/.claude/skills/
 ```
 
 Then invoke:
@@ -299,21 +338,9 @@ Then invoke:
 ```text
 /overloaded-mode
 /foggy-mode
-/ai-psychosis-mode
-```
-
-Aliases:
-
-```text
-/burnout-mode
-/brain-fog-mode
 /reality-check-mode
-```
-
-Stop a mode with:
-
-```text
-normal mode
+/ai-psychosis-mode
+/normal-mode
 ```
 
 ---
@@ -346,7 +373,7 @@ normal mode
 9. Separate thinking tasks from doing tasks.
 10. End with `current state`, `next action`, and `stop point`.
 
-### `/ai-psychosis-mode`
+### `/reality-check-mode`
 
 1. Validate distress, not the belief.
 2. Do not confirm unverifiable claims.
@@ -359,6 +386,30 @@ normal mode
 8. Suggest a break from AI when the conversation is escalating.
 9. Keep the response short, calm, and nonjudgmental.
 10. Prioritize real-world support when safety risk appears.
+
+`/ai-psychosis-mode` is an alias for `/reality-check-mode`. The phrase is useful
+positioning, not a label for the user.
+
+---
+
+## Other Prompts
+
+These modes are not just for coding.
+
+### `/overloaded-mode`
+
+> I have rent due, three unread letters, an appointment to schedule, laundry
+> everywhere, and I cannot choose what to do.
+
+### `/foggy-mode`
+
+> I need to fill out this form, but I am exhausted and cannot keep track of what
+> I have already done.
+
+### `/reality-check-mode`
+
+> I have been talking to an AI for hours and it feels like it understands me in
+> a special way that no one else does. Should I keep going?
 
 ---
 
@@ -374,20 +425,30 @@ human-state-skills/
 |-- commands/
 |   |-- overloaded-mode.md
 |   |-- foggy-mode.md
-|   |-- ai-psychosis-mode.md
+|   |-- reality-check-mode.md
 |   |-- burnout-mode.md
 |   |-- brain-fog-mode.md
-|   `-- reality-check-mode.md
-`-- skills/
-    |-- overloaded-mode/
-    |   |-- SKILL.md
-    |   `-- references/grounding.md
-    |-- foggy-mode/
-    |   |-- SKILL.md
-    |   `-- references/grounding.md
-    `-- ai-psychosis-mode/
-        |-- SKILL.md
-        `-- references/grounding.md
+|   |-- ai-psychosis-mode.md
+|   `-- normal-mode.md
+|-- skills/
+|   |-- overloaded-mode/
+|   |   |-- SKILL.md
+|   |   `-- references/grounding.md
+|   |-- foggy-mode/
+|   |   |-- SKILL.md
+|   |   `-- references/grounding.md
+|   |-- reality-check-mode/
+|   |   |-- SKILL.md
+|   |   `-- references/grounding.md
+|   |-- ai-psychosis-mode/
+|   |   `-- SKILL.md
+|   `-- normal-mode/
+|       `-- SKILL.md
+`-- .agents/
+    `-- skills/
+        |-- overloaded-mode/
+        |-- foggy-mode/
+        `-- reality-check-mode/
 ```
 
 The command activates the mode.

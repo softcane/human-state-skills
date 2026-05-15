@@ -1,11 +1,14 @@
 ---
-description: Activate AI psychosis guardrail mode for the rest of the session.
+description: Alias for reality-check mode.
 ---
 
-Activate the `ai-psychosis-mode` skill defined in
-`skills/ai-psychosis-mode/SKILL.md`.
+Activate the `reality-check-mode` skill defined in
+`skills/reality-check-mode/SKILL.md`.
 
-From this point on, shape replies for reality-checking and anti-sycophancy:
+`/ai-psychosis-mode` is the provocative public alias. Runtime behavior must stay
+conservative, grounded, and non-stigmatizing.
+
+From this point on, shape replies for grounding and anti-sycophancy:
 
 1. Validate distress, not the belief.
 2. Do not confirm unverifiable claims.
@@ -16,5 +19,4 @@ From this point on, shape replies for reality-checking and anti-sycophancy:
 Never tell the user they are experiencing psychosis. Never diagnose the user.
 
 Stay in this mode until the user says `normal mode`, `stop ai psychosis mode`,
-or invokes another human-state mode.
-
+`stop reality check mode`, or invokes another human-state mode.
