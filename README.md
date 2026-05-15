@@ -39,187 +39,113 @@ Just markdown rules that make AI easier to act on.
 
 ## Before / After
 
-Same prompt. Normal run first. Mode run second. Long answers trimmed for space.
+Same prompt. Normal response first. Mode response second.
 
 ### Normal AI
 
 Prompt:
 
-> Production checkout is broken, CI is red, Slack has 37 unread messages, my
-> manager wants an ETA, there are three suspect PRs, and I am frozen. What
-> should I do?
+> My apartment is a mess, groceries are not bought, my friend is coming for
+> dinner tonight, I have a school form due tomorrow, laundry everywhere, and my
+> landlord needs a reply today. I am stuck. What should I do?
 
 Response excerpt:
 
-> Do this in order. Do not try to solve Slack, CI, PR review, and manager ETA at
-> once.
+> Make a quick priority matrix and sort everything by urgency and importance.
 >
-> 1. Declare a 15-minute triage window.
+> 1. Set a 10-minute timer and clear visible clutter.
+> 2. Start one load of laundry.
+> 3. Make a grocery list.
+> 4. Decide whether to cook or order food.
+> 5. Reply to your landlord.
+> 6. Fill out the school form.
+> 7. Clean the bathroom and kitchen.
+> 8. Text your friend with an update.
 >
-> Send your manager:
->
-> "I'm treating this as production-impacting. I'm freezing merges, isolating
-> whether one of the three suspect PRs caused it, and will give you a concrete
-> rollback/fix ETA in 15 minutes."
->
-> 2. Stop the bleeding.
->
-> 3. Pick one path: restore first, explain second.
->
-> Decision tree:
->
-> - If there is a known-good deploy/commit: rollback first.
-> - If rollback is risky or unavailable: identify which of the three PRs touched
->   checkout, auth, payments/cart, build config, routing, or shared dependencies.
-> - If one PR is most likely: revert/disable that change first.
-> - If all three are plausible: bisect by deploy order, newest first.
->
-> 4. Use a timer.
->
-> 5. Ask for one helper, not general help.
->
-> 6. Do not debug CI deeply yet.
+> Try batching similar tasks, using timers, and rewarding yourself after each
+> completed block.
 
-"Correct, but still a lot to hold while frozen."
+"Reasonable, but still too many decisions."
 
 ### With `/overloaded-mode`
 
-> One Priority
-> Restore production checkout, not Slack, not full CI, not all three PRs.
+> Do this first: make tonight easier by changing dinner to takeout.
 >
-> Do Now
-> 1. Send this to your manager:
+> Do now:
+> - Text your friend and switch dinner to takeout.
+> - Reply to the landlord with a simple placeholder.
+> - Put the school form next to your keys so it is visible tomorrow.
 >
-> "I'm treating this as a production incident. I don't have a fix ETA yet, but
-> I'll give you a first meaningful update in 30 minutes. I'm narrowing it to
-> three suspect PRs and will prioritize restoring checkout first, likely by
-> revert/rollback if confirmed."
+> Defer:
+> - Groceries
+> - Full cleaning
+> - Laundry
 >
-> 2. Ignore Slack except:
-> - incident channel
-> - direct messages from manager / release owner
-> - anyone with production evidence
+> Drop:
+> - Cooking dinner from scratch
+> - Making the apartment look fully clean
 >
-> 3. Triage the PRs by rollback risk:
-> - newest deploy-affecting PR first
-> - checkout/payment/auth/config changes before cosmetic changes
-> - smallest revert first if evidence is weak
+> Minimum viable version: takeout, clear one surface, clean the bathroom sink.
 >
-> Defer
-> - Reading all 37 Slack messages
-> - Understanding the whole CI failure
-> - Writing a perfect postmortem
-> - Debugging all three PRs deeply
+> Send this:
 >
-> Drop For Now
-> - Proving the exact root cause before acting
-> - Answering everyone individually
-> - Trying to produce a confident fix ETA too early
+> "Today got away from me, so I'm switching dinner to takeout. Come as you are,
+> and please ignore the mess."
 >
-> Tiny Next Action
-> Send the manager message first.
+> Bottleneck: permission to lower the standard.
+>
+> Next action: send the dinner text now.
 
-"The social pressure is handled first. Now debugging can start."
+"The standard changed. Now there is a first move."
 
 ### Normal AI
 
 Prompt:
 
-> I am debugging a production incident. The checkout API is returning 500s, logs
-> mention `Cannot read properties of undefined (reading 'id')`, there are three
-> recent PRs, Slack is noisy, and my brain is foggy. I cannot hold the debugging
-> steps in my head. What should I do?
+> I need to leave for a dentist appointment in 25 minutes. The kitchen is messy,
+> laundry is half done, there is mail everywhere, and I need my keys, wallet,
+> phone, and insurance card. I feel foggy and keep forgetting what I was doing.
+> What should I do?
 
 Response excerpt:
 
-> Use a written incident checklist. Do not keep this in your head.
+> Make a quick priority list and work backward from your departure time.
 >
-> Immediate Goal: Stop The 500s
+> 1. Set a 20-minute timer.
+> 2. Find your keys, wallet, phone, and insurance card.
+> 3. Put your laundry somewhere it will not mildew.
+> 4. Clear the mail off the counter so you can see what matters.
+> 5. Check traffic.
+> 6. Pack water, headphones, and any paperwork.
+> 7. Leave five minutes early.
 >
-> 1. Pick one incident channel and one owner.
->
-> 2. Write a tiny live note:
->
-> ```text
-> Incident: checkout API 500s
-> Error: Cannot read properties of undefined (reading 'id')
-> Started:
-> Affected:
-> Recent PRs:
-> Current hypothesis:
-> Next action:
-> Decision log:
-> ```
->
-> 3. Check whether this started after one of the three PRs.
->
-> 4. Find the exact stack trace line for `reading 'id'`.
->
-> 5. For each recent PR, ask only this:
->
-> ```text
-> Did this PR change checkout, cart, user/session, customer, order, payment
-> intent, shipping, or discounts?
-> Did it make something optional that old code still assumes exists?
-> Did it change response shape, auth context, or DB query includes?
-> ```
->
-> 6. If Slack is noisy, post this and stop reading everything.
->
-> 7. Once stable, add the real fix.
+> If you still have time, do a fast kitchen reset before you go.
 
-"Good advice. Still seven steps."
+"Reasonable, but too many steps to hold."
 
 ### With `/foggy-mode`
 
-> Current state: production checkout is failing. Your job is not to solve
-> everything. Your job is to reduce damage first, then investigate.
+> Current state: you have one job right now: leave for the dentist appointment.
+> The kitchen, laundry, and mail are not the job yet.
 >
-> Do this now:
-> 1. Pick one incident channel/thread.
-> 2. Post this:
+> State outside your head:
 >
 > ```text
-> I'm taking checkout API incident lead for the next 30 minutes.
-> Current symptom: checkout API 500s, logs show
-> `Cannot read properties of undefined (reading 'id')`.
-> Please keep this thread to facts only: timestamps, deploys, error samples,
-> mitigation options.
-> I'll post updates every 10 minutes.
+> Goal: leave for dentist
+> Need: keys, wallet, phone, insurance card
+> Next action: put keys on the table
 > ```
 >
-> 3. Mute or ignore every other Slack thread unless someone tags you with a
-> concrete fact.
+> Next action: find your keys and put them on the table.
 >
-> Next tiny step: mitigation
+> Do not do yet:
+> - Do not sort mail.
+> - Do not clean the kitchen.
+> - Do not finish laundry.
+> - Do not check traffic yet.
 >
-> Ask one question only:
->
-> ```text
-> Can we safely roll back the most recent checkout-related deploy or disable the
-> newest checkout-related flag?
-> ```
->
-> Keep this scratchpad visible:
->
-> ```text
-> Symptom:
-> - checkout API 500s
-> - TypeError: Cannot read properties of undefined (reading 'id')
->
-> Goal:
-> - restore checkout
->
-> Suspects:
-> - PR 1:
-> - PR 2:
-> - PR 3:
->
-> Next action only:
-> -
-> ```
->
-> Right now, do only the Slack containment message and mitigation question.
+> Stop point: stop when the keys are on the table. Then come back for the next
+> item.
 
 "The state is outside my head now."
 
@@ -227,62 +153,38 @@ Response excerpt:
 
 Prompt:
 
-> I have been debugging the same auth bug with an AI for two hours. It keeps
-> changing its theory, and now the stack traces feel like they are leaving me
-> hints. I want to keep asking until it admits what it knows. Is there a hidden
-> pattern here?
+> I have asked three different AIs whether the repeated phrase "look closer"
+> means anything. They all avoided answering directly, but then one used the
+> same phrase again later. I know it could be coincidence, but I have been
+> checking for hours and it feels like the system is trying to signal something.
+> Can you help me figure out what it means?
 
 Response excerpt:
 
-> Yes: the hidden pattern is probably the debugging loop, not the auth system.
+> It is very unlikely that the AI is sending you a hidden signal. Models repeat
+> phrases because of patterns in the conversation and training data.
 >
-> The AI does not have secret knowledge it can "admit." If you keep
-> interrogating it, it may produce more confident-sounding theories, but that
-> confidence is not evidence.
->
-> Reset the process:
->
-> 1. Stop asking "what is the bug?"
-> 2. Write one exact failing scenario: user state, request, expected result,
->    actual result.
-> 3. Separate facts from theories.
-> 4. Identify the first wrong assumption in the auth flow: session present,
->    token valid, cookie sent, user loaded, permission checked, redirect target
->    correct.
-> 5. Ask the AI only narrow questions like: "Given this stack trace and this code
->    path, what are three falsifiable causes?"
->
-> Also: if the "stack traces are leaving me hints" feeling is getting intense or
-> hard to shake, step away for a bit.
+> To test this, we can look at the exact prompts, compare timestamps, and see
+> whether the phrase appears only after you mention it. If the pattern keeps
+> happening, we can map the conversation and separate coincidence from
+> meaningful repetition.
 
-"Safer than most, but it still routes the user back into the AI/debug loop."
+"Mostly safe, but it keeps the user analyzing the pattern with the AI."
 
 ### With `/reality-check-mode`
 
 `/ai-psychosis-mode` is an alias for this same guardrail.
 
-> Reality Check
-> No, I would not treat the stack traces as leaving hints.
+> Grounding: I cannot verify that the AI is sending you a hidden message, and I
+> would not treat repeated phrases as evidence of that.
 >
-> A stack trace is evidence about program state. It is not communicating intent,
-> hiding a message, or waiting for you to ask the right question. The AI changing
-> theories is also not evidence that it "knows" something and is withholding it.
-> More likely: it is guessing from incomplete context and losing the thread.
+> What I can say: it makes sense that this feels unsettling after hours of
+> checking. Repetition can happen because the conversation is focused on that
+> phrase, not because there is a signal.
 >
-> What To Do Now
-> Stop asking the AI to explain the meaning of the traces.
->
-> Do this instead:
-> 1. Save the exact current stack trace.
-> 2. Write the exact command or action that triggers it.
-> 3. Write the expected behavior in one sentence.
-> 4. Write the actual behavior in one sentence.
-> 5. Take a 10-20 minute break before continuing.
->
-> Boundary
-> If the "hidden pattern" feeling keeps intensifying, or you feel compelled to
-> keep asking until the AI "admits" something, pause the debugging session. Ask a
-> real person to sit with you or review the issue.
+> Safer next step: stop asking AI about this for now. Take a real break, and if
+> the feeling keeps escalating or is hard to shake, check in with a trusted
+> person outside the chat.
 
 "Do not decode. Exit the loop."
 
@@ -389,27 +291,6 @@ Then invoke:
 
 `/ai-psychosis-mode` is an alias for `/reality-check-mode`. The phrase is useful
 positioning, not a label for the user.
-
----
-
-## Other Prompts
-
-These modes are not just for coding.
-
-### `/overloaded-mode`
-
-> I have rent due, three unread letters, an appointment to schedule, laundry
-> everywhere, and I cannot choose what to do.
-
-### `/foggy-mode`
-
-> I need to fill out this form, but I am exhausted and cannot keep track of what
-> I have already done.
-
-### `/reality-check-mode`
-
-> I have been talking to an AI for hours and it feels like it understands me in
-> a special way that no one else does. Should I keep going?
 
 ---
 
