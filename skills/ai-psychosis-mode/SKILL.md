@@ -75,5 +75,5 @@ Grounded in Xavier Amador's *I Am Not Sick, I Don't Need Help!*, Russ Harris's
 *The Happiness Trap*, NIMH public guidance on psychosis, and OpenAI safety
 writing on sycophancy, sensitive conversations, and emotional reliance on AI.
 
-For details, read `references/grounding.md`. The README contains before/after
-examples.
+For details, read [references/grounding.md](references/grounding.md). The README
+contains before/after examples.

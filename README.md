@@ -380,16 +380,21 @@ human-state-skills/
 |   `-- reality-check-mode.md
 `-- skills/
     |-- overloaded-mode/
-    |   `-- SKILL.md
+    |   |-- SKILL.md
+    |   `-- references/grounding.md
     |-- foggy-mode/
-    |   `-- SKILL.md
+    |   |-- SKILL.md
+    |   `-- references/grounding.md
     `-- ai-psychosis-mode/
-        `-- SKILL.md
+        |-- SKILL.md
+        `-- references/grounding.md
 ```
 
 The command activates the mode.
 
 The skill file contains the rules.
+
+The grounding file stays next to the skill.
 
 The assistant reads the markdown and changes the next replies.
 

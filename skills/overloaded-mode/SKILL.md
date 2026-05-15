@@ -71,5 +71,5 @@ Grounded in Emily Nagoski and Amelia Nagoski's *Burnout: The Secret to Unlocking
 the Stress Cycle* and public WHO guidance that frames burnout as an occupational
 phenomenon, not a medical condition.
 
-For details, read `references/grounding.md`. The README contains before/after
-examples.
+For details, read [references/grounding.md](references/grounding.md). The README
+contains before/after examples.

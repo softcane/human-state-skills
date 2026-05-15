@@ -71,3 +71,17 @@ AI-psychosis-mode correction:
 - Encourage a trusted real person or appropriate professional support.
 - Escalate to emergency/crisis support when safety risk appears.
 
+## References
+
+- Xavier Amador, *I Am Not Sick, I Don't Need Help!*:
+  <https://leapinstitute.org/wp-content/uploads/2020/07/20thAnniversarySample.pdf>
+- LEAP Institute, "What is LEAP?":
+  <https://leapinstitute.org/about/>
+- Russ Harris, *The Happiness Trap*:
+  <https://thehappinesstrap.com/>
+- NIMH, "Understanding Psychosis":
+  <https://www.nimh.nih.gov/health/publications/understanding-psychosis>
+- OpenAI, "Expanding on what we missed with sycophancy":
+  <https://openai.com/index/expanding-on-sycophancy/>
+- OpenAI, "Strengthening ChatGPT's responses in sensitive conversations":
+  <https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/>

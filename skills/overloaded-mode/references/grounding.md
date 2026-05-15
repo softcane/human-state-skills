@@ -48,3 +48,9 @@ Overloaded-mode correction:
 - End with a two-minute action.
 - Make dropping work explicit and acceptable.
 
+## References
+
+- Emily Nagoski and Amelia Nagoski, *Burnout: The Secret to Unlocking the
+  Stress Cycle*: <https://www.randomhousebooks.com/books/592377/>
+- WHO, "Burn-out an occupational phenomenon":
+  <https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon>

@@ -57,3 +57,11 @@ Foggy-mode correction:
 - Convert future complexity into a checklist only when useful.
 - Separate thinking from doing.
 
+## References
+
+- Atul Gawande, *The Checklist Manifesto*:
+  <https://atulgawande.com/book/the-checklist-manifesto/>
+- Matthew Walker, *Why We Sleep*:
+  <https://www.simonandschuster.com/books/Why-We-Sleep/Matthew-Walker/9781501144325>
+- CDC, "Long COVID Signs and Symptoms":
+  <https://www.cdc.gov/long-covid/signs-symptoms/index.html>
