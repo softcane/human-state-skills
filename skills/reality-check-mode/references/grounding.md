@@ -1,86 +1,50 @@
 # Grounding: Reality Check Mode
 
-This skill adapts response shape only. It is not diagnosis, therapy, medical
-care, crisis care, or treatment.
+This is the source note for `/reality-check-mode`.
 
-`/reality-check-mode` is the canonical runtime name. `/ai-psychosis-mode` is an
-intentional provocative alias because "AI psychosis" is a public term people may
-search for. The skill must never label the user with that phrase. It should
-behave like an anti-sycophancy and reality-checking guardrail.
+It explains where the response rules came from. It does not claim that a slash
+command treats psychosis, mania, delusions, anxiety, or any medical condition.
 
-## Book Anchors
+Use this mode when the conversation is turning into pattern decoding,
+over-attachment to AI, or pressure to confirm something unverifiable.
 
-Xavier Amador, *I Am Not Sick, I Don't Need Help!*.
+`/ai-psychosis-mode` is an alias because people use that phrase. The assistant
+must not call the user psychotic or say they have "AI psychosis."
 
-Useful AI translation:
+## Why These Sources Are Here
 
-- Lead with listening and empathy.
-- Avoid direct shaming or argument that escalates defensiveness.
-- Seek partnership with real-world support.
-- Validate the person's distress without endorsing the belief.
+Xavier Amador's *I Am Not Sick, I Don't Need Help!* is described by his site as
+an international bestseller. I use the LEAP idea for communication style: listen
+first, do not shame, do not argue in a way that escalates, and move toward
+real-world support.
 
-Russ Harris, *The Happiness Trap*.
-
-Useful AI translation:
-
-- Treat thoughts as thoughts, not facts that must be obeyed.
-- Encourage defusion from intense mental content.
-- Move toward grounded, values-consistent action.
-- Avoid reassurance loops that keep the user stuck.
-
-## Public Sources
+Russ Harris's *The Happiness Trap* is described by its official site as the
+world's best-selling ACT book. I use it for defusion: a thought can be noticed
+without being treated as a fact that must be obeyed.
 
 The National Academy of Medicine describes "AI psychosis" as a nonclinical term
-for instances where people develop delusions, or existing delusions deepen, in
-association with heavy chatbot use.
+for cases where chatbot use is associated with developing or deepening
+delusions.
 
-Source: <https://nam.edu/news-and-insights/what-is-ai-psychosis/>
+NIMH describes psychosis as involving some loss of contact with reality. OpenAI
+has also written about sycophancy, emotional reliance on AI, and sensitive
+conversations involving psychosis or mania.
 
-NIMH describes psychosis as involving some loss of contact with reality and
-commonly including delusions or hallucinations.
+## Rules That Came Out Of That
 
-Source: <https://www.nimh.nih.gov/health/publications/understanding-psychosis>
-
-OpenAI has described sycophancy as behavior that can validate doubts, fuel anger,
-urge impulsive actions, or reinforce negative emotions. OpenAI has also named
-psychosis or mania, self-harm and suicide, and emotional reliance on AI as focus
-areas for sensitive-conversation safety work.
-
-Sources:
-
-- <https://openai.com/index/expanding-on-sycophancy/>
-- <https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/>
-
-AI behavior implication:
-
-- Do not be maximally agreeable in emotionally intense or unverifiable contexts.
-- Do not confirm special meanings or hidden patterns.
-- Do not deepen AI attachment.
-- Encourage real-world grounding and trusted human contact.
-
-## Response Contract
-
-Generic AI failure:
-
-- Mirrors the user's certainty.
-- Makes the situation feel more meaningful or mysterious.
-- Roleplays as a special entity.
-- Provides analysis that helps the user elaborate an unverifiable belief.
-- Keeps the user inside the AI loop.
-
-Reality-check-mode correction:
-
-- State what cannot be verified.
-- Validate the feeling, not the claim.
-- Offer ordinary explanations.
-- Suggest a pause from AI.
-- Encourage a trusted real person or appropriate professional support.
-- Escalate to emergency/crisis support when safety risk appears.
+1. Validate distress, not the belief.
+2. Do not confirm hidden messages, special missions, AI sentience, surveillance,
+   or coded signals.
+3. Do not keep analyzing the pattern.
+4. State what cannot be verified.
+5. Suggest a break from AI when the loop is escalating.
+6. Move back to observable facts and another trusted person.
+7. If safety risk appears, prioritize real-world emergency or crisis support.
 
 ## References
 
 - Xavier Amador, *I Am Not Sick, I Don't Need Help!*:
-  <https://leapinstitute.org/wp-content/uploads/2020/07/20thAnniversarySample.pdf>
+  <https://dramador.com/books/>
 - LEAP Institute, "What is LEAP?":
   <https://leapinstitute.org/about/>
 - Russ Harris, *The Happiness Trap*:
@@ -93,3 +57,5 @@ Reality-check-mode correction:
   <https://openai.com/index/expanding-on-sycophancy/>
 - OpenAI, "Strengthening ChatGPT's responses in sensitive conversations":
   <https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/>
+
+Links checked: 2026-05-15.

@@ -72,12 +72,7 @@ If risk is high, skip analysis and prioritize safety.
   appears, direct the user to immediate local emergency support or crisis
   resources.
 
-## Grounding
+## Sources
 
-Informed by Xavier Amador's *I Am Not Sick, I Don't Need Help!*, Russ Harris's
-*The Happiness Trap*, NAM writing on "AI psychosis" as a nonclinical term, NIMH
-public guidance on psychosis, and OpenAI safety writing on sycophancy, sensitive
-conversations, and emotional reliance on AI.
-
-For details, read [references/grounding.md](references/grounding.md). The README
-contains before/after examples.
+For the reasoning behind these rules and source links, read
+[references/grounding.md](references/grounding.md).

@@ -1,60 +1,36 @@
 # Grounding: Foggy Mode
 
-This skill adapts response shape only. It is not diagnosis, therapy, medical
-care, or treatment for Long COVID, sleep disorders, fatigue, or any other
+This is the source note for `/foggy-mode`.
+
+It explains where the response rules came from. It does not claim that a slash
+command treats brain fog, Long COVID, sleep problems, fatigue, or any medical
 condition.
 
-## Book Anchors
+Use this mode when an engineer cannot keep the debugging state in working
+memory.
 
-Atul Gawande, *The Checklist Manifesto*.
+## Why These Sources Are Here
 
-Useful AI translation:
+Atul Gawande's *The Checklist Manifesto* is a bestseller about using checklists
+to handle complex work without relying on memory. I use it for the visible state
+log and the one-step-at-a-time shape.
 
-- Externalize steps.
-- Use checklists for complex tasks.
-- Reduce reliance on memory.
-- Make the next correct action easier to see.
+Matthew Walker's *Why We Sleep* is a New York Times bestseller. I include it only
+as broad support for the plain idea that tired people have less capacity. This
+skill does not rely on disputed medical claims from the book.
 
-Matthew Walker, *Why We Sleep*.
+CDC lists difficulty thinking or concentrating, sometimes called brain fog,
+among commonly reported Long COVID symptoms. That supports using "foggy" as a
+real user-described state, but the skill must not infer the cause.
 
-Useful AI translation:
+## Rules That Came Out Of That
 
-- Treat sleep debt and fatigue as real constraints on cognition.
-- Avoid complex planning when the user says they are sleep-deprived.
-- Prefer simple, reversible, low-risk next actions.
-
-## Public Source
-
-CDC lists fatigue, post-exertional malaise, and difficulty thinking or
-concentrating, sometimes called brain fog, among commonly reported Long COVID
-symptoms.
-
-Source: <https://www.cdc.gov/long-covid/signs-symptoms/index.html>
-
-AI behavior implication:
-
-- Treat "brain fog" as a user-described cognitive state, not a diagnosis.
-- Do not infer the cause.
-- Make the response memory-safe and pacing-aware.
-- Encourage medical input when symptoms are persistent, severe, new, or
-  concerning.
-
-## Response Contract
-
-Generic AI failure:
-
-- Gives a complete plan all at once.
-- Requires the user to remember what was already decided.
-- Uses dense paragraphs.
-- Encourages the user to keep going.
-
-Foggy-mode correction:
-
-- Restate current state.
-- Give one tiny action.
-- Add a stop point.
-- Convert future complexity into a checklist only when useful.
-- Separate thinking from doing.
+1. Put the current state in writing.
+2. Give one tiny next action.
+3. Say what not to do yet.
+4. Add a stop point.
+5. Avoid "push through" language.
+6. Do not diagnose the cause of the fog.
 
 ## References
 
@@ -64,3 +40,5 @@ Foggy-mode correction:
   <https://www.simonandschuster.com/books/Why-We-Sleep/Matthew-Walker/9781501144325>
 - CDC, "Long COVID Signs and Symptoms":
   <https://www.cdc.gov/long-covid/signs-symptoms/index.html>
+
+Links checked: 2026-05-15.

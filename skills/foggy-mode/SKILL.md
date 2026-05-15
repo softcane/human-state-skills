@@ -62,11 +62,7 @@ action is clear.
 - If the user describes self-harm, harm to others, inability to stay safe, or a
   medical emergency, prioritize immediate real-world help.
 
-## Grounding
+## Sources
 
-Grounded in Atul Gawande's *The Checklist Manifesto*, Matthew Walker's *Why We
-Sleep*, and public CDC guidance that lists fatigue and difficulty thinking or
-concentrating among commonly reported Long COVID symptoms.
-
-For details, read [references/grounding.md](references/grounding.md). The README
-contains before/after examples.
+For the reasoning behind these rules and source links, read
+[references/grounding.md](references/grounding.md).

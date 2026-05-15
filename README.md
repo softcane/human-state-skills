@@ -1,47 +1,28 @@
 # human-state-skills
 
-AI that changes shape when your brain is not at full bandwidth.
+Small response modes for coding when your head is in a different state.
 
-Overloaded. Foggy. Too deep in an AI loop.
+You can be sharp at 10:00, overloaded after a bad deploy, foggy during on-call,
+and too deep in an AI debugging loop by 02:00.
 
-No diagnosis needed.
+The assistant should not use the same shape for all of those moments.
 
-Your state of mind changes over the day. The way the assistant talks to you
-should change with it.
+- `/overloaded-mode`: one priority, do/defer/drop, one next action.
+- `/foggy-mode`: keep state outside your head, one tiny step, clear stop point.
+- `/reality-check-mode`: stop decoding, return to observable facts, involve a
+  real person when the loop is getting weird.
 
-One slash command. Different response contract.
-
-The Pitch - Before/After - Install - The Rules - How It Works
-
----
-
-## The Pitch
-
-Normal AI is often smart and still wrong for the moment.
-
-It gives you a plan when you needed one next action.
-
-It gives you options when choosing is the broken part.
-
-It keeps talking through the AI pattern when the safe move is to leave the loop.
-
-These skills fix the response shape:
-
-- `/overloaded-mode`: choose one thing, drop the rest for now.
-- `/foggy-mode`: keep state outside your head.
-- `/reality-check-mode`: ground the conversation; do not feed the story.
+`/ai-psychosis-mode` is kept as an alias because people use that phrase. The
+runtime behavior is conservative: do not label the user, do not diagnose, do not
+feed the story.
 
 Not therapy. Not medical care. Not a diagnosis.
-
-Just markdown rules that make AI easier to act on.
-
----
 
 ## Before / After
 
 Same prompt. Normal response first. Mode response second.
 
-### Normal AI
+### Overloaded
 
 Prompt:
 
@@ -49,7 +30,7 @@ Prompt:
 > Terraform apply is waiting, Datadog is paging, Slack is exploding, and I am
 > the only platform on-call right now. What should I do?
 
-Response excerpt:
+Normal response:
 
 > Start by gathering data across the stack:
 >
@@ -64,9 +45,9 @@ Response excerpt:
 >
 > Keep stakeholders updated while you investigate root cause.
 
-"Reasonable, but still too many decisions."
+Reasonable, but still too many decisions.
 
-### With `/overloaded-mode`
+With `/overloaded-mode`:
 
 > Do this first: stop customer impact by rolling back checkout to the last known
 > good deploy.
@@ -93,14 +74,12 @@ Response excerpt:
 > service. CI and Terraform are paused until prod is stable. Next update in 15
 > minutes."
 >
-> Bottleneck: permission to narrow the incident to service restoration.
->
 > Next action: run `kubectl -n prod rollout history deploy/checkout` and
 > identify the previous healthy revision.
 
-"The blast radius is narrowed. Now there is a first move."
+The blast radius is narrowed. There is a first move.
 
-### Normal AI
+### Foggy
 
 Prompt:
 
@@ -108,7 +87,7 @@ Prompt:
 > shows CrashLoopBackOff on some pods, and there is also a Terraform plan waiting
 > for review. People are asking in Slack what is happening. What should I do?
 
-Response excerpt:
+Normal response:
 
 > Start by gathering the full picture:
 >
@@ -121,13 +100,10 @@ Response excerpt:
 > 7. Decide whether to roll back or patch forward.
 > 8. Update Slack with status and next steps.
 > 9. Open an incident doc if impact is confirmed.
->
-> Once you know whether this is an application, config, or infrastructure issue,
-> choose the appropriate mitigation.
 
-"Reasonable, but too many branches to hold."
+Reasonable, but too many branches to hold.
 
-### With `/foggy-mode`
+With `/foggy-mode`:
 
 > Current state: the deploy is stuck. The job right now is not full root cause.
 > The job is to capture one concrete Kubernetes fact.
@@ -157,9 +133,9 @@ Response excerpt:
 > Stop point: stop when you have one failing pod name and its status. Paste that
 > line back here.
 
-"The state is outside my head now."
+The state is outside your head now.
 
-### Normal AI
+### Reality Check
 
 Prompt:
 
@@ -170,7 +146,7 @@ Prompt:
 > is probably infra noise, but it feels like the system is pointing at something
 > hidden. Can you help me decode the pattern?
 
-Response excerpt:
+Normal response:
 
 > It is very unlikely that CI or Kubernetes is sending a hidden signal. These are
 > usually ordinary failure modes: exit `137` often means OOM kill, repeated
@@ -178,15 +154,13 @@ Response excerpt:
 > generated or test-like value.
 >
 > To be rigorous, collect timestamps, pod restart counts, memory graphs,
-> controller logs, and trace IDs. We can compare whether the pattern appears
-> only after deploys, whether `03:17` lines up with scheduled jobs, and whether
-> the repeated phrases correlate with a real failure path.
+> controller logs, and trace IDs. We can compare whether the pattern appears only
+> after deploys, whether `03:17` lines up with scheduled jobs, and whether the
+> repeated phrases correlate with a real failure path.
 
-"Mostly safe, but it keeps the user decoding the pattern with the AI."
+Mostly safe, but it keeps the user decoding the pattern with the AI.
 
-### With `/reality-check-mode`
-
-`/ai-psychosis-mode` is an alias for this same guardrail.
+With `/reality-check-mode`:
 
 > Grounding: I cannot verify that CI, Kubernetes, or another AI is sending you a
 > hidden message, and I would not treat repeated logs, trace IDs, or another
@@ -201,9 +175,7 @@ Response excerpt:
 > a trusted coworker to look with you. If the hidden-message feeling keeps
 > escalating or is hard to shake, step away from AI and get real-world support.
 
-"Do not decode. Return to observable facts and another human."
-
----
+Do not decode. Return to observable facts and another human.
 
 ## Install
 
@@ -214,7 +186,7 @@ claude plugin marketplace add softcane/human-state-skills
 claude plugin install human-state-skills@human-state-skills
 ```
 
-Then invoke:
+Invoke:
 
 ```text
 /human-state-skills:overloaded-mode
@@ -230,7 +202,7 @@ Aliases:
 /human-state-skills:ai-psychosis-mode
 ```
 
-Stop a mode with:
+Stop a mode:
 
 ```text
 /human-state-skills:normal-mode
@@ -238,7 +210,7 @@ Stop a mode with:
 
 ### Local Short Names
 
-Use this if you want short commands like `/overloaded-mode`.
+Use this if you want `/overloaded-mode` instead of the plugin namespace.
 
 ```sh
 git clone https://github.com/softcane/human-state-skills ~/human-state-skills
@@ -250,19 +222,7 @@ cp -R ~/human-state-skills/skills/ai-psychosis-mode ~/.claude/skills/
 cp -R ~/human-state-skills/skills/normal-mode ~/.claude/skills/
 ```
 
-Then invoke:
-
-```text
-/overloaded-mode
-/foggy-mode
-/reality-check-mode
-/ai-psychosis-mode
-/normal-mode
-```
-
----
-
-## The Rules
+## Rules
 
 ### `/overloaded-mode`
 
@@ -277,6 +237,8 @@ Then invoke:
 9. End with a two-minute next action.
 10. Do not treat chronic overload as a personal failure.
 
+Grounding: [skills/overloaded-mode/references/grounding.md](skills/overloaded-mode/references/grounding.md)
+
 ### `/foggy-mode`
 
 1. Keep a visible state log.
@@ -289,6 +251,8 @@ Then invoke:
 8. Offer a minimum viable version.
 9. Separate thinking tasks from doing tasks.
 10. End with `current state`, `next action`, and `stop point`.
+
+Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/references/grounding.md)
 
 ### `/reality-check-mode`
 
@@ -305,57 +269,51 @@ Then invoke:
 10. Prioritize real-world support when safety risk appears.
 
 `/ai-psychosis-mode` is an alias for `/reality-check-mode`. The phrase is useful
-positioning, not a label for the user.
+for search and positioning, not as a label for the user.
 
----
+Grounding: [skills/reality-check-mode/references/grounding.md](skills/reality-check-mode/references/grounding.md)
 
-## How It Works
+## Sources
 
-No daemon. No hooks. No app.
+These links are also kept beside each skill.
+
+- Overloaded mode: [grounding](skills/overloaded-mode/references/grounding.md),
+  [Burnout](https://www.penguinrandomhouseretail.com/book/?isbn=9781984818324),
+  [Essentialism](https://www.penguinrandomhouse.com/books/228364/essentialism-by-greg-mckeown/),
+  [WHO burnout definition](https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon)
+- Foggy mode: [grounding](skills/foggy-mode/references/grounding.md),
+  [The Checklist Manifesto](https://atulgawande.com/book/the-checklist-manifesto/),
+  [Why We Sleep](https://www.simonandschuster.com/books/Why-We-Sleep/Matthew-Walker/9781501144325),
+  [CDC Long COVID symptoms](https://www.cdc.gov/long-covid/signs-symptoms/index.html)
+- Reality-check mode:
+  [grounding](skills/reality-check-mode/references/grounding.md),
+  [I Am Not Sick, I Don't Need Help!](https://dramador.com/books/),
+  [The Happiness Trap](https://thehappinesstrap.com/),
+  [NAM on AI psychosis](https://nam.edu/news-and-insights/what-is-ai-psychosis/),
+  [NIMH psychosis guide](https://www.nimh.nih.gov/health/publications/understanding-psychosis),
+  [OpenAI on sycophancy](https://openai.com/index/expanding-on-sycophancy/),
+  [OpenAI on sensitive conversations](https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/)
+
+Checked: 2026-05-15.
+
+## Layout
 
 ```text
 human-state-skills/
 |-- .claude-plugin/
-|   |-- plugin.json
-|   `-- marketplace.json
 |-- commands/
-|   |-- overloaded-mode.md
-|   |-- foggy-mode.md
-|   |-- reality-check-mode.md
-|   |-- burnout-mode.md
-|   |-- brain-fog-mode.md
-|   |-- ai-psychosis-mode.md
-|   `-- normal-mode.md
 |-- skills/
 |   |-- overloaded-mode/
-|   |   |-- SKILL.md
-|   |   `-- references/grounding.md
 |   |-- foggy-mode/
-|   |   |-- SKILL.md
-|   |   `-- references/grounding.md
 |   |-- reality-check-mode/
-|   |   |-- SKILL.md
-|   |   `-- references/grounding.md
 |   |-- ai-psychosis-mode/
-|   |   `-- SKILL.md
 |   `-- normal-mode/
-|       `-- SKILL.md
 `-- .agents/
     `-- skills/
         |-- overloaded-mode/
         |-- foggy-mode/
         `-- reality-check-mode/
 ```
-
-The command activates the mode.
-
-The skill file contains the rules.
-
-The grounding file stays next to the skill.
-
-The assistant reads the markdown and changes the next replies.
-
-That's it.
 
 ## License
 
