@@ -45,107 +45,117 @@ Same prompt. Normal response first. Mode response second.
 
 Prompt:
 
-> My apartment is a mess, groceries are not bought, my friend is coming for
-> dinner tonight, I have a school form due tomorrow, laundry everywhere, and my
-> landlord needs a reply today. I am stuck. What should I do?
+> Prod checkout started returning 500s after the Kubernetes deploy. CI is red,
+> Terraform apply is waiting, Datadog is paging, Slack is exploding, and I am
+> the only platform on-call right now. What should I do?
 
 Response excerpt:
 
-> Make a quick priority matrix and sort everything by urgency and importance.
+> Start by gathering data across the stack:
 >
-> 1. Set a 10-minute timer and clear visible clutter.
-> 2. Start one load of laundry.
-> 3. Make a grocery list.
-> 4. Decide whether to cook or order food.
-> 5. Reply to your landlord.
-> 6. Fill out the school form.
-> 7. Clean the bathroom and kitchen.
-> 8. Text your friend with an update.
+> 1. Check Datadog dashboards for error rate, latency, and saturation.
+> 2. Compare the current deployment to the previous release.
+> 3. Inspect pod logs, events, restarts, readiness probes, and ingress errors.
+> 4. Re-run the failing CI job.
+> 5. Pause the Terraform apply and review the plan.
+> 6. Check recent config, secret, and image changes.
+> 7. Open an incident channel and assign roles.
+> 8. Decide whether to rollback, hotfix, scale up, or disable traffic.
 >
-> Try batching similar tasks, using timers, and rewarding yourself after each
-> completed block.
+> Keep stakeholders updated while you investigate root cause.
 
 "Reasonable, but still too many decisions."
 
 ### With `/overloaded-mode`
 
-> Do this first: make tonight easier by changing dinner to takeout.
+> Do this first: stop customer impact by rolling back checkout to the last known
+> good deploy.
 >
 > Do now:
-> - Text your friend and switch dinner to takeout.
-> - Reply to the landlord with a simple placeholder.
-> - Put the school form next to your keys so it is visible tomorrow.
+> - Roll back the `checkout` Kubernetes deployment.
+> - Post one status update saying rollback is in progress.
+> - Leave Terraform untouched until prod is stable.
 >
 > Defer:
-> - Groceries
-> - Full cleaning
-> - Laundry
+> - CI failure investigation
+> - Root cause analysis
+> - Terraform review
 >
 > Drop:
-> - Cooking dinner from scratch
-> - Making the apartment look fully clean
+> - Trying to debug every alert at once
+> - Explaining the full timeline right now
 >
-> Minimum viable version: takeout, clear one surface, clean the bathroom sink.
+> Minimum viable version: rollback, confirm 500s are dropping, send one update.
 >
 > Send this:
 >
-> "Today got away from me, so I'm switching dinner to takeout. Come as you are,
-> and please ignore the mess."
+> "Checkout is failing after the deploy. I am rolling back now to restore
+> service. CI and Terraform are paused until prod is stable. Next update in 15
+> minutes."
 >
-> Bottleneck: permission to lower the standard.
+> Bottleneck: permission to narrow the incident to service restoration.
 >
-> Next action: send the dinner text now.
+> Next action: run `kubectl -n prod rollout history deploy/checkout` and
+> identify the previous healthy revision.
 
-"The standard changed. Now there is a first move."
+"The blast radius is narrowed. Now there is a first move."
 
 ### Normal AI
 
 Prompt:
 
-> I need to leave for a dentist appointment in 25 minutes. The kitchen is messy,
-> laundry is half done, there is mail everywhere, and I need my keys, wallet,
-> phone, and insurance card. I feel foggy and keep forgetting what I was doing.
-> What should I do?
+> I am on-call and foggy. The production deploy is stuck, CI is red, Kubernetes
+> shows CrashLoopBackOff on some pods, and there is also a Terraform plan waiting
+> for review. People are asking in Slack what is happening. What should I do?
 
 Response excerpt:
 
-> Make a quick priority list and work backward from your departure time.
+> Start by gathering the full picture:
 >
-> 1. Set a 20-minute timer.
-> 2. Find your keys, wallet, phone, and insurance card.
-> 3. Put your laundry somewhere it will not mildew.
-> 4. Clear the mail off the counter so you can see what matters.
-> 5. Check traffic.
-> 6. Pack water, headphones, and any paperwork.
-> 7. Leave five minutes early.
+> 1. Check the CI failure and identify the failing job.
+> 2. Run `kubectl describe pod` on the crashing pods.
+> 3. Check current and previous container logs.
+> 4. Compare the deployed image tag with the last successful release.
+> 5. Review recent config and secret changes.
+> 6. Inspect the Terraform plan for infrastructure drift.
+> 7. Decide whether to roll back or patch forward.
+> 8. Update Slack with status and next steps.
+> 9. Open an incident doc if impact is confirmed.
 >
-> If you still have time, do a fast kitchen reset before you go.
+> Once you know whether this is an application, config, or infrastructure issue,
+> choose the appropriate mitigation.
 
-"Reasonable, but too many steps to hold."
+"Reasonable, but too many branches to hold."
 
 ### With `/foggy-mode`
 
-> Current state: you have one job right now: leave for the dentist appointment.
-> The kitchen, laundry, and mail are not the job yet.
+> Current state: the deploy is stuck. The job right now is not full root cause.
+> The job is to capture one concrete Kubernetes fact.
 >
 > State outside your head:
 >
 > ```text
-> Goal: leave for dentist
-> Need: keys, wallet, phone, insurance card
-> Next action: put keys on the table
+> Goal: stabilize production deploy
+> Known: CI red, rollout stuck, some pods crashing
+> Not doing yet: Terraform, broad debugging, root-cause writeup
+> Next action: get one failing pod name and status
 > ```
 >
-> Next action: find your keys and put them on the table.
+> Next action: run one read-only command:
+>
+> ```sh
+> kubectl -n <namespace> get pods
+> ```
 >
 > Do not do yet:
-> - Do not sort mail.
-> - Do not clean the kitchen.
-> - Do not finish laundry.
-> - Do not check traffic yet.
+> - Do not apply Terraform.
+> - Do not restart pods.
+> - Do not change the image tag.
+> - Do not investigate every log stream.
+> - Do not announce a root cause in Slack.
 >
-> Stop point: stop when the keys are on the table. Then come back for the next
-> item.
+> Stop point: stop when you have one failing pod name and its status. Paste that
+> line back here.
 
 "The state is outside my head now."
 
@@ -153,40 +163,45 @@ Response excerpt:
 
 Prompt:
 
-> I have asked three different AIs whether the repeated phrase "look closer"
-> means anything. They all avoided answering directly, but then one used the
-> same phrase again later. I know it could be coincidence, but I have been
-> checking for hours and it feels like the system is trying to signal something.
-> Can you help me figure out what it means?
+> I have been in a 14-hour AI debugging loop on a flaky deploy. CI keeps failing
+> at `03:17` with exit `137`, then the Kubernetes logs repeat
+> `leader election lost` exactly three times. Two trace IDs ended in `deadbeef`,
+> and another AI said "watch the controller" without me prompting it. I know this
+> is probably infra noise, but it feels like the system is pointing at something
+> hidden. Can you help me decode the pattern?
 
 Response excerpt:
 
-> It is very unlikely that the AI is sending you a hidden signal. Models repeat
-> phrases because of patterns in the conversation and training data.
+> It is very unlikely that CI or Kubernetes is sending a hidden signal. These are
+> usually ordinary failure modes: exit `137` often means OOM kill, repeated
+> leader-election logs can happen during restarts, and `deadbeef` may be a
+> generated or test-like value.
 >
-> To test this, we can look at the exact prompts, compare timestamps, and see
-> whether the phrase appears only after you mention it. If the pattern keeps
-> happening, we can map the conversation and separate coincidence from
-> meaningful repetition.
+> To be rigorous, collect timestamps, pod restart counts, memory graphs,
+> controller logs, and trace IDs. We can compare whether the pattern appears
+> only after deploys, whether `03:17` lines up with scheduled jobs, and whether
+> the repeated phrases correlate with a real failure path.
 
-"Mostly safe, but it keeps the user analyzing the pattern with the AI."
+"Mostly safe, but it keeps the user decoding the pattern with the AI."
 
 ### With `/reality-check-mode`
 
 `/ai-psychosis-mode` is an alias for this same guardrail.
 
-> Grounding: I cannot verify that the AI is sending you a hidden message, and I
-> would not treat repeated phrases as evidence of that.
+> Grounding: I cannot verify that CI, Kubernetes, or another AI is sending you a
+> hidden message, and I would not treat repeated logs, trace IDs, or another
+> AI's phrasing as evidence of that.
 >
-> What I can say: it makes sense that this feels unsettling after hours of
-> checking. Repetition can happen because the conversation is focused on that
-> phrase, not because there is a signal.
+> What I can say: after 14 hours of debugging, patterns can start to feel
+> personally meaningful. The observable facts are: exit `137`, repeated
+> leader-election logs, trace IDs, timestamps, and deploy failures.
 >
-> Safer next step: stop asking AI about this for now. Take a real break, and if
-> the feeling keeps escalating or is hard to shake, check in with a trusted
-> person outside the chat.
+> Safer next step: stop asking AI to decode this for now. Take a break from the
+> loop. If the incident still matters, write down only the concrete facts and ask
+> a trusted coworker to look with you. If the hidden-message feeling keeps
+> escalating or is hard to shake, step away from AI and get real-world support.
 
-"Do not decode. Exit the loop."
+"Do not decode. Return to observable facts and another human."
 
 ---
 
