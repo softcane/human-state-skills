@@ -1,6 +1,6 @@
 # Grounding: Reality Check Mode
 
-This is the source note for `/reality-check-mode`.
+These are the sources behind `/reality-check-mode`.
 
 It explains where the response rules came from. It does not claim that a slash
 command treats psychosis, mania, delusions, anxiety, or any medical condition.
@@ -57,5 +57,3 @@ conversations involving psychosis or mania.
   <https://openai.com/index/expanding-on-sycophancy/>
 - OpenAI, "Strengthening ChatGPT's responses in sensitive conversations":
   <https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/>
-
-Links checked: 2026-05-15.

@@ -1,6 +1,6 @@
 # Grounding: Overloaded Mode
 
-This is the source note for `/overloaded-mode`.
+These are the sources behind `/overloaded-mode`.
 
 It explains where the response rules came from. It does not claim that a slash
 command treats burnout, stress, or any medical condition.
@@ -38,5 +38,3 @@ alias.
   <https://www.penguinrandomhouse.com/books/228364/essentialism-by-greg-mckeown/>
 - WHO, "Burn-out an occupational phenomenon":
   <https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon>
-
-Links checked: 2026-05-15.

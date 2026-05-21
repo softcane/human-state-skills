@@ -294,8 +294,6 @@ These links are also kept beside each skill.
   [OpenAI on sycophancy](https://openai.com/index/expanding-on-sycophancy/),
   [OpenAI on sensitive conversations](https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/)
 
-Checked: 2026-05-15.
-
 ## Layout
 
 ```text

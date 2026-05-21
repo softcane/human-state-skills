@@ -1,6 +1,6 @@
 # Grounding: Foggy Mode
 
-This is the source note for `/foggy-mode`.
+These are the sources behind `/foggy-mode`.
 
 It explains where the response rules came from. It does not claim that a slash
 command treats brain fog, Long COVID, sleep problems, fatigue, or any medical
@@ -40,5 +40,3 @@ real user-described state, but the skill must not infer the cause.
   <https://www.simonandschuster.com/books/Why-We-Sleep/Matthew-Walker/9781501144325>
 - CDC, "Long COVID Signs and Symptoms":
   <https://www.cdc.gov/long-covid/signs-symptoms/index.html>
-
-Links checked: 2026-05-15.
