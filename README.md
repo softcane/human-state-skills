@@ -12,7 +12,7 @@ The assistant should not use the same shape for all of those moments.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
 
-`/ai-psychosis-mode` is kept as an alias because people use that phrase. The
+`ai-psychosis-mode` is kept as an alias because people use that phrase. The
 runtime behavior is conservative: do not label the user, do not diagnose, do not
 feed the story.
 
@@ -378,7 +378,7 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 9. Keep the response short, calm, and nonjudgmental.
 10. Prioritize real-world support when safety risk appears.
 
-`/ai-psychosis-mode` is an alias for `/reality-check-mode`. The phrase is useful
+`ai-psychosis-mode` is an alias for `/reality-check-mode`. The phrase is useful
 for search and positioning, not as a label for the user.
 
 Grounding: [skills/reality-check-mode/references/grounding.md](skills/reality-check-mode/references/grounding.md)
