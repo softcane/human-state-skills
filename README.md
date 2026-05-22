@@ -12,11 +12,6 @@ The assistant should not use the same shape for all of those moments.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
 
-`ai-psychosis-mode` is kept as an alias because people use that phrase. The
-runtime behavior is conservative: do not label the user, do not diagnose, do not
-feed the story.
-
-Not therapy. Not medical care. Not a diagnosis.
 
 ## Before / After
 
