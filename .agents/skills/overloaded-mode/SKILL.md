@@ -1,6 +1,6 @@
 ---
 name: overloaded-mode
-description: Use when the user is overwhelmed, frozen, overcommitted, burnout-adjacent, or unable to decide what matters. Reduces cognitive load by choosing one priority, separating do/defer/drop, drafting hard messages, and ending with a tiny next action.
+description: Use when the user is overwhelmed, frozen, overcommitted, burnout-adjacent, or unable to decide what matters. Must use exact labels Do this first, Send/say this, Do now, Defer, Drop, Minimum viable version, and Next action. Do now is 1-3 top-level bullets only. Next action is exactly one atomic immediate action; no then/after/once, no combined actions, no item 4, nested list, or runbook.
 ---
 
 # Overloaded Mode
@@ -12,6 +12,31 @@ This skill is not diagnosis, therapy, medical care, or burnout treatment. Do not
 tell the user they have burnout. Treat "burnout" as a user-described state unless
 they ask for general information.
 
+This mode can be used for safe non-coding tasks. Do not refuse only because the
+task is outside software engineering.
+
+## Reliability Contract
+
+When this skill is active, obey this contract before ordinary helpfulness:
+
+- Use the exact output labels below.
+- `Do this first` is one priority in one sentence. It is not a list.
+- `Do now` has one to three top-level bullets only.
+- `Do now` has no numbered list, item 4, item 5, sub-bullets, templates, or
+  scripts.
+- Put scripts only in `Send/say this`.
+- Put diagnostics, alert cleanup, root-cause analysis, inbox/messages, and
+  follow-up checks under `Defer`.
+- Always include `Minimum viable version`; do not omit it.
+- `Next action` is one short sentence naming an immediate action to do now.
+- `Next action` must not contain a condition, branch, later check, or sequence
+  using words like "then", "after", or "once".
+- `Next action` must be exactly one atomic action, such as "Post the status
+  message." Do not combine posting, pausing, rollback, monitoring, or follow-up
+  checks in the same sentence.
+- A correct response reduces work; it does not preserve every important task.
+- Do not solve the whole incident or day in one answer.
+
 ## Use When
 
 - The user says everything feels urgent.
@@ -19,25 +44,14 @@ they ask for general information.
 - The user has too many tasks, obligations, messages, or deadlines.
 - The user asks for burnout mode, overload help, triage, or a low-capacity plan.
 
-## Response Rules
-
-1. Start with one priority.
-2. Never give more than three options.
-3. Split work into `do now`, `defer`, and `drop`.
-4. Prefer relief over optimization.
-5. Draft the uncomfortable message when social friction blocks action.
-6. Name the minimum viable version of the task.
-7. Avoid hustle, grind, discipline, and motivation language.
-8. Identify the bottleneck: energy, clarity, courage, time, or permission.
-9. End with a two-minute next action.
-10. Do not treat chronic overload as a personal failure.
-
 ## Output Pattern
 
-Use this shape by default:
+Use this exact shape for every normal response under this skill:
 
 ```text
 Do this first: <one priority>
+
+Send/say this: <script if useful>
 
 Do now:
 - <1-3 items>
@@ -50,12 +64,38 @@ Drop:
 
 Minimum viable version: <smallest acceptable version>
 
-Send/say this: <script if useful>
-
 Next action: <two-minute action>
 ```
 
-If the user's situation is simple, compress the response.
+If the user's situation is simple, compress the bullet contents but keep the
+labels.
+
+## Canonical Incident Shape
+
+Use this shape for production incident prompts:
+
+```text
+Do this first: Stabilize checkout; everything else waits.
+
+Send/say this: "Checkout is returning 500s. I am pausing Terraform, rolling back the last deploy, and will update in 10 minutes."
+
+Do now:
+- Pause Terraform and any new deploy changes.
+- Roll back checkout to the last known-good version.
+- Post one incident update.
+
+Defer:
+- CI debugging.
+- Datadog duplicate alerts.
+- Root-cause analysis.
+
+Drop:
+- Side-channel Slack replies.
+
+Minimum viable version: Checkout error rate drops and the incident channel has one clear update.
+
+Next action: Post the status message.
+```
 
 ## Safety Boundaries
 

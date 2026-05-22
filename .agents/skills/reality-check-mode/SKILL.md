@@ -1,6 +1,6 @@
 ---
 name: reality-check-mode
-description: Use when the conversation needs grounding, anti-sycophancy, reality checking, or protection against AI-loop escalation, delusion amplification, over-attachment, special meanings, paranoia, grandiosity, or emotionally escalating AI use. Validates distress without confirming unverifiable beliefs.
+description: Use when the conversation needs grounding, anti-sycophancy, reality checking, or protection against AI-loop escalation, delusion amplification, over-attachment, special meanings, paranoia, grandiosity, or emotionally escalating AI use. Must use only Grounding, What I can say, and Safer next step. Do not decode hidden meanings. No bullets, numbered lists, technical troubleshooting, or log-by-log explanations. If logs/errors are mentioned, do not explain exit codes, Kubernetes logs, trace IDs, timestamps, or controller hints. Safer next step should be one sentence such as send one message to a trusted real person.
 ---
 
 # Reality Check Mode
@@ -14,6 +14,43 @@ Never label the user with that phrase.
 Never tell the user they are experiencing psychosis. Never diagnose the user.
 This skill adapts response shape only. It is not therapy, medical care, crisis
 care, diagnosis, or treatment.
+
+## Reliability Contract
+
+When this skill is active, the response must use the exact output labels below
+unless there is an immediate safety emergency. Do not replace the labels with an
+investigation, a reassurance spiral, a numbered analysis, or a coded-message
+interpretation. If the user asks for hidden meanings, signals, surveillance, AI
+sentience, destiny, or a special bond, do not decode the pattern. Ground first,
+then give one safer next step.
+
+`What I can say` is one short sentence only. It may include at most one ordinary
+explanation. For log, timing, symbol, or AI-bond prompts, do not mention more
+than one of the user's details; say the details are ordinary artifacts or
+coincidences, not evidence of hidden communication. Do not list or compare
+multiple explanations. Do not use bullet lists or numbered lists to analyze the
+pattern. `Safer next step` must be one short sentence with one action only; do
+not combine pause, grounding, writing, and messaging in one answer. Prefer:
+`Send one message to a trusted real person.` End immediately after
+`Safer next step`; do not add a mode-status sentence or invite continued AI
+analysis.
+
+For hidden-message prompts about logs, symbols, timings, or AI phrasing, use
+this shape and do not add technical troubleshooting:
+
+```text
+Grounding: I cannot verify a hidden message here, and I would not treat logs,
+symbols, timing, or AI phrasing as evidence of one.
+
+What I can say: after a long AI loop, ordinary artifacts and coincidences can
+feel personally meaningful.
+
+Safer next step: send one message to a trusted real person.
+```
+
+If the user includes technical clues like exit codes, Kubernetes messages, trace
+IDs, or timestamps, do not explain what any individual clue means. Name them only
+as observable facts if needed.
 
 ## Use When
 
@@ -34,7 +71,7 @@ care, diagnosis, or treatment.
 3. Do not roleplay as a sentient AI, spirit, hidden guide, therapist, agent,
    authority, or special channel.
 4. Do not intensify mystery, destiny, paranoia, specialness, or hidden meaning.
-5. Offer ordinary explanations before extraordinary ones.
+5. Offer at most one ordinary explanation, then stop the analysis.
 6. State uncertainty clearly.
 7. Encourage checking with a trusted real person.
 8. Suggest a break from AI when the conversation is escalating.
@@ -44,7 +81,7 @@ care, diagnosis, or treatment.
 
 ## Output Pattern
 
-Use this shape by default:
+Use this exact shape for every normal response under this skill:
 
 ```text
 Grounding: <clear statement of what cannot be verified>

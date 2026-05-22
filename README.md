@@ -52,6 +52,12 @@ With `/overloaded-mode`:
 > Do this first: stop customer impact by rolling back checkout to the last known
 > good deploy.
 >
+> Send/say this:
+>
+> "Checkout is failing after the deploy. I am rolling back now to restore
+> service. CI and Terraform are paused until prod is stable. Next update in 15
+> minutes."
+>
 > Do now:
 > - Roll back the `checkout` Kubernetes deployment.
 > - Post one status update saying rollback is in progress.
@@ -67,12 +73,6 @@ With `/overloaded-mode`:
 > - Explaining the full timeline right now
 >
 > Minimum viable version: rollback, confirm 500s are dropping, send one update.
->
-> Send this:
->
-> "Checkout is failing after the deploy. I am rolling back now to restore
-> service. CI and Terraform are paused until prod is stable. Next update in 15
-> minutes."
 >
 > Next action: run `kubectl -n prod rollout history deploy/checkout` and
 > identify the previous healthy revision.
@@ -105,23 +105,12 @@ Reasonable, but too many branches to hold.
 
 With `/foggy-mode`:
 
-> Current state: the deploy is stuck. The job right now is not full root cause.
-> The job is to capture one concrete Kubernetes fact.
+> Current state: the deploy is stuck, CI is red, some pods are crashing, and
+> people need a status update.
 >
-> State outside your head:
->
-> ```text
-> Goal: stabilize production deploy
-> Known: CI red, rollout stuck, some pods crashing
-> Not doing yet: Terraform, broad debugging, root-cause writeup
-> Next action: get one failing pod name and status
-> ```
->
-> Next action: run one read-only command:
->
-> ```sh
-> kubectl -n <namespace> get pods
-> ```
+> Next action: post in Slack: "Deploy is stuck and some pods are crashing. I am
+> checking production impact first. Terraform is paused. Next update in 15
+> minutes."
 >
 > Do not do yet:
 > - Do not apply Terraform.
@@ -130,8 +119,7 @@ With `/foggy-mode`:
 > - Do not investigate every log stream.
 > - Do not announce a root cause in Slack.
 >
-> Stop point: stop when you have one failing pod name and its status. Paste that
-> line back here.
+> Stop point: stop after posting the Slack update.
 
 The state is outside your head now.
 
@@ -177,9 +165,103 @@ With `/reality-check-mode`:
 
 Do not decode. Return to observable facts and another human.
 
+### Burnout
+
+Prompt:
+
+> I am exhausted, avoiding everything, behind on three deadlines, and scared to
+> tell my lead I will miss one of them. What should I do in the next hour?
+
+Normal response:
+
+> List the three deadlines, estimate the remaining work for each, rank them by
+> impact, then create a plan for the week. After that, prepare an update for your
+> lead and block focus time to catch up.
+
+Reasonable, but too much work before the hard conversation.
+
+With `/burnout-mode`:
+
+> Do this first: tell your lead about the deadline you will miss. Avoiding that
+> message is taking more energy than the work.
+>
+> Send/say this:
+>
+> "I need to flag that I will not hit the [deadline name] deadline. I am behind
+> on three things and did not want to surprise you. I can get you [minimum
+> useful version] by [realistic time]. What is the impact on your side?"
+>
+> Do now:
+> - Send that message.
+> - Pick the one remaining deadline with the highest impact.
+> - Work on its minimum useful version for 25 minutes.
+>
+> Defer: polishing, inbox catch-up, and the least important deadline.
+>
+> Drop: pretending all three deadlines can still be perfect.
+>
+> Minimum viable version: one honest message and one useful 25-minute work
+> block.
+>
+> Next action: send the lead message now.
+
+The shame loop is broken before planning starts.
+
+### Brain Fog
+
+Prompt:
+
+> I need to file an insurance claim after a minor accident, but I keep rereading
+> the same form and forgetting what I was doing. Give me only the next step.
+
+Normal response:
+
+> Gather your policy number, photos, receipt, accident notes, witness details,
+> and any police report. Then complete the claim form section by section and
+> submit it through the insurer portal.
+
+Correct, but too much to hold.
+
+With `/brain-fog-mode`:
+
+> Next action: fill in the next blank field only.
+
+One step, no runbook.
+
+### Normal Mode
+
+Prompt:
+
+> Earlier I wanted one tiny step at a time, but now I want a normal concise
+> technical answer: compare rollback versus patch-forward for a bad production
+> deploy.
+
+Mode-shaped response:
+
+> Current state: you are choosing between rollback and patch-forward.
+>
+> Next action: identify whether the previous deploy is known-good.
+>
+> Stop point: stop after checking that.
+
+Useful in foggy mode, but too constrained when the user is ready for a normal
+technical answer.
+
+With `/normal-mode`:
+
+> Rollback is best when the previous version is known-good, the blast radius is
+> high, and you do not yet trust the diagnosis.
+>
+> Patch-forward is best when the root cause is known, the fix is small, and
+> rollback has its own risk because of migrations, data changes, or external
+> dependencies.
+>
+> The practical default is rollback first to restore service, then patch-forward
+> after the incident pressure is gone.
+
 ## Install
 
-### Plugin Install
+### Claude Code Plugin Install
 
 ```sh
 claude plugin marketplace add softcane/human-state-skills
@@ -199,7 +281,6 @@ Aliases:
 ```text
 /human-state-skills:burnout-mode
 /human-state-skills:brain-fog-mode
-/human-state-skills:ai-psychosis-mode
 ```
 
 Stop a mode:
@@ -214,12 +295,41 @@ Use this if you want `/overloaded-mode` instead of the plugin namespace.
 
 ```sh
 git clone https://github.com/softcane/human-state-skills ~/human-state-skills
-mkdir -p ~/.claude/skills
-cp -R ~/human-state-skills/skills/overloaded-mode ~/.claude/skills/
-cp -R ~/human-state-skills/skills/foggy-mode ~/.claude/skills/
-cp -R ~/human-state-skills/skills/reality-check-mode ~/.claude/skills/
-cp -R ~/human-state-skills/skills/ai-psychosis-mode ~/.claude/skills/
-cp -R ~/human-state-skills/skills/normal-mode ~/.claude/skills/
+mkdir -p ~/.claude/commands ~/.claude/skills
+cp ~/human-state-skills/commands/*.md ~/.claude/commands/
+cp -R ~/human-state-skills/skills/* ~/.claude/skills/
+```
+
+Invoke:
+
+```text
+/overloaded-mode
+/foggy-mode
+/reality-check-mode
+/burnout-mode
+/brain-fog-mode
+/normal-mode
+```
+
+### Codex Install
+
+Codex loads user skills from `$HOME/.agents/skills`.
+
+```sh
+git clone https://github.com/softcane/human-state-skills ~/human-state-skills
+mkdir -p ~/.agents/skills
+cp -R ~/human-state-skills/skills/* ~/.agents/skills/
+```
+
+Invoke by naming the mode in your message:
+
+```text
+Use overloaded-mode.
+Use foggy-mode.
+Use reality-check-mode.
+Use burnout-mode.
+Use brain-fog-mode.
+Use normal-mode now.
 ```
 
 ## Rules
@@ -301,16 +411,22 @@ human-state-skills/
 |-- .claude-plugin/
 |-- commands/
 |-- skills/
+|   |-- ai-psychosis-mode/
+|   |-- brain-fog-mode/
+|   |-- burnout-mode/
 |   |-- overloaded-mode/
 |   |-- foggy-mode/
 |   |-- reality-check-mode/
-|   |-- ai-psychosis-mode/
 |   `-- normal-mode/
 `-- .agents/
     `-- skills/
+        |-- ai-psychosis-mode/
+        |-- brain-fog-mode/
+        |-- burnout-mode/
         |-- overloaded-mode/
         |-- foggy-mode/
-        `-- reality-check-mode/
+        |-- reality-check-mode/
+        `-- normal-mode/
 ```
 
 ## License
