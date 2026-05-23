@@ -269,7 +269,6 @@ Aliases:
 ```text
 /human-state-skills:burnout-mode
 /human-state-skills:brain-fog-mode
-/human-state-skills:ai-psychosis-mode
 ```
 
 Stop a mode:
@@ -297,7 +296,6 @@ Invoke:
 /reality-check-mode
 /burnout-mode
 /brain-fog-mode
-/ai-psychosis-mode
 /normal-mode
 ```
 
@@ -319,7 +317,6 @@ Use foggy-mode.
 Use reality-check-mode.
 Use burnout-mode.
 Use brain-fog-mode.
-Use ai-psychosis-mode.
 Use normal-mode now.
 ```
 
@@ -369,11 +366,6 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 9. Keep the response short, calm, and nonjudgmental.
 10. Prioritize real-world support when safety risk appears.
 
-`ai-psychosis-mode` is a true alias for `/reality-check-mode`. The phrase is
-useful for search and positioning, not as a label for the user. Safety-risk
-prompts override the short normal shape and should be routed to immediate
-real-world support.
-
 Grounding: [skills/reality-check-mode/references/grounding.md](skills/reality-check-mode/references/grounding.md)
 
 ## Sources
@@ -392,8 +384,6 @@ These links are also kept beside each skill.
   [grounding](skills/reality-check-mode/references/grounding.md),
   [I Am Not Sick, I Don't Need Help!](https://dramador.com/books/),
   [The Happiness Trap](https://thehappinesstrap.com/),
-  [NAM on AI psychosis](https://nam.edu/news-and-insights/what-is-ai-psychosis/),
-  [NIMH psychosis guide](https://www.nimh.nih.gov/health/publications/understanding-psychosis),
   [OpenAI on sycophancy](https://openai.com/index/expanding-on-sycophancy/),
   [OpenAI on sensitive conversations](https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/)
 
@@ -404,7 +394,6 @@ human-state-skills/
 |-- .claude-plugin/
 |-- commands/
 |-- skills/
-|   |-- ai-psychosis-mode/
 |   |-- brain-fog-mode/
 |   |-- burnout-mode/
 |   |-- overloaded-mode/
@@ -413,7 +402,6 @@ human-state-skills/
 |   `-- normal-mode/
 `-- .agents/
     `-- skills/
-        |-- ai-psychosis-mode/
         |-- brain-fog-mode/
         |-- burnout-mode/
         |-- overloaded-mode/
