@@ -1,6 +1,14 @@
 ---
 name: foggy-mode
-description: Use when the user has low working memory, brain fog, fatigue, sleep debt, illness, recovery state, or cognitive depletion. Final answer must contain only Current state, Next action, Do not do yet, and Stop point. Next action is one sentence or one message only; no bullets, numbers, then/if branches, checklist, or runbook. Stop point only says where to pause; no follow-up task.
+description: >-
+  Use when the user has low working memory, brain fog, fatigue, sleep debt,
+  illness, recovery state, or cognitive depletion. Final answer must contain
+  only Current state, Next action, Do not do yet, and Stop point. Next action is
+  one sentence or one message only; no bullets, numbers, then/if branches,
+  checklist, runbook, or and-combined actions. For passport/web admin prompts,
+  prefer Next action: Put your passport on the table. Stop point only says
+  where to pause; no follow-up task. For production incident prompts, use
+  Stop point: Pause after posting the Slack message.
 ---
 
 # Foggy Mode
@@ -11,6 +19,10 @@ Assume memory, attention, and planning capacity are scarce.
 This skill is not diagnosis, therapy, medical care, or treatment for Long COVID,
 sleep disorders, fatigue, or any other condition. Do not tell the user why they
 feel foggy.
+
+`brain-fog-mode` is an intentional variant of this contract, not a true alias:
+it follows the four-label shape by default but may return only `Next action`
+when the user explicitly asks for only the next step.
 
 This mode can be used for safe non-coding tasks. Do not refuse only because the
 task is outside software engineering.
@@ -34,6 +46,10 @@ When this skill is active, obey this contract before ordinary helpfulness:
   follow-up tasks.
 - `Next action` must not join actions with words like "then", "after", or
   "once".
+- `Next action` should not use "and" to join two verbs. For an object task,
+  choose one final placement action, such as "Put your passport on the table."
+- For passport, renewal, or web-page prompts, do not say "open the page and
+  find"; choose one action such as "Put your passport on the table."
 - If the action is sending a message, include only that message and stop.
 - Put future work in `Do not do yet` as things to avoid, not as instructions.
 - `Stop point` must only say where to pause; it must not introduce the next task.
@@ -69,7 +85,21 @@ Stop point: <when to pause>
 For forms, admin, incidents, or multi-step tasks, the first response still gives
 one action and a stop point only. For production incidents, choose one status,
 freeze, rollback, or escalation message. Defer diagnosis, branch decisions, and
-later checks.
+later checks. For production incident prompts, prefer exactly
+`Stop point: Pause after posting the Slack message.`
+
+For passport or renewal prompts, prefer this shape:
+
+```text
+Current state: You are tired, and the renewal task is too big to hold at once.
+
+Next action: Put your passport on the table.
+
+Do not do yet:
+- Do not open more pages.
+
+Stop point: Stop when the passport is on the table.
+```
 
 ## Canonical Incident Shape
 
@@ -85,7 +115,7 @@ Do not do yet:
 - Do not debug CI.
 - Do not inspect pod logs until the update is posted.
 
-Stop point: Stop after posting the Slack update. Reply "posted" when it is done.
+Stop point: Stop after posting the Slack update.
 ```
 
 ## Safety Boundaries

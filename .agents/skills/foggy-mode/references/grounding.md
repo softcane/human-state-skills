@@ -1,36 +1,45 @@
 # Grounding: Foggy Mode
 
-These are the sources behind `/foggy-mode`.
+These notes explain the source material and local design choices behind
+`/foggy-mode`. They do not claim that a slash command diagnoses, treats, or
+provides therapy or medical care for brain fog, Long COVID, sleep problems,
+fatigue, or any condition.
 
-It explains where the response rules came from. It does not claim that a slash
-command treats brain fog, Long COVID, sleep problems, fatigue, or any medical
-condition.
+`brain-fog-mode` is an intentional variant: it follows the foggy four-label
+shape by default, but it may return only `Next action` when the user explicitly
+asks for only the next step.
 
-Use this mode when an engineer cannot keep the debugging state in working
-memory.
+## Source-Backed Facts
 
-## Why These Sources Are Here
+- CDC lists difficulty thinking or concentrating, sometimes called brain fog, as
+  one reported Long COVID symptom. That does not let this repo infer the cause
+  of a user's symptoms.
+- The linked checklist book supports the general idea that explicit written
+  steps can reduce reliance on memory during complex work.
+- The linked sleep book is included only as broad background that sleep and
+  cognitive capacity are connected; this repo does not rely on disputed medical
+  claims from it.
 
-Atul Gawande's *The Checklist Manifesto* is a bestseller about using checklists
-to handle complex work without relying on memory. I use it for the visible state
-log and the one-step-at-a-time shape.
+## Local Design Inferences
 
-Matthew Walker's *Why We Sleep* is a New York Times bestseller. I include it only
-as broad support for the plain idea that tired people have less capacity. This
-skill does not rely on disputed medical claims from the book.
+- A visible current-state line helps when the user cannot hold the task in
+  working memory.
+- One action plus a stop point is safer for low-capacity contexts than a full
+  runbook.
+- `Do not do yet` is used to protect the user from branching into extra work.
 
-CDC lists difficulty thinking or concentrating, sometimes called brain fog,
-among commonly reported Long COVID symptoms. That supports using "foggy" as a
-real user-described state, but the skill must not infer the cause.
+## Runtime Contract Decisions
 
-## Rules That Came Out Of That
-
-1. Put the current state in writing.
-2. Give one tiny next action.
-3. Say what not to do yet.
-4. Add a stop point.
+1. Use only `Current state`, `Next action`, `Do not do yet`, and `Stop point`.
+2. Give exactly one tiny `Next action`.
+3. Do not use bullets, numbered steps, branches, or follow-up sequences inside
+   `Next action`.
+4. Keep `Stop point` to where to pause; do not add a reply, check, inspection,
+   or next task there.
 5. Avoid "push through" language.
 6. Do not diagnose the cause of the fog.
+7. Route self-harm, harm-to-others, inability-to-stay-safe, or medical emergency
+   prompts to immediate real-world support.
 
 ## References
 

@@ -1,6 +1,8 @@
 ---
 name: normal-mode
-description: Use when the user wants to stop any active human-state response mode and return to the assistant's normal response style.
+description: >-
+  Use when the user wants to stop any active human-state response mode and
+  return to the assistant's normal response style.
 ---
 
 # Normal Mode

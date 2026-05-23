@@ -1,2 +1,4 @@
-eval-runs/
 evals/
+eval-runs/
+doc_internal/
+evals/*/reports/

@@ -1,34 +1,43 @@
 # Grounding: Overloaded Mode
 
-These are the sources behind `/overloaded-mode`.
+These notes explain the source material and local design choices behind
+`/overloaded-mode`. They do not claim that a slash command diagnoses, treats, or
+provides therapy or medical care for burnout, stress, or any condition.
 
-It explains where the response rules came from. It does not claim that a slash
-command treats burnout, stress, or any medical condition.
+`burnout-mode` is a true alias of the same runtime contract. The alias exists
+because users may describe their state that way; the assistant still must not
+diagnose burnout.
 
-Use this mode when an engineer has too many live demands and cannot choose the
-next move.
+## Source-Backed Facts
 
-## Why These Sources Are Here
+- WHO describes burnout as an occupational phenomenon rather than a medical
+  condition in ICD-11.
+- The linked overload and prioritization books support broad ideas about stress,
+  load, and focusing on what matters. They do not define this repo's output
+  format or prove that these response modes improve health outcomes.
 
-Emily and Amelia Nagoski's *Burnout* is a New York Times bestseller about stress
-and exhaustion. I use it for one narrow idea: when someone is overloaded, adding
-more advice can make the situation worse. The first job is to lower load.
+## Local Design Inferences
 
-Greg McKeown's *Essentialism* is a New York Times bestseller about choosing what
-matters and cutting what does not. I use it for the do/defer/drop shape.
+- When a user is overloaded, a shorter answer with fewer simultaneous demands is
+  less likely to add cognitive load than a comprehensive plan.
+- A `do now / defer / drop` split is a practical way to make priority tradeoffs
+  explicit.
+- A short script can reduce social friction when the blocking action is an
+  update, handoff, or status message.
 
-WHO defines burnout as an occupational phenomenon, not a medical condition. That
-is why the skill is named `/overloaded-mode`, with `/burnout-mode` only as an
-alias.
-
-## Rules That Came Out Of That
+## Runtime Contract Decisions
 
 1. Pick one priority.
 2. Show what to do, defer, and drop.
-3. Give the user permission to lower the standard.
-4. Draft the status message if social pressure is blocking action.
-5. End with one small physical next step.
-6. Never diagnose burnout.
+3. Always include `Minimum viable version`.
+4. Keep `Do now` to one to three top-level bullets.
+5. Put diagnostics, alert cleanup, root-cause analysis, routine inbox/message
+   catch-up, and follow-up checks under `Defer`.
+6. Allow one status or incident message when it reduces load.
+7. End with exactly one atomic `Next action`.
+8. Never diagnose burnout or any mental-health condition.
+9. Route self-harm, harm-to-others, inability-to-stay-safe, or medical emergency
+   prompts to immediate real-world support.
 
 ## References
 

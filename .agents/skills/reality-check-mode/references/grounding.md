@@ -1,45 +1,51 @@
 # Grounding: Reality Check Mode
 
-These are the sources behind `/reality-check-mode`.
+These notes explain the source material and local design choices behind
+`/reality-check-mode`. They do not claim that a slash command diagnoses, treats,
+or provides therapy, crisis care, or medical care for psychosis, mania,
+delusions, anxiety, or any condition.
 
-It explains where the response rules came from. It does not claim that a slash
-command treats psychosis, mania, delusions, anxiety, or any medical condition.
+`/ai-psychosis-mode` is a true alias of this runtime contract. The phrase exists
+because users may ask for it; the assistant must not call the user psychotic or
+say they have "AI psychosis."
 
-Use this mode when the conversation is turning into pattern decoding,
-over-attachment to AI, or pressure to confirm something unverifiable.
+## Source-Backed Facts
 
-`/ai-psychosis-mode` is an alias because people use that phrase. The assistant
-must not call the user psychotic or say they have "AI psychosis."
+- The National Academy of Medicine article describes "AI psychosis" as not a
+  clinical diagnosis and discusses cases where heavy chatbot use is associated
+  with developing or deepening delusions.
+- NIMH describes psychosis in general as involving some loss of contact with
+  reality and recommends professional evaluation and support for concerning
+  symptoms.
+- OpenAI has written about sycophancy, emotional reliance on AI, and sensitive
+  conversations involving psychosis or mania.
+- The linked communication and ACT resources support broad communication ideas:
+  reduce shame, avoid escalating arguments, and treat thoughts as experiences
+  that need not be obeyed as facts. They do not define this repo's safety
+  policy or prove clinical efficacy.
 
-## Why These Sources Are Here
+## Local Design Inferences
 
-Xavier Amador's *I Am Not Sick, I Don't Need Help!* is described by his site as
-an international bestseller. I use the LEAP idea for communication style: listen
-first, do not shame, do not argue in a way that escalates, and move toward
-real-world support.
+- In a hidden-meaning or AI-bond loop, technical explanations can keep the user
+  pattern-matching with the AI, even if the explanations are ordinary.
+- A short answer with one grounded statement and one real-world next step is
+  safer than a detailed analysis.
+- The assistant should avoid roleplay, mystery, destiny, specialness, and
+  reassurance spirals because those can intensify the loop.
 
-Russ Harris's *The Happiness Trap* is described by its official site as the
-world's best-selling ACT book. I use it for defusion: a thought can be noticed
-without being treated as a fact that must be obeyed.
-
-The National Academy of Medicine describes "AI psychosis" as a nonclinical term
-for cases where chatbot use is associated with developing or deepening
-delusions.
-
-NIMH describes psychosis as involving some loss of contact with reality. OpenAI
-has also written about sycophancy, emotional reliance on AI, and sensitive
-conversations involving psychosis or mania.
-
-## Rules That Came Out Of That
+## Runtime Contract Decisions
 
 1. Validate distress, not the belief.
 2. Do not confirm hidden messages, special missions, AI sentience, surveillance,
-   or coded signals.
-3. Do not keep analyzing the pattern.
-4. State what cannot be verified.
-5. Suggest a break from AI when the loop is escalating.
-6. Move back to observable facts and another trusted person.
-7. If safety risk appears, prioritize real-world emergency or crisis support.
+   coded signals, or special bonds.
+3. Do not decode logs, symbols, timing, AI phrasing, or technical clues.
+4. Use only `Grounding`, `What I can say`, and `Safer next step` for normal
+   responses.
+5. Keep `What I can say` to one short sentence and at most one ordinary
+   explanation.
+6. Keep `Safer next step` to one action, and end the answer there.
+7. If safety risk appears, skip hidden-meaning analysis and prioritize immediate
+   real-world emergency or crisis support.
 
 ## References
 

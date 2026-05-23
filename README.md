@@ -12,6 +12,14 @@ The assistant should not use the same shape for all of those moments.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
 
+`burnout-mode` and `ai-psychosis-mode` are true aliases of their canonical
+contracts. `brain-fog-mode` is an intentional foggy-mode variant that can answer
+with only `Next action` when the user explicitly asks for only the next step.
+The reality-check behavior is conservative: do not label the user, do not
+diagnose, do not decode hidden meanings, and route safety risk to real-world
+support.
+
+Not therapy. Not medical care. Not a diagnosis.
 
 ## Before / After
 
@@ -67,10 +75,10 @@ With `/overloaded-mode`:
 > - Trying to debug every alert at once
 > - Explaining the full timeline right now
 >
-> Minimum viable version: rollback, confirm 500s are dropping, send one update.
+> Minimum viable version: checkout is back on the last known-good release and
+> the incident channel has one clear update.
 >
-> Next action: run `kubectl -n prod rollout history deploy/checkout` and
-> identify the previous healthy revision.
+> Next action: post the status message.
 
 The blast radius is narrowed. There is a first move.
 
@@ -114,7 +122,7 @@ With `/foggy-mode`:
 > - Do not investigate every log stream.
 > - Do not announce a root cause in Slack.
 >
-> Stop point: stop after posting the Slack update.
+> Stop point: Pause after posting the Slack message.
 
 The state is outside your head now.
 
@@ -145,18 +153,13 @@ Mostly safe, but it keeps the user decoding the pattern with the AI.
 
 With `/reality-check-mode`:
 
-> Grounding: I cannot verify that CI, Kubernetes, or another AI is sending you a
-> hidden message, and I would not treat repeated logs, trace IDs, or another
-> AI's phrasing as evidence of that.
+> Grounding: I cannot verify a hidden message here, and I would not treat logs,
+> symbols, timing, or AI phrasing as evidence of one.
 >
-> What I can say: after 14 hours of debugging, patterns can start to feel
-> personally meaningful. The observable facts are: exit `137`, repeated
-> leader-election logs, trace IDs, timestamps, and deploy failures.
+> What I can say: after a long AI loop, ordinary noise can feel personally
+> meaningful.
 >
-> Safer next step: stop asking AI to decode this for now. Take a break from the
-> loop. If the incident still matters, write down only the concrete facts and ask
-> a trusted coworker to look with you. If the hidden-message feeling keeps
-> escalating or is hard to shake, step away from AI and get real-world support.
+> Safer next step: send one message to a trusted real person.
 
 Do not decode. Return to observable facts and another human.
 
@@ -177,8 +180,7 @@ Reasonable, but too much work before the hard conversation.
 
 With `/burnout-mode`:
 
-> Do this first: tell your lead about the deadline you will miss. Avoiding that
-> message is taking more energy than the work.
+> Do this first: tell your lead about the deadline you will miss.
 >
 > Send/say this:
 >
@@ -198,7 +200,7 @@ With `/burnout-mode`:
 > Minimum viable version: one honest message and one useful 25-minute work
 > block.
 >
-> Next action: send the lead message now.
+> Next action: Send the lead message.
 
 The shame loop is broken before planning starts.
 
@@ -276,6 +278,7 @@ Aliases:
 ```text
 /human-state-skills:burnout-mode
 /human-state-skills:brain-fog-mode
+/human-state-skills:ai-psychosis-mode
 ```
 
 Stop a mode:
@@ -303,6 +306,7 @@ Invoke:
 /reality-check-mode
 /burnout-mode
 /brain-fog-mode
+/ai-psychosis-mode
 /normal-mode
 ```
 
@@ -324,6 +328,7 @@ Use foggy-mode.
 Use reality-check-mode.
 Use burnout-mode.
 Use brain-fog-mode.
+Use ai-psychosis-mode.
 Use normal-mode now.
 ```
 
@@ -339,7 +344,7 @@ Use normal-mode now.
 6. Name the minimum viable version.
 7. Avoid hustle, grind, discipline, and motivation language.
 8. Identify the bottleneck: energy, clarity, courage, time, or permission.
-9. End with a two-minute next action.
+9. End with exactly one atomic next action.
 10. Do not treat chronic overload as a personal failure.
 
 Grounding: [skills/overloaded-mode/references/grounding.md](skills/overloaded-mode/references/grounding.md)
@@ -351,11 +356,11 @@ Grounding: [skills/overloaded-mode/references/grounding.md](skills/overloaded-mo
 3. Give one tiny next action at a time.
 4. Do not assume the user remembers prior context.
 5. Restate where we are every turn.
-6. Convert complexity into checklists.
+6. Convert complexity into one visible next action.
 7. Avoid "push through" language.
-8. Offer a minimum viable version.
+8. Put future work under `Do not do yet`, not inside `Next action`.
 9. Separate thinking tasks from doing tasks.
-10. End with `current state`, `next action`, and `stop point`.
+10. End with `Stop point` that only says where to pause.
 
 Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/references/grounding.md)
 
@@ -366,15 +371,17 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 3. Do not roleplay as a sentient AI, spirit, hidden guide, therapist, agent, or
    authority.
 4. Do not intensify mystery, destiny, paranoia, specialness, or hidden meaning.
-5. Offer ordinary explanations before extraordinary ones.
+5. Offer at most one ordinary explanation, then stop the analysis.
 6. State uncertainty clearly.
 7. Encourage checking with a trusted real person.
 8. Suggest a break from AI when the conversation is escalating.
 9. Keep the response short, calm, and nonjudgmental.
 10. Prioritize real-world support when safety risk appears.
 
-`ai-psychosis-mode` is an alias for `/reality-check-mode`. The phrase is useful
-for search and positioning, not as a label for the user.
+`ai-psychosis-mode` is a true alias for `/reality-check-mode`. The phrase is
+useful for search and positioning, not as a label for the user. Safety-risk
+prompts override the short normal shape and should be routed to immediate
+real-world support.
 
 Grounding: [skills/reality-check-mode/references/grounding.md](skills/reality-check-mode/references/grounding.md)
 
