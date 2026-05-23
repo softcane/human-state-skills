@@ -12,15 +12,6 @@ The assistant should not use the same shape for all of those moments.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
 
-`burnout-mode` and `ai-psychosis-mode` are true aliases of their canonical
-contracts. `brain-fog-mode` is an intentional foggy-mode variant that can answer
-with only `Next action` when the user explicitly asks for only the next step.
-The reality-check behavior is conservative: do not label the user, do not
-diagnose, do not decode hidden meanings, and route safety risk to real-world
-support.
-
-Not therapy. Not medical care. Not a diagnosis.
-
 ## Before / After
 
 Same prompt. Normal response first. Mode response second.
