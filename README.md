@@ -9,6 +9,7 @@ The assistant should not use the same shape for all of those moments.
 
 - `/overloaded-mode`: one priority, do/defer/drop, one next action.
 - `/foggy-mode`: keep state outside your head, one tiny step, clear stop point.
+- `/plan-compass`: stress-test a plan one concrete decision at a time.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
 
@@ -293,6 +294,58 @@ submit it through the insurer portal.</p>
 </tbody>
 </table>
 
+### Plan Compass
+
+<table>
+<thead>
+<tr>
+<th width="50%">Before: normal response</th>
+<th width="50%">After: <code>/plan-compass</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">
+<strong>Prompt</strong>
+<blockquote>
+<p>I have a plan to add saved drafts: store the draft in localStorage, sync it to
+the API when the user clicks Save, and let anyone on the team edit it. Help me
+stress-test the plan, but keep it easy to answer.</p>
+</blockquote>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<blockquote>
+<p>Think through data ownership, permissions, conflict handling, offline state,
+recovery if localStorage is cleared, API validation, draft expiry, audit logs,
+tests, and migration behavior. You should decide whether drafts belong to the
+user, team, or project, and whether edits merge automatically or require manual
+resolution.</p>
+</blockquote>
+<p><em>Useful concerns, but too many decisions at once.</em></p>
+</td>
+<td valign="top">
+<blockquote>
+<p>Decision 1 of 5: Draft ownership</p>
+<p>Question: Who owns a saved draft before it is submitted?</p>
+<p>Why this matters: ownership decides who can edit, delete, and recover it
+later.</p>
+<p>Recommended answer: the user owns the draft until they explicitly share it.</p>
+<p>Choices:</p>
+<ul>
+<li>A: User owns it.</li>
+<li>B: Team owns it.</li>
+<li>C: Project owns it.</li>
+</ul>
+<p>Default: A.</p>
+</blockquote>
+<p><em>One decision is visible, and the default is safe to accept.</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+
 ### Normal Mode
 
 <table>
@@ -352,6 +405,7 @@ Invoke:
 ```text
 /human-state-skills:overloaded-mode
 /human-state-skills:foggy-mode
+/human-state-skills:plan-compass
 /human-state-skills:reality-check-mode
 ```
 
@@ -384,6 +438,7 @@ Invoke:
 ```text
 /overloaded-mode
 /foggy-mode
+/plan-compass
 /reality-check-mode
 /burnout-mode
 /brain-fog-mode
@@ -405,6 +460,7 @@ Invoke by naming the mode in your message:
 ```text
 Use overloaded-mode.
 Use foggy-mode.
+Use plan-compass.
 Use reality-check-mode.
 Use burnout-mode.
 Use brain-fog-mode.
@@ -442,6 +498,19 @@ Grounding: [skills/overloaded-mode/references/grounding.md](skills/overloaded-mo
 10. End with `Stop point` that only says where to pause.
 
 Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/references/grounding.md)
+
+### `/plan-compass`
+
+1. Ask exactly one decision question at a time.
+2. Use visible progress, such as `Decision 2 of 6: Data ownership`.
+3. Include why the decision matters in one sentence.
+4. Put the recommended answer before the answer choices.
+5. Offer only two or three concrete choices.
+6. Give a default for when the user is unsure.
+7. Do not require the user to remember previous answers.
+8. Inspect the codebase instead of asking when the answer is discoverable.
+9. If the user seems stuck, narrow the decision instead of explaining more.
+10. Pause when the user is tired, foggy, overwhelmed, done, or ready for a plan.
 
 ### `/reality-check-mode`
 
@@ -489,6 +558,7 @@ human-state-skills/
 |   |-- burnout-mode/
 |   |-- overloaded-mode/
 |   |-- foggy-mode/
+|   |-- plan-compass/
 |   |-- reality-check-mode/
 |   `-- normal-mode/
 `-- .agents/
@@ -497,6 +567,7 @@ human-state-skills/
         |-- burnout-mode/
         |-- overloaded-mode/
         |-- foggy-mode/
+        |-- plan-compass/
         |-- reality-check-mode/
         `-- normal-mode/
 ```

@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "human-state-skills",
-  "description": "Response modes for overload, fog, and AI reality-checking.",
+  "description": "Response modes for overload, fog, plan stress-testing, and AI reality-checking.",
   "owner": {
     "name": "Pradeep Singh"
   },
   "plugins": [
     {
       "name": "human-state-skills",
-      "description": "Slash-command response modes for overloaded, foggy, and reality-checking states.",
+      "description": "Slash-command response modes for overloaded, foggy, plan stress-testing, and reality-checking states.",
       "source": "./",
       "category": "productivity"
     }
