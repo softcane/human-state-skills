@@ -1,6 +1,6 @@
 # human-state-skills
 
-Small response modes for coding when your head is in a different state.
+Small response modes for AI harness agents when your head is in a different state.
 
 You can be sharp at 10:00, overloaded after a bad deploy, foggy during on-call,
 and too deep in an AI debugging loop by 02:00.
