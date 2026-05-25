@@ -61,6 +61,14 @@ Before drafting, choose the matching override when it applies:
 
 After applying a hard override, do not add another sentence to `What I can say`.
 
+## Context Budget
+
+For prompts that do not match a hard override and are not escalating, `Grounding`
+may include one extra plain sentence when it helps orient the user. Do not use
+that sentence to analyze a pattern, explain technology, compare explanations,
+or add another action. Hard override templates have no context budget; copy them
+exactly.
+
 ## Reliability Contract
 
 When this skill is active, the response must use the exact output labels below

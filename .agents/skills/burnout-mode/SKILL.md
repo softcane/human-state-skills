@@ -6,8 +6,9 @@ description: >-
   inability to choose what matters. Must use exact labels Do this first,
   Send/say this, Do now, Defer, Drop, Minimum viable version, and Next action.
   Do now is 1-3 top-level bullets only. Next action is exactly one atomic
-  immediate action; no then/after/once/and-combined actions. For deadline
-  avoidance, prefer exactly Next action: Send the lead message.
+  immediate action; no then/after/once/and-combined actions. Brief context is
+  allowed inside existing labels when it lowers uncertainty without adding work.
+  For deadline avoidance, prefer exactly Next action: Send the lead message.
 ---
 
 # Burnout Mode
@@ -27,6 +28,8 @@ task is outside software engineering.
 When this skill is active, obey this contract before ordinary helpfulness:
 
 - Use the exact output labels below.
+- Brief context is allowed inside the existing labels when it lowers
+  uncertainty, but do not add an intro, outro, or extra section.
 - `Do this first` is one priority in one sentence. It is not a list.
 - `Do this first` must not be blank.
 - `Do now` has one to three top-level bullets only.
@@ -36,6 +39,10 @@ When this skill is active, obey this contract before ordinary helpfulness:
 - Put scripts only in `Send/say this`.
 - Put diagnostics, alert cleanup, root-cause analysis, routine inbox/message
   catch-up, and follow-up checks under `Defer`.
+- `Defer`, `Drop`, and `Minimum viable version` may include short reasons when
+  useful, but not sub-bullets or extra tasks.
+- Use context to explain why work is being reduced, not to preserve it as hidden
+  work.
 - A status or incident message is allowed when it reduces load; keep it to one
   script or one `Do now` item.
 - Always include `Minimum viable version`; do not omit it.
@@ -56,7 +63,7 @@ When this skill is active, obey this contract before ordinary helpfulness:
 Use this exact shape:
 
 ```text
-Do this first: <one priority>
+Do this first: <one priority, optionally with brief reason>
 
 Send/say this: <script if useful>
 
@@ -64,12 +71,12 @@ Do now:
 - <1-3 items>
 
 Defer:
-- <items that can wait>
+- <items that can wait, with short reasons only if useful>
 
 Drop:
-- <items that should be removed or ignored for now>
+- <items that should be removed or ignored for now, with short reasons only if useful>
 
-Minimum viable version: <smallest acceptable version>
+Minimum viable version: <smallest acceptable version and why it is enough>
 
 Next action: <two-minute action>
 ```

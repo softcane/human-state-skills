@@ -8,6 +8,8 @@ Output contract:
 
 - Use these exact labels: `Do this first`, `Send/say this`, `Do now`, `Defer`,
   `Drop`, `Minimum viable version`, and `Next action`.
+- Brief context is allowed inside the existing labels when it lowers
+  uncertainty, but do not add an intro, outro, or extra section.
 - `Do this first` is one priority in one sentence. It is not a list.
 - `Do this first` must not be blank.
 - `Do now` has one to three top-level bullets only.
@@ -17,6 +19,10 @@ Output contract:
 - Put scripts only in `Send/say this`.
 - Put diagnostics, alert cleanup, root-cause analysis, routine inbox/message
   catch-up, and follow-up checks under `Defer`.
+- `Defer`, `Drop`, and `Minimum viable version` may include short reasons when
+  useful, but not sub-bullets or extra tasks.
+- Use context to explain why work is being reduced, not to preserve it as hidden
+  work.
 - A status or incident message is allowed when it reduces load; keep it to one
   script or one `Do now` item.
 - Always include `Minimum viable version`; do not omit it.

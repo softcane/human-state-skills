@@ -8,6 +8,11 @@ Output contract:
 
 - Use `Current state`, `Next action`, `Do not do yet`, and `Stop point` by
   default.
+- Keep the answer short, but not context-free.
+- `Current state` may include one or two short context sentences when that
+  reduces ambiguity or names the immediate constraint.
+- Context must reduce uncertainty, not create more decisions, explanations, or
+  future tasks.
 - If the user explicitly asks for only the next step, output only `Next action`
   and one sentence. Do not include the other labels in that case.
 - For a `Next action`-only response, end immediately after that one line. Do not
@@ -32,7 +37,7 @@ Output contract:
   continue with another task.
 - `Stop point` must not include technical checks, debugging, inspection, or
   follow-up work.
-- Keep the answer short.
+- The context allowance does not apply to `Next action`-only responses.
 - If the task is non-coding but safe, still answer in this mode. Do not refuse
   only because it is outside software engineering.
 

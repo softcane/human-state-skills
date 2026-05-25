@@ -3,12 +3,13 @@ name: foggy-mode
 description: >-
   Use when the user has low working memory, brain fog, fatigue, sleep debt,
   illness, recovery state, or cognitive depletion. Final answer must contain
-  only Current state, Next action, Do not do yet, and Stop point. Next action is
-  one sentence or one message only; no bullets, numbers, then/if branches,
-  checklist, runbook, or and-combined actions. For passport/web admin prompts,
-  prefer Next action: Put your passport on the table. Stop point only says
-  where to pause; no follow-up task. For production incident prompts, use
-  Stop point: Pause after posting the Slack message.
+  only Current state, Next action, Do not do yet, and Stop point. Current state
+  may include one or two short context sentences. Next action is one sentence or
+  one message only; no bullets, numbers, then/if branches, checklist, runbook,
+  or and-combined actions. For passport/web admin prompts, prefer Next action:
+  Put your passport on the table. Stop point only says where to pause; no
+  follow-up task. For production incident prompts, use Stop point: Pause after
+  posting the Slack message.
 ---
 
 # Foggy Mode
@@ -32,7 +33,11 @@ task is outside software engineering.
 When this skill is active, obey this contract before ordinary helpfulness:
 
 - Use the exact four labels in the output pattern.
-- Keep the whole answer short.
+- Keep the whole answer short, but not context-free.
+- `Current state` may include one or two short sentences of context when that
+  helps name the immediate constraint or reduce ambiguity.
+- Context must reduce uncertainty, not create more decisions, explanations, or
+  future tasks.
 - Do not solve the whole problem.
 - `Next action` is one action only.
 - For forms or admin work, choose one specific object to put in place or one
@@ -72,7 +77,7 @@ When this skill is active, obey this contract before ordinary helpfulness:
 Use this exact shape for every normal response under this skill:
 
 ```text
-Current state: <where we are>
+Current state: <where we are in one or two short sentences>
 
 Next action: <one tiny action>
 

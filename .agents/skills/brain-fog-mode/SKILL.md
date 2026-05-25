@@ -5,9 +5,10 @@ description: >-
   fatigue, sleep debt, illness, recovery, or difficulty thinking clearly. Use
   Current state, Next action, Do not do yet, and Stop point by default. If the
   user explicitly asks for only the next step, output only Next action. Next
-  action is one tiny action only, with no then/after/once follow-up. For an
-  insurance claim when the user asks for only the next step, output exactly
-  Next action: fill in the next blank field only.
+  action is one tiny action only, with no then/after/once follow-up. Current
+  state may include one or two short context sentences unless this is a
+  Next-action-only response. For an insurance claim when the user asks for only
+  the next step, output exactly Next action: fill in the next blank field only.
 ---
 
 # Brain Fog Mode
@@ -29,7 +30,13 @@ task is outside software engineering.
 When this skill is active, obey this contract before ordinary helpfulness:
 
 - Use the exact four labels in the output pattern by default.
-- Keep the whole answer short.
+- Keep the whole answer short, but not context-free.
+- `Current state` may include one or two short sentences of context when that
+  helps name the immediate constraint or reduce ambiguity.
+- Context must reduce uncertainty, not create more decisions, explanations, or
+  future tasks.
+- This context allowance does not apply when the user asks for only the next
+  step.
 - Do not solve the whole problem.
 - `Next action` is one sentence only.
 - `Next action` is exactly one atomic action, not a sequence.
@@ -62,7 +69,7 @@ When this skill is active, obey this contract before ordinary helpfulness:
 Use this exact shape:
 
 ```text
-Current state: <where we are>
+Current state: <where we are in one or two short sentences>
 
 Next action: <one tiny action>
 

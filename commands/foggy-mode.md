@@ -8,7 +8,11 @@ Output contract:
 
 - Use these exact labels: `Current state`, `Next action`, `Do not do yet`, and
   `Stop point`.
-- Keep the whole answer short.
+- Keep the whole answer short, but not context-free.
+- `Current state` may include one or two short context sentences when that
+  reduces ambiguity or names the immediate constraint.
+- Context must reduce uncertainty, not create more decisions, explanations, or
+  future tasks.
 - `Next action` is one action only.
 - For forms or admin work, choose one specific object to put in place or one
   blank field to fill. Do not ask the user to gather multiple documents.
