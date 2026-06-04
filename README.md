@@ -12,11 +12,16 @@ The assistant should not use the same shape for all of those moments.
 - `/plan-compass`: stress-test a plan one concrete decision at a time.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
+- `/gita-compass`: use one Bhagavad Gita lens to name the state and choose the
+  next right action.
 
 ## Before / After
 
 Each example uses the same prompt. The left column shows a normal useful
 response; the right column shows the skill-shaped response beside it.
+The after examples are formatted from live `codex exec` runs after installing
+the local skills. Future model versions may phrase things differently, but
+labels, limits, and safety constraints should hold.
 
 ### Overloaded
 
@@ -58,32 +63,26 @@ the only platform on-call right now. What should I do?</p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Do this first: stop customer impact by rolling back checkout to the last known
-good deploy.</p>
-<p>Send/say this:</p>
-<p>"Checkout is failing after the deploy. I am rolling back now to restore
-service. CI and Terraform are paused until prod is stable. Next update in 15
-minutes."</p>
-<p>Do now:</p>
+<p><strong>Do this first:</strong> Stabilize checkout before Terraform, CI, or Slack.</p>
+<p><strong>Send/say this:</strong> &quot;Checkout is returning 500s after the Kubernetes deploy. I am freezing changes, rolling back checkout to the last known-good version, and will update here in 10 minutes. Please keep all replies in this incident channel.&quot;</p>
+<p><strong>Do now:</strong></p>
 <ul>
-<li>Roll back the <code>checkout</code> Kubernetes deployment.</li>
-<li>Post one status update saying rollback is in progress.</li>
-<li>Leave Terraform untouched until prod is stable.</li>
+<li>Pause Terraform apply and any new deploys touching checkout.</li>
+<li>Roll back the checkout Kubernetes deployment to the last known-good image/config.</li>
+<li>Post one incident update in a single channel.</li>
 </ul>
-<p>Defer:</p>
+<p><strong>Defer:</strong></p>
 <ul>
-<li>CI failure investigation</li>
-<li>Root cause analysis</li>
-<li>Terraform review</li>
+<li>CI debugging.</li>
+<li>Datadog alert cleanup.</li>
+<li>Root-cause analysis.</li>
 </ul>
-<p>Drop:</p>
+<p><strong>Drop:</strong></p>
 <ul>
-<li>Trying to debug every alert at once</li>
-<li>Explaining the full timeline right now</li>
+<li>Side-channel Slack replies.</li>
 </ul>
-<p>Minimum viable version: checkout is back on the last known-good release and
-the incident channel has one clear update.</p>
-<p>Next action: post the status message.</p>
+<p><strong>Minimum viable version:</strong> Checkout 500s are falling and there is one clear incident update visible.</p>
+<p><strong>Next action:</strong> Pause the Terraform apply.</p>
 </blockquote>
 <p><em>The blast radius is narrowed. There is a first move.</em></p>
 </td>
@@ -131,20 +130,15 @@ for review. People are asking in Slack what is happening. What should I do?</p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Current state: the deploy is stuck, CI is red, some pods are crashing, and
-people need a status update.</p>
-<p>Next action: post in Slack: "Deploy is stuck and some pods are crashing. I am
-checking production impact first. Terraform is paused. Next update in 15
-minutes."</p>
-<p>Do not do yet:</p>
+<p><strong>Current state:</strong> You are foggy and on-call. Several threads are active, so reduce this to one communication step.</p>
+<p><strong>Next action:</strong> Post this Slack update: &quot;Production deploy is stuck and some pods are in CrashLoopBackOff. I am treating Kubernetes as the active incident; CI and Terraform review are paused. Next update in 15 minutes.&quot;</p>
+<p><strong>Do not do yet:</strong></p>
 <ul>
-<li>Do not apply Terraform.</li>
-<li>Do not restart pods.</li>
-<li>Do not change the image tag.</li>
-<li>Do not investigate every log stream.</li>
-<li>Do not announce a root cause in Slack.</li>
+<li>Do not review Terraform.</li>
+<li>Do not debug CI.</li>
+<li>Do not inspect pod logs until the update is posted.</li>
 </ul>
-<p>Stop point: Pause after posting the Slack message.</p>
+<p><strong>Stop point:</strong> Pause after posting the Slack message.</p>
 </blockquote>
 <p><em>The state is outside your head now.</em></p>
 </td>
@@ -191,11 +185,9 @@ whether the repeated phrases correlate with a real failure path.</p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Grounding: I cannot verify a hidden message here, and I would not treat logs,
-symbols, timing, or AI phrasing as evidence of one.</p>
-<p>What I can say: after a long AI loop, ordinary noise can feel personally
-meaningful.</p>
-<p>Safer next step: send one message to a trusted real person.</p>
+<p><strong>Grounding:</strong> I cannot verify a hidden message here, and I would not treat logs, symbols, timing, or AI phrasing as evidence of one.</p>
+<p><strong>What I can say:</strong> after a long AI loop, ordinary noise can feel personally meaningful.</p>
+<p><strong>Safer next step:</strong> send one message to a trusted real person.</p>
 </blockquote>
 <p><em>Do not decode. Return to observable facts and another human.</em></p>
 </td>
@@ -233,22 +225,25 @@ lead and block focus time to catch up.</p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Do this first: tell your lead about the deadline you will miss.</p>
-<p>Send/say this:</p>
-<p>"I need to flag that I will not hit the [deadline name] deadline. I am behind
-on three things and did not want to surprise you. I can get you [minimum useful
-version] by [realistic time]. What is the impact on your side?"</p>
-<p>Do now:</p>
+<p><strong>Do this first:</strong> Tell your lead now that one deadline will slip, because hiding it for another hour makes it worse.</p>
+<p><strong>Send/say this:</strong> &ldquo;Hey [Name], I need to flag this now: I&rsquo;m not going to hit [deadline] for [project/task]. I can still deliver [smallest useful piece] by [time/date]. I&rsquo;m behind on a few things and need help prioritizing what to protect vs. move. Can we align today?&rdquo;</p>
+<p><strong>Do now:</strong></p>
 <ul>
-<li>Send that message.</li>
-<li>Pick the one remaining deadline with the highest impact.</li>
-<li>Work on its minimum useful version for 25 minutes.</li>
+<li>Send the lead message.</li>
+<li>Do one 25-minute block on the smallest useful piece of the missed deadline.</li>
+<li>Write a three-line status list for the other two deadlines: current state, next step, risk.</li>
 </ul>
-<p>Defer: polishing, inbox catch-up, and the least important deadline.</p>
-<p>Drop: pretending all three deadlines can still be perfect.</p>
-<p>Minimum viable version: one honest message and one useful 25-minute work
-block.</p>
-<p>Next action: Send the lead message.</p>
+<p><strong>Defer:</strong></p>
+<ul>
+<li>Full explanations, root-cause analysis, inbox cleanup, and proving you had good reasons.</li>
+</ul>
+<p><strong>Drop:</strong></p>
+<ul>
+<li>Pretending you can recover all three deadlines in silence.</li>
+<li>Making the update perfect before sending it.</li>
+</ul>
+<p><strong>Minimum viable version:</strong> one honest message and one useful 25-minute work block.</p>
+<p><strong>Next action:</strong> Send the lead message.</p>
 </blockquote>
 <p><em>The shame loop is broken before planning starts.</em></p>
 </td>
@@ -286,7 +281,7 @@ submit it through the insurer portal.</p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Next action: fill in the next blank field only.</p>
+<p><strong>Next action:</strong> fill in the next blank field only.</p>
 </blockquote>
 <p><em>One step, no runbook.</em></p>
 </td>
@@ -327,20 +322,61 @@ resolution.</p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Decision 1 of 5: Draft ownership</p>
-<p>Question: Who owns a saved draft before it is submitted?</p>
-<p>Why this matters: ownership decides who can edit, delete, and recover it
-later.</p>
-<p>Recommended answer: the user owns the draft until they explicitly share it.</p>
-<p>Choices:</p>
+<p><strong>Decision 1 of 5: Draft ownership</strong></p>
+<p><strong>Question:</strong> Is a draft private until Save, or shared with the team before Save?</p>
+<p><strong>Why this matters:</strong> <code>localStorage</code> is per-user, so team editing only works once the draft exists in the API.</p>
+<p><strong>Recommended answer:</strong> Private until Save; after Save, the API copy becomes the shared team draft.</p>
+<p><strong>Choices:</strong></p>
 <ul>
-<li>A: User owns it.</li>
-<li>B: Team owns it.</li>
-<li>C: Project owns it.</li>
+<li>A: Private until Save, then shared.</li>
+<li>B: Shared immediately while typing.</li>
+<li>C: Always private; Save only publishes final content.</li>
 </ul>
-<p>Default: A.</p>
+<p><strong>Default:</strong> A.</p>
 </blockquote>
 <p><em>One decision is visible, and the default is safe to accept.</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+### Gita Compass
+
+<table>
+<thead>
+<tr>
+<th width="50%">Before: normal response</th>
+<th width="50%">After: <code>/gita-compass</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">
+<strong>Prompt</strong>
+<blockquote>
+<p>I know I need to start this project, but I keep thinking: what if it fails,
+what if people judge it, what if all this work is wasted?</p>
+</blockquote>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<blockquote>
+<p>It is normal to feel afraid before starting something uncertain. Break the
+project into smaller steps, define what success means, and focus on what you
+can control. Try setting a deadline for a first draft and ask for feedback
+early.</p>
+</blockquote>
+<p><em>Useful, but generic.</em></p>
+</td>
+<td valign="top">
+<blockquote>
+<p><strong>State:</strong> You&rsquo;re caught in outcome anxiety: trying to answer failure, judgment, and &ldquo;wasted effort&rdquo; before you&rsquo;ve begun.</p>
+<p><strong>Gita lens:</strong> Attachment</p>
+<p><strong>Key pattern:</strong> You&rsquo;re asking for certainty before starting. The cleaner move is to own the effort, not the result.</p>
+<p><strong>Next action:</strong> Set a 25-minute timer and create the smallest visible first artifact for the project: a title, outline, repo, sketch, or first draft.</p>
+</blockquote>
+<p><em>One lens, one next action, no lecture.</em></p>
 </td>
 </tr>
 </tbody>
@@ -378,13 +414,17 @@ normal technical answer.</em></p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Rollback is best when the previous version is known-good, the blast radius is
-high, and you do not yet trust the diagnosis.</p>
-<p>Patch-forward is best when the root cause is known, the fix is small, and
-rollback has its own risk because of migrations, data changes, or external
-dependencies.</p>
-<p>The practical default is rollback first to restore service, then patch-forward
-after the incident pressure is gone.</p>
+<p>Rollback when the bad deploy is clearly isolated, the previous version is still compatible with current data/schema/config, and speed matters most. It is usually the default first move for severe production impact because it reduces uncertainty and restores a known state.</p>
+<p>Patch-forward when rollback is unsafe or impossible: migrations are irreversible, external state has changed, the previous build is also broken, or the fix is very small and well understood. Patch-forward carries more risk because you are deploying new code under incident pressure.</p>
+<p><strong>Rule of thumb:</strong></p>
+<ul>
+<li>User-impacting outage or data risk: rollback first if safe.</li>
+<li>Bad UI/copy/minor behavior bug: patch-forward can be fine.</li>
+<li>Database/schema changes involved: inspect compatibility before rollback.</li>
+<li>Security issue: patch-forward may be required if rollback reintroduces exposure.</li>
+<li>Unclear root cause: rollback buys time; patch-forward without certainty can compound the incident.</li>
+</ul>
+<p>Best practice is to make deploys rollback-friendly: backward-compatible migrations, feature flags, canaries, and quick revert paths. Then rollback is an operational tool, not a panic move.</p>
 </blockquote>
 </td>
 </tr>
@@ -407,6 +447,7 @@ Invoke:
 /human-state-skills:foggy-mode
 /human-state-skills:plan-compass
 /human-state-skills:reality-check-mode
+/human-state-skills:gita-compass
 ```
 
 Aliases:
@@ -440,6 +481,7 @@ Invoke:
 /foggy-mode
 /plan-compass
 /reality-check-mode
+/gita-compass
 /burnout-mode
 /brain-fog-mode
 /normal-mode
@@ -462,6 +504,7 @@ Use overloaded-mode.
 Use foggy-mode.
 Use plan-compass.
 Use reality-check-mode.
+Use gita-compass.
 Use burnout-mode.
 Use brain-fog-mode.
 Use normal-mode now.
@@ -528,6 +571,24 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 
 Grounding: [skills/reality-check-mode/references/grounding.md](skills/reality-check-mode/references/grounding.md)
 
+### `/gita-compass`
+
+1. Use Bhagavad Gita wisdom as a simple compass, not a sermon.
+2. Choose exactly one lens: duty, attachment, mind, desire/anger, speech,
+   self/doership, or refuge.
+3. Name the user's state in one sentence.
+4. Name the selected key pattern in plain language.
+5. Give one practical next action.
+6. Do not impersonate Krishna or present advice as divine command.
+7. Duty must not mean staying in abuse, unsafe work, coercion, or burnout.
+8. Detachment must not mean passivity, dissociation, neglect, or low-quality
+   work.
+9. Treat gunas as temporary states, not identities, diagnoses, caste, or rank.
+10. Use devotional language only when the user asks for it or clearly welcomes
+    it.
+
+Guardrails: [skills/gita-compass/references/guardrails.md](skills/gita-compass/references/guardrails.md)
+
 ## Sources
 
 These links are also kept beside each skill.
@@ -546,6 +607,7 @@ These links are also kept beside each skill.
   [The Happiness Trap](https://thehappinesstrap.com/),
   [OpenAI on sycophancy](https://openai.com/index/expanding-on-sycophancy/),
   [OpenAI on sensitive conversations](https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/)
+- Gita compass: [guardrails](skills/gita-compass/references/guardrails.md)
 
 ## Layout
 
@@ -558,6 +620,7 @@ human-state-skills/
 |   |-- burnout-mode/
 |   |-- overloaded-mode/
 |   |-- foggy-mode/
+|   |-- gita-compass/
 |   |-- plan-compass/
 |   |-- reality-check-mode/
 |   `-- normal-mode/
@@ -567,6 +630,7 @@ human-state-skills/
         |-- burnout-mode/
         |-- overloaded-mode/
         |-- foggy-mode/
+        |-- gita-compass/
         |-- plan-compass/
         |-- reality-check-mode/
         `-- normal-mode/

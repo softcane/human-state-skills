@@ -2,7 +2,8 @@
 name: normal-mode
 description: >-
   Use when the user wants to stop any active human-state response mode and
-  return to the assistant's normal response style.
+  return to the assistant's normal response style. Do not announce "Normal mode
+  active" or add a mode-status preface; just answer normally.
 ---
 
 # Normal Mode
@@ -19,4 +20,5 @@ This cancels:
 - ai-psychosis-mode
 
 Return to the assistant's normal response style. Do not continue the previous
-mode unless the user invokes it again.
+mode unless the user invokes it again. Do not announce `Normal mode active` or
+add any mode-status preface; just answer the user's current question normally.
