@@ -27,9 +27,11 @@ npx skills add softcane/human-state-skills
 
 Each example uses the same prompt. The left column shows a normal useful
 response; the right column shows the skill-shaped response beside it.
+Example nouns are illustrative; the skills trigger on human-state signals and
+task shape, not any specific domain.
 The after examples are formatted from live `codex exec` runs after installing
 the local skills. Future model versions may phrase things differently, but
-labels, limits, and safety constraints should hold.
+the skill contracts are the source of truth when an output drifts.
 
 ### Overloaded
 
