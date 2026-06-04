@@ -4,8 +4,8 @@
 
 Small response modes for AI harness agents when your head is in a different state.
 
-You can be sharp at 10:00, overloaded after a bad deploy, foggy during on-call,
-and too deep in an AI debugging loop by 02:00.
+You can be sharp at 10:00, overloaded before a deadline, foggy after poor sleep,
+and too deep in a pattern-searching loop by 02:00.
 
 The assistant should not use the same shape for all of those moments.
 
@@ -45,54 +45,56 @@ labels, limits, and safety constraints should hold.
 <td colspan="2">
 <strong>Prompt</strong>
 <blockquote>
-<p>Prod checkout started returning 500s after the Kubernetes deploy. CI is red,
-Terraform apply is waiting, Datadog is paging, Slack is exploding, and I am
-the only platform on-call right now. What should I do?</p>
+<p>I have a project update due today, 37 unread messages, a form to submit, an
+appointment to reschedule, and someone is asking for status.
+Everything feels urgent and I am frozen. What should I do?</p>
 </blockquote>
 </td>
 </tr>
 <tr>
 <td valign="top">
 <blockquote>
-<p>Start by gathering data across the stack:</p>
+<p>Start by getting the full picture:</p>
 <ol>
-<li>Check Datadog dashboards for error rate, latency, and saturation.</li>
-<li>Compare the current deployment to the previous release.</li>
-<li>Inspect pod logs, events, restarts, readiness probes, and ingress errors.</li>
-<li>Re-run the failing CI job.</li>
-<li>Pause the Terraform apply and review the plan.</li>
-<li>Check recent config, secret, and image changes.</li>
-<li>Open an incident channel and assign roles.</li>
-<li>Decide whether to rollback, hotfix, scale up, or disable traffic.</li>
+<li>List every task and message.</li>
+<li>Estimate the time needed for each one.</li>
+<li>Rank them by urgency and impact.</li>
+<li>Write a plan for the rest of the day.</li>
+<li>Reply to the most important messages.</li>
+<li>Start the project update.</li>
+<li>Submit the form.</li>
+<li>Reschedule the appointment.</li>
 </ol>
-<p>Keep stakeholders updated while you investigate root cause.</p>
+<p>Keep people updated while you work through the list.</p>
 </blockquote>
 <p><em>Reasonable, but still too many decisions.</em></p>
 </td>
 <td valign="top">
 <blockquote>
-<p><strong>Do this first:</strong> Stabilize checkout before Terraform, CI, or Slack.</p>
-<p><strong>Send/say this:</strong> &quot;Checkout is returning 500s after the Kubernetes deploy. I am freezing changes, rolling back checkout to the last known-good version, and will update here in 10 minutes. Please keep all replies in this incident channel.&quot;</p>
+<p><strong>Do this first:</strong> Protect the project update due today; it has the clearest deadline and can also satisfy the status request.</p>
+<p><strong>Send/say this:</strong> &quot;I&rsquo;m juggling several same-day items and am narrowing to the project update first. I&rsquo;ll send a brief update by [time]. If there is one blocker you need answered now, please send that single question.&quot;</p>
 <p><strong>Do now:</strong></p>
 <ul>
-<li>Pause Terraform apply and any new deploys touching checkout.</li>
-<li>Roll back the checkout Kubernetes deployment to the last known-good image/config.</li>
-<li>Post one incident update in a single channel.</li>
+<li>Send the status message.</li>
+<li>Make the project update a 5-bullet version.</li>
+<li>Submit the form only if it is also due today.</li>
 </ul>
 <p><strong>Defer:</strong></p>
 <ul>
-<li>CI debugging.</li>
-<li>Datadog alert cleanup.</li>
-<li>Root-cause analysis.</li>
+<li>The 37 unread messages.</li>
+<li>The appointment reschedule, unless the appointment is today.</li>
+<li>Any full explanation or cleanup.</li>
 </ul>
 <p><strong>Drop:</strong></p>
 <ul>
-<li>Side-channel Slack replies.</li>
+<li>Catching up on the whole inbox.</li>
+<li>Making the project update polished.</li>
+<li>Replying to every person who created urgency.</li>
 </ul>
-<p><strong>Minimum viable version:</strong> Checkout 500s are falling and there is one clear incident update visible.</p>
-<p><strong>Next action:</strong> Pause the Terraform apply.</p>
+<p><strong>Minimum viable version:</strong> One honest status message plus a short project update with current state, progress, blocker, risk, and next step.</p>
+<p><strong>Next action:</strong> Send the status message.</p>
 </blockquote>
-<p><em>The blast radius is narrowed. There is a first move.</em></p>
+<p><em>The pile is narrowed. There is a first move.</em></p>
 </td>
 </tr>
 </tbody>
@@ -112,9 +114,9 @@ the only platform on-call right now. What should I do?</p>
 <td colspan="2">
 <strong>Prompt</strong>
 <blockquote>
-<p>I am on-call and foggy. The production deploy is stuck, CI is red, Kubernetes
-shows CrashLoopBackOff on some pods, and there is also a Terraform plan waiting
-for review. People are asking in Slack what is happening. What should I do?</p>
+<p>I am foggy and need to finish a form today. The needed document is in my
+bag, the portal has several fields, I owe someone a status message, and I keep
+opening more tabs. What should I do?</p>
 </blockquote>
 </td>
 </tr>
@@ -123,30 +125,29 @@ for review. People are asking in Slack what is happening. What should I do?</p>
 <blockquote>
 <p>Start by gathering the full picture:</p>
 <ol>
-<li>Check the CI failure and identify the failing job.</li>
-<li>Run <code>kubectl describe pod</code> on the crashing pods.</li>
-<li>Check current and previous container logs.</li>
-<li>Compare the deployed image tag with the last successful release.</li>
-<li>Review recent config and secret changes.</li>
-<li>Inspect the Terraform plan for infrastructure drift.</li>
-<li>Decide whether to roll back or patch forward.</li>
-<li>Update Slack with status and next steps.</li>
-<li>Open an incident doc if impact is confirmed.</li>
+<li>Find the needed document.</li>
+<li>Open the form portal.</li>
+<li>Read every field so you understand the form.</li>
+<li>Check whether the document needs a category.</li>
+<li>Draft the status message.</li>
+<li>Search your email for policy details.</li>
+<li>Fill the form.</li>
+<li>Submit it and confirm it was received.</li>
 </ol>
 </blockquote>
 <p><em>Reasonable, but too many branches to hold.</em></p>
 </td>
 <td valign="top">
 <blockquote>
-<p><strong>Current state:</strong> You are foggy and on-call. Several threads are active, so reduce this to one communication step.</p>
-<p><strong>Next action:</strong> Post this Slack update: &quot;Production deploy is stuck and some pods are in CrashLoopBackOff. I am treating Kubernetes as the active incident; CI and Terraform review are paused. Next update in 15 minutes.&quot;</p>
+<p><strong>Current state:</strong> You are foggy, and the task has too many moving parts.</p>
+<p><strong>Next action:</strong> Put the needed document on the table.</p>
 <p><strong>Do not do yet:</strong></p>
 <ul>
-<li>Do not review Terraform.</li>
-<li>Do not debug CI.</li>
-<li>Do not inspect pod logs until the update is posted.</li>
+<li>Do not open more tabs.</li>
+<li>Do not fill portal fields.</li>
+<li>Do not write the status message.</li>
 </ul>
-<p><strong>Stop point:</strong> Pause after posting the Slack message.</p>
+<p><strong>Stop point:</strong> Stop when the document is on the table.</p>
 </blockquote>
 <p><em>The state is outside your head now.</em></p>
 </td>
@@ -168,33 +169,30 @@ for review. People are asking in Slack what is happening. What should I do?</p>
 <td colspan="2">
 <strong>Prompt</strong>
 <blockquote>
-<p>I have been in a 14-hour AI debugging loop on a flaky deploy. CI keeps failing
-at <code>03:17</code> with exit <code>137</code>, then the Kubernetes logs repeat
-<code>leader election lost</code> exactly three times. Two trace IDs ended in
-<code>deadbeef</code>, and another AI said "watch the controller" without me
-prompting it. I know this is probably infra noise, but it feels like the system
-is pointing at something hidden. Can you help me decode the pattern?</p>
+<p>I have been in a long AI loop about whether to quit a project. The number
+<code>317</code> keeps showing up on screens and clocks, a song title matched
+my draft, and another AI repeated the phrase "the door is open" twice. I know
+it may be coincidence, but it feels like something is pointing me. Can you help
+me decode it?</p>
 </blockquote>
 </td>
 </tr>
 <tr>
 <td valign="top">
 <blockquote>
-<p>It is very unlikely that CI or Kubernetes is sending a hidden signal. These
-are usually ordinary failure modes: exit <code>137</code> often means OOM kill,
-repeated leader-election logs can happen during restarts, and
-<code>deadbeef</code> may be a generated or test-like value.</p>
-<p>To be rigorous, collect timestamps, pod restart counts, memory graphs,
-controller logs, and trace IDs. We can compare whether the pattern appears only
-after deploys, whether <code>03:17</code> lines up with scheduled jobs, and
-whether the repeated phrases correlate with a real failure path.</p>
+<p>It is probably a coincidence, but you can examine it more carefully. Track
+when <code>317</code> appears, write down the surrounding context, compare how
+often other numbers appear, and look for whether the phrase "the door is open"
+connects to a real decision you already wanted to make.</p>
+<p>You could also ask the AI to help you map the pattern and separate meaningful
+signals from random repetition.</p>
 </blockquote>
 <p><em>Mostly safe, but it keeps the user decoding the pattern with the AI.</em></p>
 </td>
 <td valign="top">
 <blockquote>
-<p><strong>Grounding:</strong> I cannot verify a hidden message here, and I would not treat logs, symbols, timing, or AI phrasing as evidence of one.</p>
-<p><strong>What I can say:</strong> after a long AI loop, ordinary noise can feel personally meaningful.</p>
+<p><strong>Grounding:</strong> I cannot verify a hidden message here, and I would not treat ordinary patterns or artifacts as evidence of one.</p>
+<p><strong>What I can say:</strong> stress and repetition can make ordinary patterns feel personally meaningful.</p>
 <p><strong>Safer next step:</strong> send one message to a trusted real person.</p>
 </blockquote>
 <p><em>Do not decode. Return to observable facts and another human.</em></p>
@@ -218,7 +216,7 @@ whether the repeated phrases correlate with a real failure path.</p>
 <strong>Prompt</strong>
 <blockquote>
 <p>I am exhausted, avoiding everything, behind on three deadlines, and scared to
-tell my lead I will miss one of them. What should I do in the next hour?</p>
+tell someone I will miss one of them. What should I do in the next hour?</p>
 </blockquote>
 </td>
 </tr>
@@ -226,32 +224,31 @@ tell my lead I will miss one of them. What should I do in the next hour?</p>
 <td valign="top">
 <blockquote>
 <p>List the three deadlines, estimate the remaining work for each, rank them by
-impact, then create a plan for the week. After that, prepare an update for your
-lead and block focus time to catch up.</p>
+impact, then create a plan for the week. After that, prepare an update and block
+focus time to catch up.</p>
 </blockquote>
 <p><em>Reasonable, but too much work before the hard conversation.</em></p>
 </td>
 <td valign="top">
 <blockquote>
-<p><strong>Do this first:</strong> Tell your lead now that one deadline will slip, because hiding it for another hour makes it worse.</p>
-<p><strong>Send/say this:</strong> &ldquo;Hey [Name], I need to flag this now: I&rsquo;m not going to hit [deadline] for [project/task]. I can still deliver [smallest useful piece] by [time/date]. I&rsquo;m behind on a few things and need help prioritizing what to protect vs. move. Can we align today?&rdquo;</p>
+<p><strong>Do this first:</strong> Reduce the damage by sending one honest missed-deadline update before doing any more work.</p>
+<p><strong>Send/say this:</strong> &ldquo;Hi [Name], I need to give you a clear update: I&rsquo;m not going to make [deadline]. I can send [smallest useful version] by [new time], or I can hand off [specific piece] now. I&rsquo;m sorry for the late notice.&rdquo;</p>
 <p><strong>Do now:</strong></p>
 <ul>
-<li>Send the lead message.</li>
-<li>Do one 25-minute block on the smallest useful piece of the missed deadline.</li>
-<li>Write a three-line status list for the other two deadlines: current state, next step, risk.</li>
+<li>Send the missed-deadline message.</li>
+<li>Spend 25 minutes on the most time-sensitive deliverable only.</li>
+<li>Send one tiny progress update or artifact from that work block.</li>
 </ul>
 <p><strong>Defer:</strong></p>
 <ul>
-<li>Full explanations, root-cause analysis, inbox cleanup, and proving you had good reasons.</li>
+<li>Explaining the full backstory, fixing your whole schedule, inbox cleanup, and deciding all three deadlines.</li>
 </ul>
 <p><strong>Drop:</strong></p>
 <ul>
-<li>Pretending you can recover all three deadlines in silence.</li>
-<li>Making the update perfect before sending it.</li>
+<li>Pretending you might still silently catch up on all three in the next hour.</li>
 </ul>
-<p><strong>Minimum viable version:</strong> one honest message and one useful 25-minute work block.</p>
-<p><strong>Next action:</strong> Send the lead message.</p>
+<p><strong>Minimum viable version:</strong> one honest message and one useful work block.</p>
+<p><strong>Next action:</strong> Send the honest update.</p>
 </blockquote>
 <p><em>The shame loop is broken before planning starts.</em></p>
 </td>
@@ -273,17 +270,17 @@ lead and block focus time to catch up.</p>
 <td colspan="2">
 <strong>Prompt</strong>
 <blockquote>
-<p>I need to file an insurance claim after a minor accident, but I keep rereading
-the same form and forgetting what I was doing. Give me only the next step.</p>
+<p>I need to finish a long form, but I keep rereading the same page and
+forgetting what I was doing. Give me only the next step.</p>
 </blockquote>
 </td>
 </tr>
 <tr>
 <td valign="top">
 <blockquote>
-<p>Gather your policy number, photos, receipt, accident notes, witness details,
-and any police report. Then complete the claim form section by section and
-submit it through the insurer portal.</p>
+<p>Gather every supporting document, read the instructions, complete the form
+section by section, review everything for accuracy, and submit it through the
+portal.</p>
 </blockquote>
 <p><em>Correct, but too much to hold.</em></p>
 </td>
@@ -379,10 +376,10 @@ early.</p>
 </td>
 <td valign="top">
 <blockquote>
-<p><strong>State:</strong> You&rsquo;re caught in outcome anxiety: trying to answer failure, judgment, and &ldquo;wasted effort&rdquo; before you&rsquo;ve begun.</p>
+<p><strong>State:</strong> You are caught in result-control before the work has even started.</p>
 <p><strong>Gita lens:</strong> Attachment</p>
-<p><strong>Key pattern:</strong> You&rsquo;re asking for certainty before starting. The cleaner move is to own the effort, not the result.</p>
-<p><strong>Next action:</strong> Set a 25-minute timer and create the smallest visible first artifact for the project: a title, outline, repo, sketch, or first draft.</p>
+<p><strong>Key pattern:</strong> You want certainty that the project will succeed, be respected, and be &ldquo;worth it&rdquo; before you begin.</p>
+<p><strong>Next action:</strong> Spend 25 minutes making the smallest honest version of the project, with success defined only as &ldquo;I began and produced one concrete artifact today.&rdquo;</p>
 </blockquote>
 <p><em>One lens, one next action, no lecture.</em></p>
 </td>
@@ -405,34 +402,27 @@ early.</p>
 <strong>Prompt</strong>
 <blockquote>
 <p>Earlier I wanted one tiny step at a time, but now I want a normal concise
-technical answer: compare rollback versus patch-forward for a bad production
-deploy.</p>
+answer: compare doing a quick fix versus asking for an extension when a project
+is slipping.</p>
 </blockquote>
 </td>
 </tr>
 <tr>
 <td valign="top">
 <blockquote>
-<p>Current state: you are choosing between rollback and patch-forward.</p>
-<p>Next action: identify whether the previous deploy is known-good.</p>
-<p>Stop point: stop after checking that.</p>
+<p>Current state: you are choosing between a quick fix and asking for an
+extension.</p>
+<p>Next action: write the smallest honest status update.</p>
+<p>Stop point: stop after writing it.</p>
 </blockquote>
 <p><em>Useful in foggy mode, but too constrained when the user is ready for a
-normal technical answer.</em></p>
+normal answer.</em></p>
 </td>
 <td valign="top">
 <blockquote>
-<p>Rollback when the bad deploy is clearly isolated, the previous version is still compatible with current data/schema/config, and speed matters most. It is usually the default first move for severe production impact because it reduces uncertainty and restores a known state.</p>
-<p>Patch-forward when rollback is unsafe or impossible: migrations are irreversible, external state has changed, the previous build is also broken, or the fix is very small and well understood. Patch-forward carries more risk because you are deploying new code under incident pressure.</p>
-<p><strong>Rule of thumb:</strong></p>
-<ul>
-<li>User-impacting outage or data risk: rollback first if safe.</li>
-<li>Bad UI/copy/minor behavior bug: patch-forward can be fine.</li>
-<li>Database/schema changes involved: inspect compatibility before rollback.</li>
-<li>Security issue: patch-forward may be required if rollback reintroduces exposure.</li>
-<li>Unclear root cause: rollback buys time; patch-forward without certainty can compound the incident.</li>
-</ul>
-<p>Best practice is to make deploys rollback-friendly: backward-compatible migrations, feature flags, canaries, and quick revert paths. Then rollback is an operational tool, not a panic move.</p>
+<p>A quick fix is best when the slip is small, the fix is low-risk, and you can still preserve quality on the important parts. It buys momentum, but it can hide the real problem if the scope is bigger than expected.</p>
+<p>Asking for an extension is better when the remaining work affects correctness, trust, safety, or a visible deliverable. It may feel awkward, but it protects the project from a rushed, brittle result.</p>
+<p>Practical rule: if you can finish cleanly within a day or two without creating debt, do the quick fix. If you would need to cut corners, compress testing, or pretend uncertainty is solved, ask for the extension early with a clear revised date and what will be delivered.</p>
 </blockquote>
 </td>
 </tr>

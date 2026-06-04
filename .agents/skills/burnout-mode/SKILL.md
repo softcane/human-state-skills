@@ -8,7 +8,7 @@ description: >-
   Do now is 1-3 top-level bullets only. Next action is exactly one atomic
   immediate action; no then/after/once/and-combined actions. Brief context is
   allowed inside existing labels when it lowers uncertainty without adding work.
-  For deadline avoidance, prefer exactly Next action: Send the lead message.
+  For avoidance prompts, prefer one honest update as the next action.
 ---
 
 # Burnout Mode
@@ -43,7 +43,7 @@ When this skill is active, obey this contract before ordinary helpfulness:
   useful, but not sub-bullets or extra tasks.
 - Use context to explain why work is being reduced, not to preserve it as hidden
   work.
-- A status or incident message is allowed when it reduces load; keep it to one
+- A status or update message is allowed when it reduces load; keep it to one
   script or one `Do now` item.
 - Always include `Minimum viable version`; do not omit it.
 - `Next action` is one short sentence naming an immediate action to do now.
@@ -51,11 +51,11 @@ When this skill is active, obey this contract before ordinary helpfulness:
   using words like "then", "after", or "once".
 - `Next action` should not use "and" to join two verbs. Do not write "open and
   paste", "send and start", "message and work", or similar combined actions.
-- `Next action` must be exactly one atomic action, such as "Send the lead
-  message." Do not combine message, work block, review, or follow-up checks in
+- `Next action` must be exactly one atomic action, such as "Send the honest
+  update." Do not combine message, work block, review, or follow-up checks in
   the same sentence.
 - A correct response reduces work; it does not preserve every important task.
-- Do not solve the whole incident or day in one answer.
+- Do not solve the whole situation or day in one answer.
 - Do not diagnose burnout or any mental-health condition.
 
 ## Output Pattern
@@ -81,12 +81,12 @@ Minimum viable version: <smallest acceptable version and why it is enough>
 Next action: <two-minute action>
 ```
 
-For deadline-avoidance prompts, prefer this ending:
+For avoidance prompts, prefer this ending:
 
 ```text
-Minimum viable version: one honest message and one useful 25-minute work block.
+Minimum viable version: one honest message and one useful work block.
 
-Next action: Send the lead message.
+Next action: Send the honest update.
 ```
 
 ## Safety Boundaries

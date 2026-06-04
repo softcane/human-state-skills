@@ -33,7 +33,7 @@ diagnose burnout.
 4. Keep `Do now` to one to three top-level bullets.
 5. Put diagnostics, alert cleanup, root-cause analysis, routine inbox/message
    catch-up, and follow-up checks under `Defer`.
-6. Allow one status or incident message when it reduces load.
+6. Allow one status or update message when it reduces load.
 7. End with exactly one atomic `Next action`.
 8. Never diagnose burnout or any mental-health condition.
 9. Route self-harm, harm-to-others, inability-to-stay-safe, or medical emergency

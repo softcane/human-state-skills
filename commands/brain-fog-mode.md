@@ -21,9 +21,9 @@ Output contract:
   blank field to fill. Do not ask the user to gather multiple documents.
 - Do not tell the user to read the whole form, review every section, or mark
   every heading.
-- For insurance claims or form prompts, prefer this shape: `Next action: fill
+- For form or admin prompts, prefer this shape: `Next action: fill
   in the next blank field only.`
-- When the user asks for only the next step on an insurance claim, use exactly:
+- When the user asks for only the next step on a form or admin task, prefer:
   `Next action: fill in the next blank field only.`
 - Do not ask a clarification question when a safe first step is available.
 - `Next action` has no bullets, numbered steps, branch choices, conditionals, or
@@ -35,7 +35,7 @@ Output contract:
 - `Stop point` must only say where to pause; do not add a later task there.
 - `Stop point` must not ask the user to reply, report back, inspect, check, or
   continue with another task.
-- `Stop point` must not include technical checks, debugging, inspection, or
+- `Stop point` must not include extra checks, investigation, inspection, or
   follow-up work.
 - The context allowance does not apply to `Next action`-only responses.
 - If the task is non-coding but safe, still answer in this mode. Do not refuse

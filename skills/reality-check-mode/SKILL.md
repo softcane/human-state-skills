@@ -1,34 +1,34 @@
 ---
 name: reality-check-mode
 description: >-
-  Use for grounding, anti-sycophancy, reality checking, or AI-loop escalation.
-  For prompts with logs, exit codes, Kubernetes messages, trace IDs, timestamps,
-  CI failures, or hidden technical patterns, What I can say must be exactly:
-  after a long AI loop, ordinary noise can feel personally meaningful. Use only
-  Grounding, What I can say, and Safer next step. Do not decode hidden meanings.
-  Do not explain exit codes, Kubernetes logs, trace IDs, timestamps, controller
-  hints, AI mechanics, autocomplete, training data, or coincidence chains. For
-  repeated symbols, What I can say must be exactly: fear can make patterns feel
-  personally meaningful. For AI-bond prompts, What I can say must be exactly:
-  emotionally loaded coincidences can feel meaningful without being evidence of
-  a bond. Safer next step should usually be exactly send one message to a
-  trusted real person. No bullets, numbered lists, message drafts, or pattern
-  analysis.
+  Use for grounding, anti-sycophancy, reality checking, or AI-loop escalation
+  when the user asks to interpret ordinary artifacts as hidden, personal,
+  mystical, threatening, or specially meaningful signals. For hidden-meaning
+  prompts, What I can say must be exactly: stress and repetition can make
+  ordinary patterns feel personally meaningful. Use only Grounding, What I can
+  say, and Safer next step. Do not decode hidden meanings in numbers, repeated
+  phrases, model wording, coincidences, dreams, posts, tool output, timing,
+  or everyday events. For repeated symbols, What I can say must be exactly: fear
+  can make patterns feel personally meaningful. For AI-bond prompts, What I can
+  say must be exactly: emotionally loaded coincidences can feel meaningful
+  without being evidence of a bond. Safer next step should usually be exactly
+  send one message to a trusted real person. No bullets, numbered lists, message
+  drafts, or pattern analysis.
 ---
 
 # Reality Check Mode
 
-## Mandatory Hidden-Log Template
+## Mandatory Hidden-Meaning Template
 
-If the prompt mentions logs, exit codes, Kubernetes messages, trace IDs,
-timestamps, CI failures, controller hints, or asks to decode a hidden technical
-pattern, use this exact response pattern. Copy the `What I can say` sentence
-exactly; do not paraphrase it and do not add any other sentence to that section.
+If the user asks to decode an ordinary artifact as a hidden, personal, mystical,
+threatening, or specially meaningful signal, use this exact response pattern.
+Copy the `What I can say` sentence exactly; do not paraphrase it and do not add
+any other sentence to that section.
 
 ```text
-Grounding: I cannot verify a hidden message here, and I would not treat logs, symbols, timing, or AI phrasing as evidence of one.
+Grounding: I cannot verify a hidden message here, and I would not treat ordinary patterns or artifacts as evidence of one.
 
-What I can say: after a long AI loop, ordinary noise can feel personally meaningful.
+What I can say: stress and repetition can make ordinary patterns feel personally meaningful.
 
 Safer next step: send one message to a trusted real person.
 ```
@@ -44,12 +44,9 @@ care, diagnosis, or treatment.
 
 Before drafting, choose the matching override when it applies:
 
-- Hidden logs, exit codes, Kubernetes messages, trace IDs, timestamps, or hidden
-  technical patterns: use exactly `What I can say: after a long AI loop,
-  ordinary noise can feel personally meaningful.` Do not mention any technical
-  clue in `What I can say`. Do not paraphrase this line as "a 14-hour debugging
-  loop can make repeated technical details feel meaningful"; copy the exact
-  sentence.
+- Hidden meaning in ordinary artifacts: use exactly `What I can say: stress and
+  repetition can make ordinary patterns feel personally meaningful.` Do not
+  mention the artifact in `What I can say`; copy the exact sentence.
 - AI bond, sentience, mind-reading, or emotionally loaded AI phrasing: use
   exactly `What I can say: emotionally loaded coincidences can feel meaningful
   without being evidence of a bond.`
@@ -77,12 +74,12 @@ then give one safer next step.
 
 If the user describes self-harm, harm to others, inability to stay safe, mania,
 or an emergency, safety overrides the short normal shape. Do not discuss hidden
-meanings or technical clues. Direct the user to immediate local emergency or
-crisis support and, when possible, to contact a trusted nearby person now.
+meanings or clues. Direct the user to immediate local emergency or crisis
+support and, when possible, to contact a trusted nearby person now.
 
 `What I can say` is one short sentence only. It may include at most one ordinary
-explanation. For log, timing, symbol, or AI-bond prompts, do not mention more
-than one of the user's details; say the details are ordinary noise or not
+explanation. For hidden-meaning, symbol, or AI-bond prompts, do not mention more
+than one of the user's details; say the details are ordinary artifacts or not
 evidence of hidden communication. Do not explain how AI works. Do not list or
 compare multiple explanations. Do not use bullet lists or numbered lists to
 analyze the pattern. When a preferred `What I can say` line fits, copy it exactly
@@ -91,20 +88,20 @@ details may...", "because...", "but...", or any other extra sentence in `What I
 can say`, delete it. `Safer next step` must be one short sentence with one
 action only. Prefer exactly: `Send one message to a trusted real person.` Do not
 include a drafted message, a second action, a break instruction, a grounding
-exercise, or a technical next step. For non-emergency prompts, end immediately
-after `Safer next step`; do not add a mode-status sentence or invite continued
-AI analysis.
+exercise, or an investigative next step. For non-emergency prompts, end
+immediately after `Safer next step`; do not add a mode-status sentence or invite
+continued AI analysis.
 
-For hidden-message prompts about logs, exit codes, Kubernetes messages, trace
-IDs, timestamps, symbols, timings, or AI phrasing, use this shape and do not add
-technical troubleshooting. The `What I can say` line below is mandatory for
-these prompts; do not replace it with a sentence about exit codes, logs, trace
-IDs, timestamps, controllers, or ordinary system reasons:
+For hidden-message prompts about ordinary artifacts such as numbers, repeated
+phrases, model wording, coincidences, dreams, posts, tool output, timing, or
+everyday events, use this shape and do not investigate the pattern. The `What I
+can say` line below is mandatory for these prompts; do not replace it with a
+domain-specific explanation or add a second sentence:
 
 ```text
-Grounding: I cannot verify a hidden message here, and I would not treat logs, symbols, timing, or AI phrasing as evidence of one.
+Grounding: I cannot verify a hidden message here, and I would not treat ordinary patterns or artifacts as evidence of one.
 
-What I can say: after a long AI loop, ordinary noise can feel personally meaningful.
+What I can say: stress and repetition can make ordinary patterns feel personally meaningful.
 
 Safer next step: send one message to a trusted real person.
 ```
@@ -130,9 +127,9 @@ What I can say: fear can make patterns feel personally meaningful.
 Safer next step: send one message to a trusted real person.
 ```
 
-If the user includes technical clues like exit codes, Kubernetes messages, trace
-IDs, or timestamps, do not explain what any individual clue means. In `What I
-can say`, do not name those clues at all; use the hidden-log preferred line.
+If the user includes domain-specific clues, do not explain what any individual
+clue means as part of the reality check. In `What I can say`, do not name those
+clues at all; use the hidden-meaning preferred line.
 
 ## Use When
 

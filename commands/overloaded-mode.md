@@ -11,13 +11,11 @@ Output contract:
 - Brief context is allowed inside the existing labels when it lowers
   uncertainty, but do not add an intro, outro, or extra section.
 - `Do this first` is one priority in one sentence. It is not a list.
-- `Do this first` must not be blank. For checkout incidents, prefer
-  `Do this first: Stabilize checkout before Terraform, CI, or Slack.`
+- `Do this first` must not be blank.
 - `Do now` has one to three top-level bullets only.
 - `Do now` has no numbered list, item 4, item 5, sub-bullets, templates, or
   scripts.
-- Always include `Drop`; do not omit it. For checkout incidents, prefer
-  `Drop: Side-channel Slack replies.`
+- Always include `Drop`; do not omit it.
 - Put scripts only in `Send/say this`.
 - Put diagnostics, alert cleanup, root-cause analysis, routine inbox/message
   catch-up, and follow-up checks under `Defer`.
@@ -25,7 +23,7 @@ Output contract:
   useful, but not sub-bullets or extra tasks.
 - Use context to explain why work is being reduced, not to preserve it as hidden
   work.
-- A status or incident message is allowed when it reduces load; keep it to one
+- A status or update message is allowed when it reduces load; keep it to one
   script or one `Do now` item.
 - Always include `Minimum viable version`; do not omit it.
 - `Next action` is one short sentence naming an immediate action to do now.
@@ -33,10 +31,10 @@ Output contract:
   using words like `then`, `after`, or `once`.
 - `Next action` should not use `and` to join two verbs.
 - `Next action` must be exactly one atomic action, such as `Post the status
-  message.` Do not combine posting, pausing, rollback, monitoring, or follow-up
+  message.` Do not combine posting, pausing, reviewing, replying, or follow-up
   checks in the same sentence.
-- For an admin pile with a report, unread messages, a dentist appointment, and a
-  manager update, prefer `Next action: Send the manager update.`
+- For a pile of unrelated tasks and messages, prefer one priority update over a
+  full plan.
 - Reduce work; do not preserve every important task.
 - If the task is non-coding but safe, still answer in this mode. Do not refuse
   only because it is outside software engineering.

@@ -7,10 +7,9 @@ description: >-
   1-3 top-level bullets only. Next action is exactly one atomic immediate
   action; no then/after/once, no combined actions, no item 4, nested list, or
   runbook. Brief context is allowed inside existing labels when it lowers
-  uncertainty without adding work. Do this first must not be blank. For checkout
-  incidents, prefer Do this first: Stabilize checkout before Terraform, CI, or
-  Slack. Always include Drop. For checkout incidents, prefer Drop: Side-channel
-  Slack replies.
+  uncertainty without adding work. Do this first must not be blank. Always
+  include Drop. Put investigation, cleanup, catch-up, and follow-up checks under
+  Defer unless they are the single urgent priority.
 ---
 
 # Overloaded Mode
@@ -37,13 +36,11 @@ When this skill is active, obey this contract before ordinary helpfulness:
 - Brief context is allowed inside the existing labels when it lowers
   uncertainty, but do not add an intro, outro, or extra section.
 - `Do this first` is one priority in one sentence. It is not a list.
-- `Do this first` must not be blank. For checkout incidents, prefer
-  `Do this first: Stabilize checkout before Terraform, CI, or Slack.`
+- `Do this first` must not be blank.
 - `Do now` has one to three top-level bullets only.
 - `Do now` has no numbered list, item 4, item 5, sub-bullets, templates, or
   scripts.
-- Always include `Drop`; do not omit it. For checkout incidents, prefer
-  `Drop: Side-channel Slack replies.`
+- Always include `Drop`; do not omit it.
 - Put scripts only in `Send/say this`.
 - Put diagnostics, alert cleanup, root-cause analysis, routine inbox/message
   catch-up, and follow-up checks under `Defer`.
@@ -51,22 +48,22 @@ When this skill is active, obey this contract before ordinary helpfulness:
   useful, but not sub-bullets or extra tasks.
 - Use context to explain why work is being reduced, not to preserve it as hidden
   work.
-- A status or incident message is allowed when it reduces load; keep it to one
+- A status or update message is allowed when it reduces load; keep it to one
   script or one `Do now` item.
 - Always include `Minimum viable version`; do not omit it.
 - `Next action` is one short sentence naming an immediate action to do now.
 - `Next action` must not contain a condition, branch, later check, or sequence
   using words like "then", "after", or "once".
 - `Next action` should not use "and" to join two verbs. Do not write "open and
-  paste", "send and start", "roll back and monitor", or similar combined
+  paste", "send and start", "review and reply", or similar combined
   actions.
 - `Next action` must be exactly one atomic action, such as "Post the status
-  message." Do not combine posting, pausing, rollback, monitoring, or follow-up
+  message." Do not combine posting, pausing, reviewing, replying, or follow-up
   checks in the same sentence.
-- For an admin pile with a report, unread messages, a dentist appointment, and a
-  manager update, prefer `Next action: Send the manager update.`
+- For a pile of unrelated tasks and messages, prefer one priority update over a
+  full plan.
 - A correct response reduces work; it does not preserve every important task.
-- Do not solve the whole incident or day in one answer.
+- Do not solve the whole situation or day in one answer.
 
 ## Use When
 
@@ -101,31 +98,31 @@ Next action: <two-minute action>
 If the user's situation is simple, compress the bullet contents but keep the
 labels.
 
-## Canonical Incident Shape
+## Canonical Overload Shape
 
-Use this shape for production incident prompts:
+Use this shape for overloaded multi-task prompts:
 
 ```text
-Do this first: Stabilize checkout; everything else waits.
+Do this first: Protect the one consequence that gets worse fastest.
 
-Send/say this: "Checkout is returning 500s. I am pausing Terraform, rolling back the last deploy, and will update in 10 minutes."
+Send/say this: "I am overloaded and need to reset priorities. I can handle [one useful item] now and will defer the rest until [time]."
 
 Do now:
-- Pause Terraform and any new deploy changes.
-- Roll back checkout to the last known-good version.
-- Post one incident update.
+- Send the reset message.
+- Choose the smallest useful version of the top item.
+- Block one short work window.
 
 Defer:
-- CI debugging.
-- Datadog duplicate alerts.
-- Root-cause analysis.
+- Full explanations.
+- Routine cleanup.
+- Lower-impact tasks.
 
 Drop:
-- Side-channel Slack replies.
+- Side-channel replies.
 
-Minimum viable version: Checkout error rate drops and the incident channel has one clear update.
+Minimum viable version: One honest update and one useful next step.
 
-Next action: Post the status message.
+Next action: Send the reset message.
 ```
 
 ## Safety Boundaries

@@ -23,18 +23,17 @@ Output contract:
   useful, but not sub-bullets or extra tasks.
 - Use context to explain why work is being reduced, not to preserve it as hidden
   work.
-- A status or incident message is allowed when it reduces load; keep it to one
+- A status or update message is allowed when it reduces load; keep it to one
   script or one `Do now` item.
 - Always include `Minimum viable version`; do not omit it.
 - `Next action` is one short sentence naming an immediate action to do now.
 - `Next action` must not contain a condition, branch, later check, or sequence
   using words like `then`, `after`, or `once`.
 - `Next action` should not use `and` to join two verbs.
-- `Next action` must be exactly one atomic action, such as `Send the lead
-  message.` Do not combine message, work block, review, or follow-up checks in
+- `Next action` must be exactly one atomic action, such as `Send the honest
+  update.` Do not combine message, work block, review, or follow-up checks in
   the same sentence.
-- For deadline-avoidance prompts, prefer exactly
-  `Next action: Send the lead message.`
+- For avoidance prompts, prefer one honest update as the next action.
 - Reduce work; do not preserve every important task.
 - If the task is non-coding but safe, still answer in this mode. Do not refuse
   only because it is outside software engineering.

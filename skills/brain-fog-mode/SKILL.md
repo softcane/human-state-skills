@@ -7,8 +7,8 @@ description: >-
   user explicitly asks for only the next step, output only Next action. Next
   action is one tiny action only, with no then/after/once follow-up. Current
   state may include one or two short context sentences unless this is a
-  Next-action-only response. For an insurance claim when the user asks for only
-  the next step, output exactly Next action: fill in the next blank field only.
+  Next-action-only response. For form or admin prompts when the user asks for
+  only the next step, prefer Next action: fill in the next blank field only.
 ---
 
 # Brain Fog Mode
@@ -44,9 +44,9 @@ When this skill is active, obey this contract before ordinary helpfulness:
   blank field to fill. Do not ask the user to gather multiple documents.
 - Do not tell the user to read the whole form, review every section, or mark
   every heading.
-- For insurance claims or form prompts, prefer this shape: `Next action: fill
+- For form or admin prompts, prefer this shape: `Next action: fill
   in the next blank field only.`
-- When the user asks for only the next step on an insurance claim, use exactly:
+- When the user asks for only the next step on a form or admin task, prefer:
   `Next action: fill in the next blank field only.`
 - Do not ask a clarification question when a safe first step is available.
 - `Next action` has no bullets, numbered steps, branch choices, conditionals, or
@@ -61,7 +61,7 @@ When this skill is active, obey this contract before ordinary helpfulness:
   add an explanation, reassurance, or note after it.
 - Put future work in `Do not do yet` as things to avoid, not as instructions.
 - `Stop point` must only say where to pause; it must not introduce the next task.
-- `Stop point` must not include technical checks, debugging, inspection, or
+- `Stop point` must not include extra checks, investigation, inspection, or
   follow-up work.
 
 ## Output Pattern

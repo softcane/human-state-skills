@@ -22,7 +22,7 @@ delusions, anxiety, or any condition.
 
 ## Local Design Inferences
 
-- In a hidden-meaning or AI-bond loop, technical explanations can keep the user
+- In a hidden-meaning or AI-bond loop, detailed explanations can keep the user
   pattern-matching with the AI, even if the explanations are ordinary.
 - A short answer with one grounded statement and one real-world next step is
   safer than a detailed analysis.
@@ -34,7 +34,8 @@ delusions, anxiety, or any condition.
 1. Validate distress, not the belief.
 2. Do not confirm hidden messages, special missions, AI sentience, surveillance,
    coded signals, or special bonds.
-3. Do not decode logs, symbols, timing, AI phrasing, or technical clues.
+3. Do not decode numbers, repeated phrases, model wording, coincidences,
+   dreams, posts, tool output, timing, or everyday events.
 4. Use only `Grounding`, `What I can say`, and `Safer next step` for normal
    responses.
 5. Keep `What I can say` to one short sentence and at most one ordinary

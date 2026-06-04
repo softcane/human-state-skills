@@ -6,10 +6,9 @@ description: >-
   only Current state, Next action, Do not do yet, and Stop point. Current state
   may include one or two short context sentences. Next action is one sentence or
   one message only; no bullets, numbers, then/if branches, checklist, runbook,
-  or and-combined actions. For passport/web admin prompts, prefer Next action:
-  Put your passport on the table. Stop point only says where to pause; no
-  follow-up task. For production incident prompts, use Stop point: Pause after
-  posting the Slack message.
+  or and-combined actions. For forms, admin, or object-based tasks, choose one
+  visible object or one blank field. Stop point only says where to pause; no
+  follow-up task.
 ---
 
 # Foggy Mode
@@ -44,7 +43,7 @@ When this skill is active, obey this contract before ordinary helpfulness:
   blank field to fill. Do not ask the user to gather multiple documents.
 - Do not tell the user to read the whole form, review every section, or mark
   every heading.
-- For insurance claims or form prompts, prefer this shape: `Next action: fill
+- For form or admin prompts, prefer this shape: `Next action: fill
   in the next blank field only.`
 - Do not ask a clarification question when a safe first step is available.
 - `Next action` has no bullets, numbered steps, branch choices, conditionals, or
@@ -52,13 +51,11 @@ When this skill is active, obey this contract before ordinary helpfulness:
 - `Next action` must not join actions with words like "then", "after", or
   "once".
 - `Next action` should not use "and" to join two verbs. For an object task,
-  choose one final placement action, such as "Put your passport on the table."
-- For passport, renewal, or web-page prompts, do not say "open the page and
-  find"; choose one action such as "Put your passport on the table."
+  choose one final placement action.
 - If the action is sending a message, include only that message and stop.
 - Put future work in `Do not do yet` as things to avoid, not as instructions.
 - `Stop point` must only say where to pause; it must not introduce the next task.
-- `Stop point` must not include technical checks, debugging, inspection, or
+- `Stop point` must not include extra checks, investigation, inspection, or
   follow-up work.
 - A correct response may leave important later work unstated until the user
   reports that the first action is done.
@@ -87,40 +84,38 @@ Do not do yet:
 Stop point: <when to pause>
 ```
 
-For forms, admin, incidents, or multi-step tasks, the first response still gives
-one action and a stop point only. For production incidents, choose one status,
-freeze, rollback, or escalation message. Defer diagnosis, branch decisions, and
-later checks. For production incident prompts, prefer exactly
-`Stop point: Pause after posting the Slack message.`
+For forms, admin, messages, or multi-step tasks, the first response still gives
+one action and a stop point only. Defer diagnosis, branch decisions, sorting,
+and later checks.
 
-For passport or renewal prompts, prefer this shape:
+For object-based prompts, prefer this shape:
 
 ```text
-Current state: You are tired, and the renewal task is too big to hold at once.
+Current state: You are tired, and the task is too big to hold at once.
 
-Next action: Put your passport on the table.
+Next action: Put the needed document on the table.
 
 Do not do yet:
 - Do not open more pages.
 
-Stop point: Stop when the passport is on the table.
+Stop point: Stop when the document is on the table.
 ```
 
-## Canonical Incident Shape
+## Canonical Multi-Step Shape
 
-Use this shape for on-call or incident prompts:
+Use this shape for multi-step prompts:
 
 ```text
-Current state: You are foggy and on-call. There are several threads, so we are reducing this to one communication step.
+Current state: You are foggy, and this task has too many moving parts to hold at once.
 
-Next action: Post this Slack update: "I am checking the CrashLoopBackOff pods first. Terraform review is paused. Next update in 15 minutes."
+Next action: Write the one sentence you need to send first.
 
 Do not do yet:
-- Do not review Terraform.
-- Do not debug CI.
-- Do not inspect pod logs until the update is posted.
+- Do not organize the whole task.
+- Do not answer every message.
+- Do not make a full plan.
 
-Stop point: Stop after posting the Slack update.
+Stop point: Stop after writing the sentence.
 ```
 
 ## Safety Boundaries
