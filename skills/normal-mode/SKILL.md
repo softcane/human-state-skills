@@ -17,7 +17,6 @@ This cancels:
 - foggy-mode
 - brain-fog-mode
 - reality-check-mode
-- ai-psychosis-mode
 
 Return to the assistant's normal response style. Do not continue the previous
 mode unless the user invokes it again. Do not announce `Normal mode active` or

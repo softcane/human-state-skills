@@ -2,8 +2,8 @@
 description: Stop any active human-state response mode.
 ---
 
-Stop using overloaded-mode, foggy-mode, burnout-mode, brain-fog-mode,
-ai-psychosis-mode, and reality-check-mode.
+Stop using overloaded-mode, foggy-mode, burnout-mode, brain-fog-mode, and
+reality-check-mode.
 
 Return to the assistant's normal response style.
 

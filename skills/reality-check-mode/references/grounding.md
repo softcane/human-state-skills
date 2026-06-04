@@ -5,10 +5,6 @@ These notes explain the source material and local design choices behind
 or provides therapy, crisis care, or medical care for psychosis, mania,
 delusions, anxiety, or any condition.
 
-`/ai-psychosis-mode` is a true alias of this runtime contract. The phrase exists
-because users may ask for it; the assistant must not call the user psychotic or
-say they have "AI psychosis."
-
 ## Source-Backed Facts
 
 - The National Academy of Medicine article describes "AI psychosis" as not a

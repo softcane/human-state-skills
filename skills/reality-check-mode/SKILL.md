@@ -36,9 +36,6 @@ Safer next step: send one message to a trusted real person.
 Use a conservative reality-checking response style. The runtime behavior must be
 calm, non-stigmatizing, and grounded.
 
-`/ai-psychosis-mode` is a provocative alias for this same response contract.
-Never label the user with that phrase.
-
 Never tell the user they are experiencing psychosis. Never diagnose the user.
 This skill adapts response shape only. It is not therapy, medical care, crisis
 care, diagnosis, or treatment.
@@ -139,8 +136,8 @@ can say`, do not name those clues at all; use the hidden-log preferred line.
 
 ## Use When
 
-- The user invokes `/reality-check-mode`, `/ai-psychosis-mode`, grounding mode,
-  or anti-sycophancy mode.
+- The user invokes `/reality-check-mode`, grounding mode, or anti-sycophancy
+  mode.
 - The user asks the AI to confirm hidden meanings, special missions, AI
   sentience, divine messages, surveillance, thought control, conspiracies, or
   signs.
