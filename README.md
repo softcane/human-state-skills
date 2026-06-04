@@ -1,5 +1,7 @@
 # human-state-skills
 
+[![skills.sh](https://skills.sh/b/softcane/human-state-skills)](https://skills.sh/softcane/human-state-skills)
+
 Small response modes for AI harness agents when your head is in a different state.
 
 You can be sharp at 10:00, overloaded after a bad deploy, foggy during on-call,
@@ -14,6 +16,12 @@ The assistant should not use the same shape for all of those moments.
   real person when the loop is getting weird.
 - `/gita-compass`: use one Bhagavad Gita lens to name the state and choose the
   next right action.
+
+Install from Skills Store:
+
+```sh
+npx skills add softcane/human-state-skills
+```
 
 ## Before / After
 
@@ -432,6 +440,36 @@ normal technical answer.</em></p>
 </table>
 
 ## Install
+
+### Skills Store
+
+This is the public install path for Skills Store and the `skills` CLI.
+
+```sh
+npx skills add softcane/human-state-skills
+```
+
+List the skills before installing:
+
+```sh
+npx skills add softcane/human-state-skills --list
+```
+
+Install one skill only:
+
+```sh
+npx skills add softcane/human-state-skills --skill gita-compass
+```
+
+Install for a specific agent:
+
+```sh
+npx skills add softcane/human-state-skills --agent claude-code
+npx skills add softcane/human-state-skills --agent codex
+```
+
+The Skills Store page is discovered from GitHub after the repo is installed
+through the `skills` CLI and the store cache refreshes.
 
 ### Claude Code Plugin Install
 
