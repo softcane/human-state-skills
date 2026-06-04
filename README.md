@@ -1,6 +1,6 @@
 # human-state-skills
 
-[![skills.sh](https://skills.sh/b/softcane/human-state-skills)](https://skills.sh/softcane/human-state-skills)
+[![Skills Store](https://img.shields.io/badge/skills.sh-human--state--skills-black)](https://www.skills.sh/softcane/human-state-skills)
 
 Small response modes for AI harness agents when your head is in a different state.
 
