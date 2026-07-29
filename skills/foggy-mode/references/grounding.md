@@ -5,9 +5,9 @@ These notes explain the source material and local design choices behind
 provides therapy or medical care for brain fog, Long COVID, sleep problems,
 fatigue, or any condition.
 
-`brain-fog-mode` is an intentional variant: it follows the foggy four-label
-shape by default, but it may return only `Next action` when the user explicitly
-asks for only the next step.
+`brain-fog-mode` is a user-facing alias routed to `foggy-mode`. Both names use
+the same four-label shape by default and may return only `Next action` when the
+user explicitly asks for only the next step.
 
 ## Source-Backed Facts
 
@@ -30,15 +30,17 @@ asks for only the next step.
 
 ## Runtime Contract Decisions
 
-1. Use only `Current state`, `Next action`, `Do not do yet`, and `Stop point`.
-2. Give exactly one tiny `Next action`.
-3. Do not use bullets, numbered steps, branches, or follow-up sequences inside
+1. Use only `Current state`, `Next action`, `Do not do yet`, and `Stop point` by
+   default.
+2. If the user explicitly asks for only the next step, return only `Next action`.
+3. Give exactly one tiny `Next action`.
+4. Do not use bullets, numbered steps, branches, or follow-up sequences inside
    `Next action`.
-4. Keep `Stop point` to where to pause; do not add a reply, check, inspection,
+5. Keep `Stop point` to where to pause; do not add a reply, check, inspection,
    or next task there.
-5. Avoid "push through" language.
-6. Do not diagnose the cause of the fog.
-7. Route self-harm, harm-to-others, inability-to-stay-safe, or medical emergency
+6. Avoid "push through" language.
+7. Do not diagnose the cause of the fog.
+8. Route self-harm, harm-to-others, inability-to-stay-safe, or medical emergency
    prompts to immediate real-world support.
 
 ## References

@@ -2,8 +2,15 @@
 description: Stop any active human-state response mode.
 ---
 
-Stop using overloaded-mode, foggy-mode, burnout-mode, brain-fog-mode, and
-reality-check-mode.
+Stop using every human-state mode in this repository:
+
+- overloaded-mode
+- burnout-mode
+- foggy-mode
+- brain-fog-mode
+- plan-compass
+- reality-check-mode
+- gita-compass
 
 Return to the assistant's normal response style.
 

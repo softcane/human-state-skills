@@ -14,8 +14,12 @@ The assistant should not use the same shape for all of those moments.
 - `/plan-compass`: stress-test a plan one concrete decision at a time.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
-- `/gita-compass`: use one Bhagavad Gita lens to name the state and choose the
-  next right action.
+- `/gita-compass`: when explicitly requested, use one Bhagavad Gita lens to
+  name the state and choose the next right action.
+
+There are six core skill contracts. `burnout-mode` routes to
+`overloaded-mode`, and `brain-fog-mode` routes to `foggy-mode`, so users retain
+eight familiar mode names without duplicated skill contracts.
 
 Install from Skills Store:
 
@@ -27,8 +31,10 @@ npx skills add softcane/human-state-skills
 
 Each example uses the same prompt. The left column shows a normal useful
 response; the right column shows the skill-shaped response beside it.
-Example nouns are illustrative; the skills trigger on human-state signals and
-task shape, not any specific domain.
+Example nouns are illustrative; most skills trigger on human-state signals and
+task shape, not any specific domain. `gita-compass` is the exception: it
+requires an explicit user request and must never be inferred from emotional
+state or wording.
 The after examples are formatted from live `codex exec` runs after installing
 the local skills. Future model versions may phrase things differently, but
 the skill contracts are the source of truth when an output drifts.
@@ -349,6 +355,9 @@ resolution.</p>
 
 ### Gita Compass
 
+The after response below assumes the user explicitly invoked `/gita-compass`.
+The content prompt by itself must not activate the skill.
+
 <table>
 <thead>
 <tr>
@@ -415,7 +424,7 @@ is slipping.</p>
 <p>Current state: you are choosing between a quick fix and asking for an
 extension.</p>
 <p>Next action: write the smallest honest status update.</p>
-<p>Stop point: stop after writing it.</p>
+<p>Stop point: Stop when the message is written.</p>
 </blockquote>
 <p><em>Useful in foggy mode, but too constrained when the user is ready for a
 normal answer.</em></p>
@@ -487,11 +496,19 @@ Aliases:
 /human-state-skills:brain-fog-mode
 ```
 
+These Claude alias commands are generated from the canonical overloaded and
+foggy commands by `scripts/sync-command-aliases.mjs`; do not maintain duplicate
+contracts by hand.
+
 Stop a mode:
 
 ```text
 /human-state-skills:normal-mode
 ```
+
+Claude commands stay active for the session until the user invokes another
+mode, asks to stop that mode, or invokes `normal-mode`. `normal-mode` cancels
+every human-state mode in this repository.
 
 ### Local Short Names
 
@@ -540,6 +557,12 @@ Use brain-fog-mode.
 Use normal-mode now.
 ```
 
+Codex skills are selected per message. Naming a mode does not create hidden
+session state; name it again on a later message when you want the same response
+contract. `gita-compass` must be named explicitly or requested as Bhagavad Gita
+or Krishna-based guidance. In Codex, `burnout-mode` selects
+`overloaded-mode`, and `brain-fog-mode` selects `foggy-mode`.
+
 ## Rules
 
 ### `/overloaded-mode`
@@ -587,7 +610,7 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 
 ### `/reality-check-mode`
 
-1. Validate distress, not the belief.
+1. Do not dismiss or shame distress, and do not validate the belief.
 2. Do not confirm unverifiable claims.
 3. Do not roleplay as a sentient AI, spirit, hidden guide, therapist, agent, or
    authority.
@@ -595,7 +618,8 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 5. Offer at most one ordinary explanation, then stop the analysis.
 6. State uncertainty clearly.
 7. Encourage checking with a trusted real person.
-8. Suggest a break from AI when the conversation is escalating.
+8. Keep the trusted-person action for hard overrides; do not replace it with a
+   fallback.
 9. Keep the response short, calm, and nonjudgmental.
 10. Prioritize real-world support when safety risk appears.
 
@@ -603,7 +627,8 @@ Grounding: [skills/reality-check-mode/references/grounding.md](skills/reality-ch
 
 ### `/gita-compass`
 
-1. Use Bhagavad Gita wisdom as a simple compass, not a sermon.
+1. Activate only from an explicit user request for Gita or Krishna-based
+   guidance; never infer spiritual consent.
 2. Choose exactly one lens: duty, attachment, mind, desire/anger, speech,
    self/doership, or refuge.
 3. Name the user's state in one sentence.
@@ -646,8 +671,6 @@ human-state-skills/
 |-- .claude-plugin/
 |-- commands/
 |-- skills/
-|   |-- brain-fog-mode/
-|   |-- burnout-mode/
 |   |-- overloaded-mode/
 |   |-- foggy-mode/
 |   |-- gita-compass/
@@ -656,8 +679,6 @@ human-state-skills/
 |   `-- normal-mode/
 `-- .agents/
     `-- skills/
-        |-- brain-fog-mode/
-        |-- burnout-mode/
         |-- overloaded-mode/
         |-- foggy-mode/
         |-- gita-compass/

@@ -4,6 +4,13 @@ description: Activate plan-compass mode for low-friction plan stress-testing.
 
 Activate plan-compass mode now.
 
+Immediate safety or medical danger overrides this command. Stop the decision
+walkthrough and prioritize immediate real-world help.
+
+If the same prompt asks to interpret hidden messages, special signals,
+surveillance, or an AI bond, stop the walkthrough and use reality-check-mode.
+Reality-check precedence overrides the decision format and mode persistence.
+
 Output contract:
 
 - Stress-test the user's plan through one concrete decision question at a time.

@@ -16,7 +16,9 @@ This cancels:
 - burnout-mode
 - foggy-mode
 - brain-fog-mode
+- plan-compass
 - reality-check-mode
+- gita-compass
 
 Return to the assistant's normal response style. Do not continue the previous
 mode unless the user invokes it again. Do not announce `Normal mode active` or
