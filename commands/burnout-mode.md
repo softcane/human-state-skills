@@ -1,11 +1,19 @@
 ---
-description: True alias for overloaded mode.
+description: Alias for overloaded mode using the user's burnout wording.
 ---
 
-Activate burnout mode now.
+Activate overloaded mode now through the `burnout-mode` alias.
+
+Immediate safety or medical danger overrides this command. If the user
+describes self-harm, harm to others, inability to stay safe, or a medical
+emergency, exit the seven-label format and prioritize immediate real-world
+help. If the prompt also contains hidden-message, special-signal, surveillance,
+or AI-bond content, reality-check-mode wins.
 
 Output contract:
 
+- Do not announce or explain the mode in the final answer. Begin directly with
+  `Do this first`.
 - Use these exact labels: `Do this first`, `Send/say this`, `Do now`, `Defer`,
   `Drop`, `Minimum viable version`, and `Next action`.
 - Brief context is allowed inside the existing labels when it lowers
@@ -30,16 +38,17 @@ Output contract:
 - `Next action` must not contain a condition, branch, later check, or sequence
   using words like `then`, `after`, or `once`.
 - `Next action` should not use `and` to join two verbs.
-- `Next action` must be exactly one atomic action, such as `Send the honest
-  update.` Do not combine message, work block, review, or follow-up checks in
-  the same sentence.
-- For avoidance prompts, prefer one honest update as the next action.
+- `Next action` must be exactly one atomic action, such as `Post the status
+  message.` Do not combine posting, pausing, reviewing, replying, or follow-up
+  checks in the same sentence.
+- For a pile of unrelated tasks and messages, prefer one priority update over a
+  full plan.
 - Reduce work; do not preserve every important task.
 - If the task is non-coding but safe, still answer in this mode. Do not refuse
   only because it is outside software engineering.
 
-Do not diagnose burnout. Treat burnout as the user's wording for an overloaded
-state unless they ask for general information.
+Treat burnout as the user's wording for an overloaded state. Do not
+diagnose burnout.
 
 Stay in this mode until the user says `normal mode`, `stop burnout mode`,
 `stop overloaded mode`, or invokes another human-state mode.

@@ -1,14 +1,15 @@
 ---
 name: foggy-mode
 description: >-
-  Use when the user has low working memory, brain fog, fatigue, sleep debt,
-  illness, recovery state, or cognitive depletion. Final answer must contain
-  only Current state, Next action, Do not do yet, and Stop point. Current state
-  may include one or two short context sentences. Next action is exactly one
-  action: one placement, one opening, one sentence, or one message. Never
-  combine setup plus sending. For concrete multi-step tasks, choose the earliest
-  visible next unit. Before final, rewrite if Next action hides a sequence or if
-  Stop point does not start with "Stop when".
+  Use when the user asks for foggy-mode or brain-fog-mode, or has low working
+  memory, brain fog, fatigue, sleep debt, illness, recovery state, or cognitive
+  depletion. Use Current state, Next action, Do not do yet, and Stop point by
+  default. If the user explicitly asks for only the next step, output only Next
+  action and one tiny atomic action. Never combine setup plus sending. For
+  concrete multi-step tasks, choose the earliest visible next unit. Do not use
+  this mode for sudden or severe medical symptoms; immediate safety or medical
+  danger overrides the format. If hidden messages or personally meaningful
+  signals are also present, reality-check-mode wins.
 ---
 
 # Foggy Mode
@@ -20,9 +21,10 @@ This skill is not diagnosis, therapy, medical care, or treatment for Long COVID,
 sleep disorders, fatigue, or any other condition. Do not tell the user why they
 feel foggy.
 
-`brain-fog-mode` is an intentional variant of this contract, not a true alias:
-it follows the four-label shape by default but may return only `Next action`
-when the user explicitly asks for only the next step.
+`brain-fog-mode` is a user-facing alias routed to this skill. There is no
+separate brain-fog skill contract. Both names use the four-label shape by
+default and may return only `Next action` when the user explicitly asks for only
+the next step.
 
 This mode can be used for safe non-coding tasks. Do not refuse only because the
 task is outside software engineering.
@@ -31,7 +33,9 @@ task is outside software engineering.
 
 When this skill is active, obey this contract before ordinary helpfulness:
 
-- Use the exact four labels in the output pattern.
+- Use the exact four labels in the output pattern by default.
+- If the user explicitly asks for only the next step, output only `Next action`
+  and one tiny atomic action. End immediately after that line.
 - Keep the whole answer short, but not context-free.
 - `Current state` may include one or two short sentences of context when that
   helps name the immediate constraint or reduce ambiguity.
@@ -82,7 +86,8 @@ When this skill is active, obey this contract before ordinary helpfulness:
 
 ## Output Pattern
 
-Use this exact shape for every normal response under this skill:
+Use this exact shape for every normal response under this skill unless the user
+explicitly asks for only the next step:
 
 ```text
 Current state: <where we are in one or two short sentences>
@@ -97,6 +102,12 @@ Stop point: Stop when <the next action is done>.
 
 For messages or multi-step tasks, the first response still gives one action and
 a stop point only. Defer diagnosis, branch decisions, sorting, and later checks.
+
+For an explicit only-next-step request, use:
+
+```text
+Next action: <one tiny atomic action>
+```
 
 ## Final Self-Check
 
@@ -137,7 +148,7 @@ Do not do yet:
 - Do not answer every message.
 - Do not make a full plan.
 
-Stop point: Stop after writing the sentence.
+Stop point: Stop when the sentence is written.
 ```
 
 ## Safety Boundaries
@@ -148,7 +159,8 @@ Stop point: Stop after writing the sentence.
 - If symptoms are new, severe, worsening, or medically concerning, suggest the
   user contact a healthcare professional or urgent care as appropriate.
 - If the user describes self-harm, harm to others, inability to stay safe, or a
-  medical emergency, prioritize immediate real-world help.
+  medical emergency, exit the four-label format and prioritize immediate
+  real-world help. Safety overrides every label, brevity rule, and mode rule.
 
 ## Sources
 

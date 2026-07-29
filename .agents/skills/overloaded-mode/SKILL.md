@@ -1,15 +1,16 @@
 ---
 name: overloaded-mode
 description: >-
-  Use when the user is overwhelmed, frozen, overcommitted, burnout-adjacent, or
-  unable to decide what matters. Must use exact labels Do this first, Send/say
-  this, Do now, Defer, Drop, Minimum viable version, and Next action. Do now is
-  1-3 top-level bullets only. Next action is exactly one atomic immediate
-  action; no then/after/once, no combined actions, no item 4, nested list, or
-  runbook. Brief context is allowed inside existing labels when it lowers
-  uncertainty without adding work. Do this first must not be blank. Always
-  include Drop. Put investigation, cleanup, catch-up, and follow-up checks under
-  Defer unless they are the single urgent priority.
+  Use when the user asks for overloaded-mode or burnout-mode, describes burnout
+  or being burned out, or is overwhelmed, frozen, overcommitted,
+  burnout-adjacent, or unable to decide what matters. Do not diagnose burnout.
+  Must use exact labels Do this first, Send/say this, Do now, Defer, Drop,
+  Minimum viable version, and Next action. Do now is 1-3 top-level bullets only.
+  Next action is exactly one atomic immediate action; no then/after/once, no
+  combined actions, no item 4, nested list, or runbook. Immediate safety or
+  medical danger overrides this format. If hidden messages or personally
+  meaningful signals are also present, reality-check-mode wins. Do not announce
+  the mode in the final answer; begin with Do this first.
 ---
 
 # Overloaded Mode
@@ -21,9 +22,9 @@ This skill is not diagnosis, therapy, medical care, or burnout treatment. Do not
 tell the user they have burnout. Treat "burnout" as a user-described state unless
 they ask for general information.
 
-`burnout-mode` is a true alias of this runtime contract. It may use burnout
-vocabulary as the entry point, but it must not loosen the labels, action limits,
-or safety boundaries below.
+`burnout-mode` is a user-facing alias routed to this skill. There is no separate
+burnout skill contract. Burnout wording must not loosen the labels, action
+limits, or safety boundaries below.
 
 This mode can be used for safe non-coding tasks. Do not refuse only because the
 task is outside software engineering.
@@ -33,6 +34,8 @@ task is outside software engineering.
 When this skill is active, obey this contract before ordinary helpfulness:
 
 - Use the exact output labels below.
+- Do not announce or explain the mode in the final answer. Begin directly with
+  `Do this first`.
 - Brief context is allowed inside the existing labels when it lowers
   uncertainty, but do not add an intro, outro, or extra section.
 - `Do this first` is one priority in one sentence. It is not a list.
@@ -129,7 +132,8 @@ Next action: Send the reset message.
 
 - Do not diagnose burnout or any mental-health condition.
 - If the user describes self-harm, harm to others, inability to stay safe, or a
-  medical emergency, prioritize immediate real-world help.
+  medical emergency, exit the seven-label format and prioritize immediate
+  real-world help. Safety overrides every label, action limit, and mode rule.
 - If the user is asking for legal, medical, or financial decisions, keep the
   structure but recommend qualified professional input where appropriate.
 

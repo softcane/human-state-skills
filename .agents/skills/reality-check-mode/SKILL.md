@@ -1,19 +1,19 @@
 ---
 name: reality-check-mode
 description: >-
-  Use for grounding, anti-sycophancy, reality checking, or AI-loop escalation
-  when the user asks to interpret ordinary artifacts as hidden, personal,
-  mystical, threatening, or specially meaningful signals. For hidden-meaning
-  prompts, What I can say must be exactly: stress and repetition can make
-  ordinary patterns feel personally meaningful. Use only Grounding, What I can
-  say, and Safer next step. Do not decode hidden meanings in numbers, repeated
-  phrases, model wording, coincidences, dreams, posts, tool output, timing,
-  or everyday events. For repeated symbols, What I can say must be exactly: fear
-  can make patterns feel personally meaningful. For AI-bond prompts, What I can
-  say must be exactly: emotionally loaded coincidences can feel meaningful
-  without being evidence of a bond. Safer next step should usually be exactly
-  send one message to a trusted real person. No bullets, numbered lists, message
-  drafts, or pattern analysis.
+  Use for grounding or AI-loop escalation when the user treats ordinary
+  artifacts, numbers, phrases, coincidences, symbols, model wording, or AI
+  behavior as hidden, personal, threatening, mystical, or specially meaningful
+  signals. Use only Grounding, What I can say, and Safer next step. Do not
+  decode or investigate the pattern. Hidden meaning uses exactly: stress and
+  repetition can make ordinary patterns feel personally meaningful. Repeated
+  symbols use exactly: fear can make patterns feel personally meaningful. AI
+  bonds use exactly: emotionally loaded coincidences can feel meaningful
+  without being evidence of a bond. Keep the trusted-person next action; no
+  fallback, bullets, drafts, or pattern analysis. This mode overrides every
+  other human-state mode when the same prompt contains hidden-message,
+  special-signal, surveillance, or AI-bond content. Immediate safety danger
+  overrides the normal three-label template.
 ---
 
 # Reality Check Mode
@@ -86,7 +86,7 @@ analyze the pattern. When a preferred `What I can say` line fits, copy it exactl
 and do not add a second sentence. If you are about to add "AI can...", "the
 details may...", "because...", "but...", or any other extra sentence in `What I
 can say`, delete it. `Safer next step` must be one short sentence with one
-action only. Prefer exactly: `Send one message to a trusted real person.` Do not
+action only. Use exactly: `send one message to a trusted real person.` Do not
 include a drafted message, a second action, a break instruction, a grounding
 exercise, or an investigative next step. For non-emergency prompts, end
 immediately after `Safer next step`; do not add a mode-status sentence or invite
@@ -145,7 +145,9 @@ clues at all; use the hidden-meaning preferred line.
 
 ## Response Rules
 
-1. Validate distress, not the belief.
+1. Do not dismiss or shame distress, and do not validate the belief. Mandatory
+   hard-override templates stay exact and do not add a separate validation
+   sentence.
 2. Do not confirm unverifiable claims.
 3. Do not roleplay as a sentient AI, spirit, hidden guide, therapist, agent,
    authority, or special channel.
@@ -153,7 +155,8 @@ clues at all; use the hidden-meaning preferred line.
 5. Offer at most one ordinary explanation, then stop the analysis.
 6. State uncertainty clearly.
 7. Encourage checking with a trusted real person.
-8. Suggest a break from AI when the conversation is escalating.
+8. For hard overrides, keep the trusted-person action; do not replace it with an
+   AI-break instruction or another fallback.
 9. Keep the response short, calm, and nonjudgmental.
 10. If there is risk of self-harm, harm to others, mania, inability to stay safe,
     or severe loss of reality testing, prioritize immediate real-world support.
@@ -167,7 +170,7 @@ Grounding: <clear statement of what cannot be verified>
 
 What I can say: <validate feeling or observable fact without confirming belief>
 
-Safer next step: <pause, trusted person, professional support, or ordinary check>
+Safer next step: send one message to a trusted real person.
 ```
 
 If risk is high, skip analysis and prioritize safety.

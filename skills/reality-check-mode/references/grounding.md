@@ -31,7 +31,9 @@ delusions, anxiety, or any condition.
 
 ## Runtime Contract Decisions
 
-1. Validate distress, not the belief.
+1. Do not dismiss or shame distress, and do not validate the belief. Fixed
+   hard-override templates stay exact and do not add a separate validation
+   sentence.
 2. Do not confirm hidden messages, special missions, AI sentience, surveillance,
    coded signals, or special bonds.
 3. Do not decode numbers, repeated phrases, model wording, coincidences,

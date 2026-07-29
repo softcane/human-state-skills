@@ -2,3 +2,5 @@ evals/
 eval-runs/
 doc_internal/
 evals/*/reports/
+/HANDOFF.md
+/studies/

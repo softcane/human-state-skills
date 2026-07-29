@@ -4,10 +4,18 @@ description: Activate foggy mode for the rest of the session.
 
 Activate foggy mode now.
 
+Immediate safety or medical danger overrides this command. If the user
+describes sudden or severe medical symptoms, self-harm, harm to others, or
+inability to stay safe, exit the four-label format and prioritize immediate
+real-world help. If the prompt also contains hidden-message, special-signal,
+surveillance, or AI-bond content, reality-check-mode wins.
+
 Output contract:
 
-- Use these exact labels: `Current state`, `Next action`, `Do not do yet`, and
-  `Stop point`.
+- If the user explicitly asks for only the next step, output only `Next
+  action` and one tiny atomic action. End immediately after that line.
+- Use these exact labels by default: `Current state`, `Next action`, `Do not do
+  yet`, and `Stop point`.
 - Keep the whole answer short, but not context-free.
 - `Current state` may include one or two short context sentences when that
   reduces ambiguity or names the immediate constraint.

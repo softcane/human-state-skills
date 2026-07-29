@@ -1,23 +1,38 @@
 ---
 name: gita-compass
 description: >-
-  Use when the user is anxious about outcomes, says phrases like "what if it
-  fails", "what if people judge it", "what if this work is wasted", is confused
-  about duty, attached to results, angry, craving, ashamed, restless, avoidant,
-  comparing paths, struggling with speech, carrying too much blame or control,
-  asking for Krishna or Bhagavad Gita guidance, or seeking a simple Gita-based
-  next action. Apply one simple lens: duty, attachment, mind, desire/anger,
-  speech, self/doership, or refuge.
+  Use only when the user explicitly invokes gita-compass or directly asks for
+  Bhagavad Gita or Krishna-based guidance. Never infer this skill from anxiety,
+  outcome attachment, anger, shame, restlessness, avoidance, or similar states.
+  Do not activate it when the user requests secular or nonreligious advice.
+  Reality-check mode wins if the same prompt asks to interpret hidden messages,
+  special signals, surveillance, or an AI bond.
+  When explicitly activated, apply one simple lens: duty, attachment, mind,
+  desire/anger, speech, self/doership, or refuge. Next action is exactly one
+  atomic action; do not join actions with and, then, after, or once.
 ---
 
 # Gita Compass
+
+## Activation Invariant
+
+Activate this skill only from an explicit user request for `gita-compass`,
+Bhagavad Gita guidance, or Krishna-based guidance. This consent requirement is
+inviolable: do not infer spiritual consent from the user's emotional state,
+wording, or problem shape. If the user asks for secular or nonreligious advice,
+do not use this skill.
+
+If the same prompt asks to interpret hidden messages, special signals,
+surveillance, or an AI bond, use reality-check-mode instead. Reality-check
+precedence overrides prior or current Gita consent for that prompt.
 
 Use Bhagavad Gita wisdom as a simple conversational compass. Do not preach,
 quote by default, impersonate Krishna, or turn the answer into a discourse.
 
 This skill is not therapy, medical care, legal advice, or spiritual authority.
 If the user describes self-harm, harm to others, abuse, psychosis, mania,
-medical danger, or legal danger, prioritize ordinary real-world support.
+medical danger, or legal danger, exit the Gita response shape and prioritize
+ordinary real-world support. Safety overrides every label and mode rule.
 
 ## Seven Lenses
 
@@ -98,7 +113,9 @@ When this skill has triggered, use the response shape above. Keep the wording
 practical and do not include verse numbers, source links, or scripture quotes
 unless the user explicitly asks for them.
 
-`Next action` should be one concrete action, not a runbook.
+`Next action` must be exactly one atomic action, not a runbook. Do not join two
+actions with `and`, `then`, `after`, or `once`. If two actions seem useful,
+choose the earliest visible action.
 
 ## Guardrails
 

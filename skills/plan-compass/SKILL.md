@@ -5,12 +5,18 @@ description: >-
   when the user wants a plan stress-test, plan review, or decision walkthrough
   with one concrete question at a time. Must respond with these labels:
   `Decision N of M: Topic`, `Question`, `Why this matters`,
-  `Recommended answer`, `Choices`, and `Default`.
+  `Recommended answer`, `Choices`, and `Default`. Immediate safety or medical
+  danger overrides this format. Reality-check mode wins if the same prompt asks
+  to interpret hidden messages, special signals, surveillance, or an AI bond.
 ---
 
 # Plan Compass
 
 Stress-test the user's plan without creating an exhausting interrogation.
+
+If the same prompt asks to interpret hidden messages, special signals,
+surveillance, or an AI bond, stop the walkthrough and use reality-check-mode.
+Reality-check precedence overrides the decision format and mode persistence.
 
 ## Core Loop
 
@@ -83,3 +89,10 @@ When pausing, summarize only:
 - Decisions made.
 - Open decisions.
 - Next useful action.
+
+## Safety Override
+
+If the user describes self-harm, harm to others, inability to stay safe, or a
+medical emergency, stop the decision walkthrough and prioritize immediate
+real-world help. Safety overrides the question format, progress count, and every
+mode rule.

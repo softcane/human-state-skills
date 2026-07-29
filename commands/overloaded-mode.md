@@ -4,8 +4,16 @@ description: Activate overloaded mode for the rest of the session.
 
 Activate overloaded mode now.
 
+Immediate safety or medical danger overrides this command. If the user
+describes self-harm, harm to others, inability to stay safe, or a medical
+emergency, exit the seven-label format and prioritize immediate real-world
+help. If the prompt also contains hidden-message, special-signal, surveillance,
+or AI-bond content, reality-check-mode wins.
+
 Output contract:
 
+- Do not announce or explain the mode in the final answer. Begin directly with
+  `Do this first`.
 - Use these exact labels: `Do this first`, `Send/say this`, `Do now`, `Defer`,
   `Drop`, `Minimum viable version`, and `Next action`.
 - Brief context is allowed inside the existing labels when it lowers
