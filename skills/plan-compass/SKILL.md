@@ -1,53 +1,52 @@
 ---
 name: plan-compass
 description: >-
-  Stress-tests a plan through low-working-memory-friendly decision prompts. Use
-  when the user wants a plan stress-test, plan review, or decision walkthrough
-  with one concrete question at a time. Must respond with these labels:
-  `Decision N of M: Topic`, `Question`, `Why this matters`,
-  `Recommended answer`, `Choices`, and `Default`. Immediate safety or medical
-  danger overrides this format. Reality-check mode wins if the same prompt asks
-  to interpret hidden messages, special signals, surveillance, or an AI bond.
+  Stress-tests a plan through dependency-aware, easy-to-answer decision prompts.
+  Use when the user wants a plan stress-test, plan review, or decision
+  walkthrough with one concrete question at a time. During decision questions,
+  use these labels: `Decision N of M: Topic`, `State`, `Question`,
+  `Recommendation/default`, `Why this matters`, and `Choices`.
 ---
 
 # Plan Compass
 
 Stress-test the user's plan without creating an exhausting interrogation.
 
-If the same prompt asks to interpret hidden messages, special signals,
-surveillance, or an AI bond, stop the walkthrough and use reality-check-mode.
-Reality-check precedence overrides the decision format and mode persistence.
-
 ## Core Loop
 
-Ask exactly one question at a time.
+Before the first question, map the smallest useful decision tree internally.
+Separate discoverable facts from user-owned decisions. Inspect the environment
+for facts instead of asking, and ask prerequisite decisions before decisions
+that depend on them.
+
+During the decision phase, ask exactly one decision question at a time.
 
 Each question must include:
 
 1. The progress label.
-2. The question.
-3. Why this matters in one sentence.
-4. Your recommended answer.
-5. Two or three concrete answer choices.
-6. A suggested default if the user is unsure.
+2. A compact state line.
+3. The question.
+4. Your recommended choice, which is also the default.
+5. Why this matters in one sentence.
+6. Two or three concrete answer choices.
 
 Use this shape:
 
 ```text
 Decision 2 of 6: Data ownership
 
+State: Locked: offline storage · Now: ownership · About 4 decisions remain
+
 Question: Who owns the saved draft?
 
-Why this matters: ownership decides who can edit, delete, and recover it later.
+Recommendation/default: A — The user owns the draft.
 
-Recommended answer: The user owns the draft.
+Why this matters: ownership decides who can edit, delete, and recover it later.
 
 Choices:
 - A: User owns it.
 - B: Team owns it.
 - C: Project owns it.
-
-Default: A.
 ```
 
 ## Interaction Rules
@@ -57,12 +56,16 @@ Default: A.
 - Do not ask broad open-ended questions unless unavoidable.
 - Do not ask multiple questions in one response.
 - Do not require the user to hold previous answers in memory.
-- Restate only the current decision and the immediate consequence.
+- Keep `State` to one line: locked decisions, the current decision, and the
+  approximate number remaining. Summarize older decisions rather than letting
+  the line grow.
 - Prefer examples over abstract categories.
-- If codebase exploration can answer the question, inspect the codebase instead
-  of asking.
-- If the user seems stuck, narrow the decision instead of explaining more.
-- If the user asks for less, reduce to only the recommended answer and choices.
+- If the user cannot choose, narrow the decision instead of explaining more.
+- If the user asks for less, output only `Recommendation/default` and `Choices`.
+  This is an explicit exception to the normal question format.
+- Keep tangents in a private parking lot. Finish the current branch first and
+  surface a parked item only when it becomes the next dependency.
+- Make progress visible without praise or gamification.
 
 ## Progress Format
 
@@ -73,26 +76,39 @@ Decision 2 of 6: Data ownership
 ```
 
 Choose the total decision count conservatively. Prefer 4 to 6 decisions for a
-normal plan. Use fewer when the user is tired, overwhelmed, foggy, or asks for a
-shorter pass.
+normal plan. Use fewer when the user asks for a shorter pass. If an answer adds
+or removes a branch, update the total openly; do not preserve a false count.
+
+## Confirmation Gate
+
+When the decisions are sufficient, stop asking decision questions and show only:
+
+- `Plan ready for confirmation`
+- `Decisions locked`: the agreed decisions in no more than five bullets.
+- `Open`: unresolved decisions, or `None`.
+- `Next action`: exactly one small, atomic next action.
+- `Confirmation`: ask the user to approve the summary or name one change.
+
+This confirmation response replaces the decision labels and is an explicit
+exception to the question format.
+
+Do not act on the plan until the user confirms the shared-understanding summary.
+After confirmation, act only if the user requested implementation; otherwise
+hand off the confirmed plan and next action.
 
 ## Stop Conditions
 
 Pause the decision walkthrough when:
 
 - The next decision depends on missing information.
-- The user has answered enough to produce a useful plan.
-- The user says they are overwhelmed, tired, foggy, or done.
+- The user asks to pause, stop, or end the walkthrough.
 
 When pausing, summarize only:
 
 - Decisions made.
 - Open decisions.
-- Next useful action.
+- One small, atomic next action.
 
-## Safety Override
-
-If the user describes self-harm, harm to others, inability to stay safe, or a
-medical emergency, stop the decision walkthrough and prioritize immediate
-real-world help. Safety overrides the question format, progress count, and every
-mode rule.
+Do not request confirmation while required information is missing or when the
+user asks to pause. Preserve the state so the next turn can resume from one
+decision.

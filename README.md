@@ -11,7 +11,8 @@ The assistant should not use the same shape for all of those moments.
 
 - `/overloaded-mode`: one priority, do/defer/drop, one next action.
 - `/foggy-mode`: keep state outside your head, one tiny step, clear stop point.
-- `/plan-compass`: stress-test a plan one concrete decision at a time.
+- `/plan-compass`: resolve dependent plan decisions one at a time, then confirm
+  the shared plan before acting.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
 - `/gita-compass`: when explicitly requested, use one Bhagavad Gita lens to
@@ -336,18 +337,18 @@ resolution.</p>
 <td valign="top">
 <blockquote>
 <p><strong>Decision 1 of 5: Draft ownership</strong></p>
+<p><strong>State:</strong> Nothing locked yet · Now: draft ownership · About 4 decisions remain</p>
 <p><strong>Question:</strong> Is a draft private until Save, or shared with the team before Save?</p>
+<p><strong>Recommendation/default:</strong> A — Private until Save; after Save, the API copy becomes the shared team draft.</p>
 <p><strong>Why this matters:</strong> <code>localStorage</code> is per-user, so team editing only works once the draft exists in the API.</p>
-<p><strong>Recommended answer:</strong> Private until Save; after Save, the API copy becomes the shared team draft.</p>
 <p><strong>Choices:</strong></p>
 <ul>
 <li>A: Private until Save, then shared.</li>
 <li>B: Shared immediately while typing.</li>
 <li>C: Always private; Save only publishes final content.</li>
 </ul>
-<p><strong>Default:</strong> A.</p>
 </blockquote>
-<p><em>One decision is visible, and the default is safe to accept.</em></p>
+<p><em>One dependent decision is visible, with state and a safe default.</em></p>
 </td>
 </tr>
 </tbody>
@@ -597,16 +598,15 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 
 ### `/plan-compass`
 
-1. Ask exactly one decision question at a time.
-2. Use visible progress, such as `Decision 2 of 6: Data ownership`.
-3. Include why the decision matters in one sentence.
-4. Put the recommended answer before the answer choices.
-5. Offer only two or three concrete choices.
-6. Give a default for when the user is unsure.
-7. Do not require the user to remember previous answers.
-8. Inspect the codebase instead of asking when the answer is discoverable.
-9. If the user seems stuck, narrow the decision instead of explaining more.
-10. Pause when the user is tired, foggy, overwhelmed, done, or ready for a plan.
+1. Map the smallest useful decision tree and resolve prerequisite decisions
+   before dependent ones.
+2. Ask exactly one decision question at a time.
+3. Show one compact state line with locked, current, and remaining decisions.
+4. Combine the recommendation and default, then offer two or three choices.
+5. Inspect the codebase instead of asking when a fact is discoverable.
+6. Keep tangents private until they become the next dependency.
+7. Narrow the decision when the user cannot choose; pause when they ask.
+8. Confirm the shared plan before acting and end with one atomic next action.
 
 ### `/reality-check-mode`
 

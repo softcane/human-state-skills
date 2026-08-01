@@ -240,20 +240,64 @@ assert.match(
   frontmatterDescription(skills["reality-check-mode"]),
   /This mode overrides every\s+other human-state mode/
 );
-for (const mode of ["gita-compass", "plan-compass"]) {
-  assert.match(
-    frontmatterDescription(skills[mode]),
-    /Reality-check mode wins/,
-    `${mode} declares reality-check precedence`
-  );
-  assert.match(
-    commands[mode],
-    /Reality-check precedence overrides/,
-    `${mode} command declares reality-check precedence`
-  );
+assert.match(
+  frontmatterDescription(skills["gita-compass"]),
+  /Reality-check mode wins/,
+  "gita-compass declares reality-check precedence"
+);
+assert.match(
+  commands["gita-compass"],
+  /Reality-check precedence overrides/,
+  "gita-compass command declares reality-check precedence"
+);
+for (const contract of [
+  skills["plan-compass"],
+  commands["plan-compass"]
+]) {
+  const normalizedContract = normalizeWhitespace(contract);
+  assert.match(contract, /smallest useful decision tree/);
+  assert.match(contract, /prerequisite decisions/);
+  assert.match(contract, /Recommendation\/default/);
+  assert.match(contract, /locked decisions/);
+  assert.match(contract, /tangents/);
+  assert.match(contract, /Do not act on the plan until the user confirms/);
+  assert.match(contract, /one small,?\s+atomic next action/);
+  assert.match(normalizedContract, /confirmation response replaces the decision labels/);
+  assert.match(normalizedContract, /explicit exception to the question format/);
+  for (const confirmationLabel of [
+    "Plan ready for confirmation",
+    "Decisions locked",
+    "Open",
+    "Next action",
+    "Confirmation"
+  ]) {
+    assert.ok(
+      contract.includes(confirmationLabel),
+      `plan-compass retains confirmation label ${confirmationLabel}`
+    );
+  }
+  assert.doesNotMatch(contract, /Recommended answer:/);
+  assert.doesNotMatch(contract, /\nDefault:/);
+  for (const detectionPattern of [
+    /Safety Override/,
+    /self-harm/,
+    /harm to others/,
+    /medical/,
+    /reality-check-mode/,
+    /hidden messages/,
+    /surveillance/,
+    /AI bond/,
+    /overwhelmed/,
+    /\btired\b/,
+    /\bfoggy\b/
+  ]) {
+    assert.doesNotMatch(
+      contract,
+      detectionPattern,
+      `plan-compass must not detect human state via ${detectionPattern}`
+    );
+  }
 }
-assert.match(skills["plan-compass"], /Safety overrides the question format/);
-assert.match(commands["plan-compass"], /Stop the decision\s+walkthrough/);
 
 const readme = await read("README.md");
 assert.match(readme, /gita-compass` is the exception/);
