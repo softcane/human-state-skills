@@ -200,6 +200,31 @@ for (const contract of [
   assert.match(contract, /one small,?\s+atomic next action/);
   assert.match(normalizedContract, /confirmation response replaces the decision labels/);
   assert.match(normalizedContract, /explicit exception to the question format/);
+  assert.match(
+    normalizedContract,
+    /what happens when it fails, who is allowed to do it, how you undo it, and how you know it worked/,
+    "plan-compass sweeps for undecided failure, permission, undo, and verification"
+  );
+  assert.match(
+    normalizedContract,
+    /Do not turn the sweep into extra questions/,
+    "the sweep must not add questions"
+  );
+  assert.match(
+    normalizedContract,
+    /Use `None` only when the sweep found nothing/,
+    "Open cannot default to None"
+  );
+  assert.match(
+    normalizedContract,
+    /lack the facts to recommend/,
+    "plan-compass may decline to recommend"
+  );
+  assert.match(
+    normalizedContract,
+    /pausing, run the undecided sweep/,
+    "the pause path runs the same sweep as the confirmation gate"
+  );
   for (const confirmationLabel of [
     "Plan ready for confirmation",
     "Decisions locked",

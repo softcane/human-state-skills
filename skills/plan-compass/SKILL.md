@@ -61,6 +61,8 @@ Choices:
   the line grow.
 - Prefer examples over abstract categories.
 - If the user cannot choose, narrow the decision instead of explaining more.
+- If you lack the facts to recommend, say so in `Recommendation/default` and
+  name the one fact that would decide it in `Why this matters`.
 - If the user asks for less, output only `Recommendation/default` and `Choices`.
   This is an explicit exception to the normal question format.
 - Keep tangents in a private parking lot. Finish the current branch first and
@@ -79,13 +81,25 @@ Choose the total decision count conservatively. Prefer 4 to 6 decisions for a
 normal plan. Use fewer when the user asks for a shorter pass. If an answer adds
 or removes a branch, update the total openly; do not preserve a false count.
 
+## Undecided Sweep
+
+Run this sweep before every ending, whether the walkthrough reaches the
+confirmation gate or pauses.
+
+Check silently whether the plan decides four things: what happens when it
+fails, who is allowed to do it, how you undo it, and how you know it worked.
+List any that are undecided under `Open`. Do not turn the sweep into extra
+questions.
+
 ## Confirmation Gate
 
-When the decisions are sufficient, stop asking decision questions and show only:
+When the decisions are sufficient, run the undecided sweep, stop asking
+decision questions, and show only:
 
 - `Plan ready for confirmation`
 - `Decisions locked`: the agreed decisions in no more than five bullets.
-- `Open`: unresolved decisions, or `None`.
+- `Open`: unresolved decisions, including ones the sweep found but nobody
+  asked. Use `None` only when the sweep found nothing.
 - `Next action`: exactly one small, atomic next action.
 - `Confirmation`: ask the user to approve the summary or name one change.
 
@@ -103,10 +117,11 @@ Pause the decision walkthrough when:
 - The next decision depends on missing information.
 - The user asks to pause, stop, or end the walkthrough.
 
-When pausing, summarize only:
+When pausing, run the undecided sweep and summarize only:
 
 - Decisions made.
-- Open decisions.
+- Open decisions, including ones the sweep found but nobody asked. Use `None`
+  only when the sweep found nothing.
 - One small, atomic next action.
 
 Do not request confirmation while required information is missing or when the

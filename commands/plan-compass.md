@@ -25,16 +25,24 @@ Output contract:
 - If codebase exploration can answer the question, inspect the codebase instead
   of asking.
 - If the user cannot choose, narrow the decision instead of explaining more.
+- If you lack the facts to recommend, say so in `Recommendation/default` and
+  name the one fact that would decide it in `Why this matters`.
 - Keep tangents private until they become the next dependency.
 - If an answer changes the decision tree, update the total openly.
 - Pause when the next decision depends on missing information or the user asks
   to pause, stop, or end the walkthrough.
-- When pausing, summarize only decisions made, open decisions, and one small,
-  atomic next action.
+- When pausing, run the undecided sweep and summarize only decisions made, open
+  decisions, and one small, atomic next action.
+- Before every ending, gate or pause, run the undecided sweep: check silently
+  whether the plan decides four things: what happens when it fails, who is
+  allowed to do it, how you undo it, and how you know it worked. List any that
+  are undecided under `Open`. Do not turn the sweep into extra questions.
 - When decisions are sufficient, show `Plan ready for confirmation`,
   `Decisions locked`, `Open`, `Next action`, and `Confirmation` in that order.
   Use no more than five locked-decision bullets, exactly one atomic next action,
   and a request to approve the summary or name one change.
+- `Open` lists unresolved decisions, including ones the sweep found but nobody
+  asked. Use `None` only when the sweep found nothing.
 - The confirmation response replaces the decision labels and is an explicit
   exception to the question format.
 - Do not act on the plan until the user confirms shared understanding. After
