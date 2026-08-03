@@ -10,7 +10,6 @@ Stop using every human-state mode in this repository:
 - brain-fog-mode
 - plan-compass
 - reality-check-mode
-- gita-compass
 
 Return to the assistant's normal response style.
 

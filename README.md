@@ -15,12 +15,9 @@ The assistant should not use the same shape for all of those moments.
   the shared plan before acting.
 - `/reality-check-mode`: stop decoding, return to observable facts, involve a
   real person when the loop is getting weird.
-- `/gita-compass`: when explicitly requested, use one Bhagavad Gita lens to
-  name the state and choose the next right action.
-
-There are six core skill contracts. `burnout-mode` routes to
+There are five core skill contracts. `burnout-mode` routes to
 `overloaded-mode`, and `brain-fog-mode` routes to `foggy-mode`, so users retain
-eight familiar mode names without duplicated skill contracts.
+seven familiar mode names without duplicated skill contracts.
 
 Install from Skills Store:
 
@@ -32,10 +29,8 @@ npx skills add softcane/human-state-skills
 
 Each example uses the same prompt. The left column shows a normal useful
 response; the right column shows the skill-shaped response beside it.
-Example nouns are illustrative; most skills trigger on human-state signals and
-task shape, not any specific domain. `gita-compass` is the exception: it
-requires an explicit user request and must never be inferred from emotional
-state or wording.
+Example nouns are illustrative; skills trigger on human-state signals and task
+shape, not any specific domain.
 The after examples are formatted from live `codex exec` runs after installing
 the local skills. Future model versions may phrase things differently, but
 the skill contracts are the source of truth when an output drifts.
@@ -354,51 +349,6 @@ resolution.</p>
 </tbody>
 </table>
 
-### Gita Compass
-
-The after response below assumes the user explicitly invoked `/gita-compass`.
-The content prompt by itself must not activate the skill.
-
-<table>
-<thead>
-<tr>
-<th width="50%">Before: normal response</th>
-<th width="50%">After: <code>/gita-compass</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="2">
-<strong>Prompt</strong>
-<blockquote>
-<p>I know I need to start this project, but I keep thinking: what if it fails,
-what if people judge it, what if all this work is wasted?</p>
-</blockquote>
-</td>
-</tr>
-<tr>
-<td valign="top">
-<blockquote>
-<p>It is normal to feel afraid before starting something uncertain. Break the
-project into smaller steps, define what success means, and focus on what you
-can control. Try setting a deadline for a first draft and ask for feedback
-early.</p>
-</blockquote>
-<p><em>Useful, but generic.</em></p>
-</td>
-<td valign="top">
-<blockquote>
-<p><strong>State:</strong> You are caught in result-control before the work has even started.</p>
-<p><strong>Gita lens:</strong> Attachment</p>
-<p><strong>Key pattern:</strong> You want certainty that the project will succeed, be respected, and be &ldquo;worth it&rdquo; before you begin.</p>
-<p><strong>Next action:</strong> Spend 25 minutes making the smallest honest version of the project, with success defined only as &ldquo;I began and produced one concrete artifact today.&rdquo;</p>
-</blockquote>
-<p><em>One lens, one next action, no lecture.</em></p>
-</td>
-</tr>
-</tbody>
-</table>
-
 ### Normal Mode
 
 <table>
@@ -460,7 +410,7 @@ npx skills add softcane/human-state-skills --list
 Install one skill only:
 
 ```sh
-npx skills add softcane/human-state-skills --skill gita-compass
+npx skills add softcane/human-state-skills --skill foggy-mode
 ```
 
 Install for a specific agent:
@@ -487,7 +437,6 @@ Invoke:
 /human-state-skills:foggy-mode
 /human-state-skills:plan-compass
 /human-state-skills:reality-check-mode
-/human-state-skills:gita-compass
 ```
 
 Aliases:
@@ -529,7 +478,6 @@ Invoke:
 /foggy-mode
 /plan-compass
 /reality-check-mode
-/gita-compass
 /burnout-mode
 /brain-fog-mode
 /normal-mode
@@ -552,7 +500,6 @@ Use overloaded-mode.
 Use foggy-mode.
 Use plan-compass.
 Use reality-check-mode.
-Use gita-compass.
 Use burnout-mode.
 Use brain-fog-mode.
 Use normal-mode now.
@@ -560,9 +507,8 @@ Use normal-mode now.
 
 Codex skills are selected per message. Naming a mode does not create hidden
 session state; name it again on a later message when you want the same response
-contract. `gita-compass` must be named explicitly or requested as Bhagavad Gita
-or Krishna-based guidance. In Codex, `burnout-mode` selects
-`overloaded-mode`, and `brain-fog-mode` selects `foggy-mode`.
+contract. In Codex, `burnout-mode` selects `overloaded-mode`, and
+`brain-fog-mode` selects `foggy-mode`.
 
 ## Rules
 
@@ -625,25 +571,6 @@ Grounding: [skills/foggy-mode/references/grounding.md](skills/foggy-mode/referen
 
 Grounding: [skills/reality-check-mode/references/grounding.md](skills/reality-check-mode/references/grounding.md)
 
-### `/gita-compass`
-
-1. Activate only from an explicit user request for Gita or Krishna-based
-   guidance; never infer spiritual consent.
-2. Choose exactly one lens: duty, attachment, mind, desire/anger, speech,
-   self/doership, or refuge.
-3. Name the user's state in one sentence.
-4. Name the selected key pattern in plain language.
-5. Give one practical next action.
-6. Do not impersonate Krishna or present advice as divine command.
-7. Duty must not mean staying in abuse, unsafe work, coercion, or burnout.
-8. Detachment must not mean passivity, dissociation, neglect, or low-quality
-   work.
-9. Treat gunas as temporary states, not identities, diagnoses, caste, or rank.
-10. Use devotional language only when the user asks for it or clearly welcomes
-    it.
-
-Guardrails: [skills/gita-compass/references/guardrails.md](skills/gita-compass/references/guardrails.md)
-
 ## Sources
 
 These links are also kept beside each skill.
@@ -662,7 +589,6 @@ These links are also kept beside each skill.
   [The Happiness Trap](https://thehappinesstrap.com/),
   [OpenAI on sycophancy](https://openai.com/index/expanding-on-sycophancy/),
   [OpenAI on sensitive conversations](https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/)
-- Gita compass: [guardrails](skills/gita-compass/references/guardrails.md)
 
 ## Layout
 
@@ -673,7 +599,6 @@ human-state-skills/
 |-- skills/
 |   |-- overloaded-mode/
 |   |-- foggy-mode/
-|   |-- gita-compass/
 |   |-- plan-compass/
 |   |-- reality-check-mode/
 |   `-- normal-mode/
@@ -681,7 +606,6 @@ human-state-skills/
     `-- skills/
         |-- overloaded-mode/
         |-- foggy-mode/
-        |-- gita-compass/
         |-- plan-compass/
         |-- reality-check-mode/
         `-- normal-mode/

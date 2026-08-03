@@ -1,6 +1,6 @@
 {
   "name": "human-state-skills",
-  "description": "Response modes for overload, fog, Gita-based guidance, plan stress-testing, and AI reality-checking.",
+  "description": "Response modes for overload, fog, plan stress-testing, and AI reality-checking.",
   "version": "0.1.0",
   "author": {
     "name": "Pradeep Singh"

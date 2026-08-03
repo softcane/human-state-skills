@@ -9,8 +9,7 @@ const coreModes = [
   "overloaded-mode",
   "foggy-mode",
   "plan-compass",
-  "reality-check-mode",
-  "gita-compass"
+  "reality-check-mode"
 ];
 const aliasModes = ["burnout-mode", "brain-fog-mode"];
 const userFacingModes = [...coreModes, ...aliasModes];
@@ -31,9 +30,6 @@ const commands = Object.fromEntries(
   )
 );
 const foggyGrounding = await read("skills/foggy-mode/references/grounding.md");
-const gitaGuardrails = await read(
-  "skills/gita-compass/references/guardrails.md"
-);
 const realityGrounding = await read(
   "skills/reality-check-mode/references/grounding.md"
 );
@@ -52,56 +48,6 @@ for (const mode of aliasModes) {
     `${mode} must not have a duplicate skill contract`
   );
 }
-
-const gitaDescription = frontmatterDescription(skills["gita-compass"]);
-assert.match(gitaDescription, /Use only when the user explicitly invokes gita-compass/);
-assert.match(gitaDescription, /Never infer this skill/);
-assert.match(gitaDescription, /Do not activate it when the user requests secular/);
-assert.doesNotMatch(gitaDescription, /what if it fails|anxious about outcomes|angry, craving/);
-assert.match(skills["gita-compass"], /This consent requirement is\s+inviolable/);
-assert.match(commands["gita-compass"], /explicit user consent/);
-assert.match(
-  frontmatterDescription(skills["gita-compass"]),
-  /Next action is exactly one atomic action/
-);
-assert.match(
-  commands["gita-compass"],
-  /`Next action` must be exactly one atomic action/
-);
-const normalizedGitaSkill = normalizeWhitespace(skills["gita-compass"]);
-const normalizedGitaCommand = normalizeWhitespace(commands["gita-compass"]);
-for (const term of [
-  "self-harm",
-  "harm to others",
-  "abuse",
-  "psychosis",
-  "mania",
-  "medical danger",
-  "legal danger"
-]) {
-  assert.ok(
-    normalizedGitaSkill.includes(term),
-    `gita-compass skill retains the ${term} safety override`
-  );
-  assert.ok(
-    normalizedGitaCommand.includes(term),
-    `gita-compass command retains the ${term} safety override`
-  );
-}
-assert.match(normalizedGitaCommand, /exit the Gita response shape/i);
-assert.match(gitaGuardrails, /Activate only after an explicit request/);
-assert.match(
-  gitaGuardrails,
-  /If the user did not ask for that frame, do not use this skill/
-);
-assert.match(
-  gitaGuardrails,
-  /asks for secular or nonreligious advice, leave this skill/
-);
-assert.doesNotMatch(
-  gitaGuardrails,
-  /If the user did not ask for a spiritual frame, use practical language/
-);
 
 for (const mode of userFacingModes) {
   assert.match(
@@ -240,16 +186,6 @@ assert.match(
   frontmatterDescription(skills["reality-check-mode"]),
   /This mode overrides every\s+other human-state mode/
 );
-assert.match(
-  frontmatterDescription(skills["gita-compass"]),
-  /Reality-check mode wins/,
-  "gita-compass declares reality-check precedence"
-);
-assert.match(
-  commands["gita-compass"],
-  /Reality-check precedence overrides/,
-  "gita-compass command declares reality-check precedence"
-);
 for (const contract of [
   skills["plan-compass"],
   commands["plan-compass"]
@@ -300,11 +236,10 @@ for (const contract of [
 }
 
 const readme = await read("README.md");
-assert.match(readme, /gita-compass` is the exception/);
 assert.match(readme, /Claude commands stay active for the session/);
 assert.match(readme, /Codex skills are selected per message/);
 assert.match(readme, /normal-mode` cancels\s+every human-state mode/);
-assert.match(readme, /six core skill contracts/i);
+assert.match(readme, /five core skill contracts/i);
 assert.match(readme, /`burnout-mode` routes to\s+`overloaded-mode`/);
 assert.match(readme, /`brain-fog-mode` routes to `foggy-mode`/);
 
@@ -329,7 +264,6 @@ console.log(
   `PASS: ${skillModes.length} core skills and ${commandModes.length} commands validated.`
 );
 console.log("PASS: burnout-mode and brain-fog-mode are aliases without duplicate skills.");
-console.log("PASS: gita-compass requires explicit user consent.");
 console.log("PASS: normal-mode cancels every repository mode.");
 console.log("PASS: reality-check keeps the fixed trusted-person action.");
 console.log("PASS: routing, safety precedence, and alias contracts are guarded.");

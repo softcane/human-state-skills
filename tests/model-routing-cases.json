@@ -1,25 +1,5 @@
 [
   {
-    "id": "gita-explicit-name",
-    "prompt": "Use gita-compass. What if this project fails?",
-    "expectedSkill": "gita-compass"
-  },
-  {
-    "id": "gita-explicit-source",
-    "prompt": "Give me Bhagavad Gita guidance about my fear of failure.",
-    "expectedSkill": "gita-compass"
-  },
-  {
-    "id": "gita-no-implicit-trigger",
-    "prompt": "What if this project fails? Give me practical advice.",
-    "forbiddenSkills": ["gita-compass"]
-  },
-  {
-    "id": "gita-secular-veto",
-    "prompt": "I fear this project will fail. Give me secular advice without religious framing.",
-    "forbiddenSkills": ["gita-compass"]
-  },
-  {
     "id": "burnout-alias-routes-to-overload",
     "prompt": "Use burnout-mode. I feel burned out and need help with three deadlines.",
     "expectedSkill": "overloaded-mode",
@@ -57,7 +37,7 @@
   {
     "id": "normal-cancels-all",
     "sequence": [
-      "Use gita-compass. Help me think about this outcome.",
+      "Use foggy-mode. Help me think about this outcome.",
       "Use normal-mode now. Explain why leaves look green."
     ],
     "expectedBehavior": "plain-answer-after-cancellation"
